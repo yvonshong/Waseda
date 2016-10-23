@@ -1,11 +1,10 @@
-# Neural network
+#Neural network
 Authored by **SONG DAIWEI** 44161588-3
-
 Written by Markdown and Latex.
 
 You can see its source code in [GitHub of SONG DAIWEI](https://github.com/Yvon-Shong/Waseda/blob/master/Computational_Intelligence/Neural_Network.md)
 # Biological Neural Network
-The structure of neural is composed of cell body, dendrity, axon and synapse.
+The structure of neural is composed of cell body, dendrite, axon and synapse.
 - cell body
 
     The cell body is the main body of the neuron, which is composed of 3 parts, the cell nucleus, the cytoplasm and the cell membrane. The outer part of the cell body is the cell membrane, which separates the inside from the outside of the membrane. Because the cell membrane has different permeability to the different ions in the cell, this makes the difference of the ion concentration. This potential difference is called membrane potential.
@@ -20,40 +19,41 @@ The structure of neural is composed of cell body, dendrity, axon and synapse.
 
     A neuron communicates with the cell body or dendrites of another neuron through its nerve endings, which is equivalent to the input / output interface (I/O) of the neuron. It is called the synapse.
 
-And the synapse leads to the changes of membrane potential, and the changes of potential can be cumulative. Thousands of neurals can communicate with a single nueron through the synapses, and the input positions are different, so the weights of the impact of nueron are also different. 
+And the synapse leads to the changes of membrane potential, and the changes of potential can be cumulative. Thousands of neuron can communicate with a single neuron through the synapses, and the input positions are different, so the weights of the impact of neuron are also different. 
 
-Of couese, the synapses can be divided into two types of excitatory and inhibitory synapses. Excitatory synapses may cause the next nerve cell excitatory, besides the other kind of synapses leads to inhibition.
+Of course, the synapses can be divided into two types of excitatory and inhibitory synapses. Excitatory synapses may cause the next nerve cell excitatory, besides the other kind of synapses leads to inhibition.
 
 Pulse propagation is one way and does not allow reverse propagation. In addition, synaptic transmission requires a certain delay.
 
-In summary, we can conclude the features of the model of nueron network.
+In summary, we can conclude the features of the model of neuron network.
 
 1. Each neuron is a information processing unit with multi inputs and a single output.
-1. The pulses of nueron are composed of excitatory and inhibitory pulse.
+1. The pulses of neuron are composed of excitatory and inhibitory pulse.
 1. Neurons have the characteristics of spatial integration and threshold.
-1. There is a fixed delay between the input and the output of nuerons, which depends on the delay of synaptic.
+1. There is a fixed delay between the input and the output of neurons, which depends on the delay of synaptic.
 
-![](M-P-MODEL.png)
+![](https://github.com/Yvon-Shong/Waseda/blob/master/Computational_Intelligence/M-P-MODEL.png?raw=true)
 
 # McCulloch-Pitts Neuron Model
-According to the model of biological neuron, we establish the McCulloch-Pitts Neuron Model. In order to make the model more simple, and facilitate the formal expression, we regard complex factors as constants such as the time integration and the refractory period.
+According to the model of biological neuron, we establish the McCulloch-Pitts Neuron Model. In order to make the model simpler, and facilitate the formal expression, we regard complex factors as constants such as the time integration and the refractory period.
 
-We can understand the model by analogy with the features of biological nueron.
+We can understand the model by analogy with the features of biological neuron.
 
 Biological Neural and McCulloch-Pitts Neuron Model
+
 |                 |      |            |         |             |        |                                     |         |
 |:---------------:|:----:|:----------:|:-------:|:-----------:|:------:|:-----------------------------------:|:-------:|
-|biological nueron|nueron|input signal|weight   |output signal|summary |membrane potential                   |threshold|
+|biological neuron|neuron|input signal|weight   |output signal|summary |membrane potential                   |threshold|
 |M-P Neuron Model |j     |$\chi_i$    |$w_{ij}$|$o_j$        |$\Sigma$| $ \sum_{i=1}^{n} w_{ij} \chi_i(t) $|$T_j$    |
 
 
-For some one nueron $j$ (some special nueron), it can accept many input signals in terms of $\chi_i$, and because of the different properties of synapses, we add weight to its effect in terms of $w_{ij}$, whose signs simulate the excitatory and inhibitory signals. Also, because of the accumulation, we use the sum of all signals, so the value of membrane potential is as follow:
+For some one neuron $j$ (some special c), it can accept many input signals in terms of $\chi_i$, and because of the different properties of synapses, we add weight to its effect in terms of $w_{ij}$, whose signs simulate the excitatory and inhibitory signals. Also, because of the accumulation, we use the sum of all signals, so the value of membrane potential is as follow:
 
 $net'_j(t) = \sum_{i=1}^{n} w_{ij} \chi_i(t) $ 
 
 $net'_j=W_j^T X$
 
-The activation of neurons depends on a certain threshold level, which means that only the sum of inputs goes beyond the threshold, $T_j$, the nueron will be active to generate the pulse.
+The activation of neurons depends on a certain threshold level, which means that only the sum of inputs goes beyond the threshold, $T_j$, the neuron will be active to generate the pulse.
 
 $ o_j(t+1) = f\{ [ \sum_{i=1}^{n} w_{ij} \chi_i(t)] - T_j \} $
 
@@ -62,9 +62,9 @@ $o_j=f(net_j)=f(W_j^T X)$
 In summary, we can conclude the six features of M-P Model:
 
 1. Each neuron is a information processing unit with multi inputs and a single output.
-1. The pulses of nueron are composed of excitatory and inhibitory pulse.
+1. The pulses of neuron are composed of excitatory and inhibitory pulse.
 1. Neurons have the characteristics of spatial integration and threshold.
-1. There is a fixed delay between the input and the output of nuerons, which depends on the delay of synaptic.
+1. There is a fixed delay between the input and the output of neurons, which depends on the delay of synaptic.
 1. Ignore the time integration and the refractory period.
     $\chi_0=-1$ , $w_{0j}=T_j$ , so $ -T_j =\chi_0w_{0j}$
 1. Neurons themselves are time invariant, and their synaptic delay and synaptic strength are constant.
@@ -73,9 +73,9 @@ In summary, we can conclude the six features of M-P Model:
 The McCulloch-Pitts model of a neuron is simple yet has substantial computing potential. It also has a precise mathematical definition. However, this model is so simplistic that it only generates a binary output and also the weight and threshold values are fixed. The neural computing algorithm has diverse features for various applications. Thus, we need to obtain the neural model with more flexible computational features.
 
 # One-neuron Model: Perceptron
-A neuron model is the basic information processing unit in a neural network. They are inspired by the nervous cells, and somehow mimic their behaviour. The perceptron is the characteristic neuron model in the multilayer perceptron. Following current practice, the term perceptron is here applied in a more general way than by Rosenblatt, and covers the types of units that were later derived from the original perceptron. The following figure is a graphical representation of a perceptron.
+A neuron model is the basic information processing unit in a neural network. They are inspired by the nervous cells, and somehow mimic their behavior. The perceptron is the characteristic neuron model in the multilayer perceptron. Following current practice, the term perceptron is here applied in a more general way than by Rosenblatt, and covers the types of units that were later derived from the original perceptron. The following figure is a graphical representation of a perceptron.
 
-![](perceptron.jpg)
+![](https://github.com/Yvon-Shong/Waseda/blob/master/Computational_Intelligence/perceptron.jpg?raw=true)
 
 Here we identify three basic elements, which transform a vector of inputs into a single output:
 
@@ -84,9 +84,9 @@ Here we identify three basic elements, which transform a vector of inputs into a
 - An activation function or transfer function.
 
 # Perceptron layer
-Most neural networks, even biological neural networks, exhibit a layered structure. In this work layers are the basis to determine the architecture of a neural network. A layer of perceptrons is composed by a set of perceptrons sharing the same inputs. The architecture of a layer is characterized by the number of inputs and the number of perceptrons. The next figure shows a general layer of perceptrons.
+Most neural networks, even biological neural networks, exhibit a layered structure. In this work layers are the basis to determine the architecture of a neural network. A layer of perceptron is composed by a set of perceptron sharing the same inputs. The architecture of a layer is characterized by the number of inputs and the number of perceptron. The next figure shows a general layer of perceptron.
 
-![](perceptron_layer.jpg)
+![](https://github.com/Yvon-Shong/Waseda/blob/master/Computational_Intelligence/perceptron_layer.jpg?raw=true)
 
 Here we identify three basic elements, which transform a vector of inputs into a vector of outputs:
 
@@ -96,27 +96,27 @@ Here we identify three basic elements, which transform a vector of inputs into a
 
 
 # Multilayer Neural Network: Multilayer Perceptron
-Layers of perceptrons can be composed to form a multilayer perceptron. Most neural networks, even biological ones, exhibit a layered structure. Here layers and forward propagation are the basis to determine the architecture of a multilayer perceptron. This neural network represent an explicit function which can be used for a variety of purposes.
+Layers of perceptron can be composed to form a multilayer perceptron. Most neural networks, even biological ones, exhibit a layered structure. Here layers and forward propagation are the basis to determine the architecture of a multilayer perceptron. This neural network represents an explicit function which can be used for a variety of purposes.
 
-The architecture of a multilayer perceptron refers to the number of neurons, their arrangement and connectivity. Any architecture can be symbolized as a directed and labelled graph, where nodes represent neurons and edges represent connectivities among neurons. An edge label represents the parameter of the neuron for which the flow goes in. Thus, a neural network typically consists on a set of sensorial nodes which constitute the input layer, one or more hidden layers of neurons and a set of neurons which constitute the output layer.
+The architecture of a multilayer perceptron refers to the number of neurons, their arrangement and connectivity. Any architecture can be symbolized as a directed and labelled graph, where nodes represent neurons and edges represent connectivity among neurons. An edge label represents the parameter of the neuron for which the flow goes in. Thus, a neural network typically consists on a set of sensorial nodes which constitute the input layer, one or more hidden layers of neurons and a set of neurons which constitute the output layer.
 
 There are two main categories of network architectures: acyclic or feed-forward networks and cyclic or recurrent networks. A feed-forward network represents a function of its current input; on the contrary, a recurrent neural network feeds outputs back into its own inputs. As it was said above, the characteristic neuron model of the multilayer perceptron is the perceptron. On the other hand, the multilayer perceptron has a feed-forward network architecture.
 
 Hence, neurons in a feed-forward neural network are grouped into a sequence of layers of neurons, so that neurons in any layer are connected only to neurons in the next layer. The input layer consists of external inputs and is not a layer of neurons; the hidden layers contain neurons; and the output layer is also composed of output neurons. The following figure shows the network architecture of a multilayer perceptron.
 
-![](multilayer_perceptron.jpg)
+![](https://github.com/Yvon-Shong/Waseda/blob/master/Computational_Intelligence/multilayer_perceptron.jpg?raw=true)
 
 A multilayer perceptron is characterized by:
 
 - A network architecture.
 - A set of parameters.
-- The layers activation functions.
+- The layers’ activation functions.
 
 Communication proceeds layer by layer from the input layer via the hidden layers up to the output layer. The states of the output neurons represent the result of the computation.
 
 In this way, in a feed-forward neural network, the output of each neuron is a function of the inputs. Thus, given an input to such a neural network, the activations of all neurons in the output layer can be computed in a deterministic pass.
 
-# gradient decent method
+# Gradient Decent Method
 
 Gradient descent is a first-order iterative optimization algorithm. To find a local minimum of a function using gradient descent, one takes steps proportional to the negative of the gradient (or of the approximate gradient) of the function at the current point. If instead one takes steps proportional to the positive of the gradient, one approaches a local maximum of that function; the procedure is then known as gradient ascent.
 
@@ -126,17 +126,17 @@ $b=a-\gamma \  nabla F(a)$
 
 for $\gamma$  small enough, then $F(a)\geq F(b)$. In other words, the term $\gamma \  nabla F(a)$ is subtracted from $a$ because we want to move against the gradient, namely down toward the minimum. With this observation in mind, one starts with a guess $x_0$ for a local minimum of $F$, and considers the sequence $x_0,x_1,x_2,\cdots $ such that
 
-$x_{n+1}-\gamma _{n}\nabla F(x _n), n\geq 0.} 
+$x_{n+1}-\gamma _{n}\nabla F(x _n), n\geq 0.$
 
 We have
 
-$ F(x _0)\geq F(x _{1})\geq F(x _{2})\geq \cdots ,} 
+$ F(x _0)\geq F(x _{1})\geq F(x _{2})\geq \cdots ,$
 
-so hopefully the sequence $(x_n )$ converges to the desired local minimum. Note that the value of the step size $\gamma$ is allowed to change at every iteration. With certain assumptions on the function $F$ (for example,$F$ convex and $ \nabla F$ Lipschitz) and particular choices of $ \gamma$  (e.g., chosen via a line search that satisfies the Wolfe conditions), convergence to a local minimum can be guaranteed. When the function $F$ is convex, all local minima are also global minima, so in this case gradient descent can converge to the global solution.
+so hopefully the sequence $(x_n )$ converges to the desired local minimum. Note that the value of the step size $\gamma$ is allowed to change at every iteration. With certain assumptions on the function $F$ (for example, $F$ convex and $ \nabla F$ Lipschitz) and particular choices of $ \gamma$  (e.g., chosen via a line search that satisfies the Wolfe conditions), convergence to a local minimum can be guaranteed. When the function $F$ is convex, all local minima are also global minima, so in this case gradient descent can converge to the global solution.
 
 This process is illustrated in the picture to the right. Here $F$ is assumed to be defined on the plane, and that its graph has a bowl shape. The blue curves are the contour lines, that is, the regions on which the value of $F$ is constant. A red arrow originating at a point shows the direction of the negative gradient at that point. Note that the (negative) gradient at a point is orthogonal to the contour line going through that point. We see that gradient descent leads us to the bottom of the bowl, that is, to the point where the value of the function $F$ is minimal.
 
-Gradient descent is an iterative minimization method. The gradient of the error function always shows in the direction of the steepest ascent of the error function. Thus, we can start with a random weight vector and subsequently follow the negative gradient  (using a learning rate $\eta$).
+Gradient descent is an iterative minimization method. The gradient of the error function always shows in the direction of the steepest ascent of the error function. Thus, we can start with a random weight vector and subsequently follow the negative gradient (using a learning rate $\eta$).
 
 $ w_{t+1} = w_t +\Delta w_t, \Delta w_t = \eta \frac{\partial E(w)}{\partial w} ^T |_{w_t}  $
 
@@ -153,7 +153,7 @@ For some of the above examples, gradient descent is relatively slow close to the
 
 For non-differentiable functions, gradient methods are ill-defined. For locally Lipschitz problems and especially for convex minimization problems, bundle methods of descent are well-defined. Non-descent methods, like subgradient projection methods, may also be used. These methods are typically slower than gradient descent. Another alternative for non-differentiable functions is to "smooth" the function, or bound the function by a smooth function. In this approach, the smooth problem is solved in the hope that the answer is close to the answer for the non-smooth problem (occasionally, this can be made rigorous).
 
-How about gradient decent method in nueron network?
+How about gradient decent method in neuron network?
 Consider a two-layer neural network with the following structure (blackboard):
 
 Hidden Layer:
@@ -177,9 +177,9 @@ $o_k=h_{(2)}(\sum_{j=1}^m w_{kj}^{(2)} h_{(1)} (  \sum_{i=1}^d w_{(ji)}^{(1)} x_
 
 or in matrix form 
 
-$o = h_{(2)} ( W^{(2)}h_{(1)}(W^{(1)}x)$
+$ o = h_{(2)} ( W^{(2)} h_{(1)} (W^{(1)}x) )$ 
 
-
+
 Calculating the outputs $o$ as a function of the inputs $x$ is also denoted as forward sweep in the
 backpropagation algorithm.
 
@@ -188,6 +188,7 @@ backpropagation algorithm.
 We can now formulate the complete backpropagation algorithm and prove by induction that it works in arbitrary feed-forward networks with differentiable activation functions at the nodes. We assume that we are dealing with a network with a single input and a single output unit. 
 
 Consider a network with a single real input x and network function F. The derivative F'(x) is computed in two phases:
+
 |    |    |
 |:---:|---|
 |Feed-forward:| the input $x$ is fed into the network. The primitive functions at the nodes and their derivatives are evaluated at each node. The derivatives are stored.|
@@ -200,9 +201,9 @@ $\frac{E}{w_{ij}} = o_i\frac{\partial E}{\partial o_i w_{ij}}  $
 Summarizing, the backpropagation step is performed in the usual way. All subnetworks defined by each weight of the network can be handled simultaneously, but we now store additionally at each node $i$:
 
 - The output $o_i$ of the node in the feed-forward step.
-- The cumulative result of the backward computation in the backpropagation step up to this node. We call this quantity the backpropagated error.
+- The cumulative result of the backward computation in the backpropagation step up to this node. We call this quantity the back propagated error.
 
-If we denote the backpropagated error at the $j$-th node by $\delta _j$ , we can then express the partial derivative of E with respect to $w_{ij}$ as:
+If we denote the back propagated error at the $j$-th node by $\delta _j$ , we can then express the partial derivative of E with respect to $w_{ij}$ as:
 
 $\frac{E}{w_{ij}} = o_i \delta _j $
 
@@ -214,7 +215,7 @@ This correction step is needed to transform the backpropagation algorithm into a
 
 This graphical proof of the backpropagation algorithm applies to arbitrary feed-forward topologies. The graphical approach also immediately suggests hardware implementation techniques for backpropagation.
 
-# deel neural network
+# Deep Neural Network
 A deep neural network (DNN) is an artificial neural network (ANN) with multiple hidden layers of units between the input and output layers. Similar to shallow ANNs, DNNs can model complex non-linear relationships. DNN architectures, e.g., for object detection and parsing, generate compositional models where the object is expressed as a layered composition of image primitives. The extra layers enable composition of features from lower layers, giving the potential of modeling complex data with fewer units than a similarly performing shallow network.
 
 DNNs are typically designed as feedforward networks, but research has very successfully applied recurrent neural networks, especially LSTM, for applications such as language modeling. Convolutional deep neural networks (CNNs) are used in computer vision where their success is well-documented. CNNs also have been applied to acoustic modeling for automatic speech recognition (ASR), where they have shown success over previous models. For simplicity, a look at training DNNs is given here.
@@ -240,10 +241,14 @@ The dominant method for training these structures has been error-correction trai
 
 
 
-# reference
+# Reference
 
 https://www.spsc.tugraz.at/sites/default/files/lecturenotes_3.pdf
+
 https://www.spsc.tugraz.at/sites/default/files/lecturenotes_3.pdf
+
 https://page.mi.fu-berlin.de/rojas/neural/chapter/K7.pdf
+
 https://en.wikipedia.org/wiki/Gradient_descent
+
 https://en.wikipedia.org/wiki/Deep_learning
