@@ -1,5 +1,6 @@
-#Neural network
+# Neural network
 Authored by **SONG DAIWEI** 44161588-3
+
 Written by Markdown and Latex.
 
 You can see its source code in [GitHub of SONG DAIWEI](https://github.com/Yvon-Shong/Waseda/blob/master/Computational_Intelligence/Neural_Network.md)
@@ -242,8 +243,6 @@ The dominant method for training these structures has been error-correction trai
 
 
 # Reference
-
-https://www.spsc.tugraz.at/sites/default/files/lecturenotes_3.pdf
 
 https://www.spsc.tugraz.at/sites/default/files/lecturenotes_3.pdf
 
