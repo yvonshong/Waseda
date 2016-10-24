@@ -6,6 +6,7 @@ Written by Markdown and Latex.
 You can see its source code in [GitHub of SONG DAIWEI](https://github.com/Yvon-Shong/Waseda/blob/master/Computational_Intelligence/Neural_Network.md)
 # Biological Neural Network
 The structure of neural is composed of cell body, dendrite, axon and synapse.
+
 - cell body
 
     The cell body is the main body of the neuron, which is composed of 3 parts, the cell nucleus, the cytoplasm and the cell membrane. The outer part of the cell body is the cell membrane, which separates the inside from the outside of the membrane. Because the cell membrane has different permeability to the different ions in the cell, this makes the difference of the ion concentration. This potential difference is called membrane potential.
@@ -33,7 +34,7 @@ In summary, we can conclude the features of the model of neuron network.
 1. Neurons have the characteristics of spatial integration and threshold.
 1. There is a fixed delay between the input and the output of neurons, which depends on the delay of synaptic.
 
-![](https://github.com/Yvon-Shong/Waseda/blob/master/Computational_Intelligence/M-P-MODEL.png?raw=true)
+![](https://github.com/Yvon-Shong/Waseda/blob/master/Computational_Intelligence/M-P-MODEL.png)
 
 # McCulloch-Pitts Neuron Model
 According to the model of biological neuron, we establish the McCulloch-Pitts Neuron Model. In order to make the model simpler, and facilitate the formal expression, we regard complex factors as constants such as the time integration and the refractory period.
@@ -123,7 +124,7 @@ Gradient descent is a first-order iterative optimization algorithm. To find a lo
 
 Gradient descent is based on the observation that if the multi-variable function $F(x)$ is defined and differentiable in a neighborhood of a point $a$ , then $F(x)$ decreases fastest if one goes from $a$ in the direction of the negative gradient of $F$ at $a$, $-\  nabla F(a)$. It follows that, if 
 
-$b=a-\gamma \  nabla F(a)$
+$b=a-\gamma \nabla F(a)$
 
 for $\gamma$  small enough, then $F(a)\geq F(b)$. In other words, the term $\gamma \  nabla F(a)$ is subtracted from $a$ because we want to move against the gradient, namely down toward the minimum. With this observation in mind, one starts with a guess $x_0$ for a local minimum of $F$, and considers the sequence $x_0,x_1,x_2,\cdots $ such that
 
@@ -216,13 +217,31 @@ This correction step is needed to transform the backpropagation algorithm into a
 
 This graphical proof of the backpropagation algorithm applies to arbitrary feed-forward topologies. The graphical approach also immediately suggests hardware implementation techniques for backpropagation.
 
+# Shallow Neural Network
+Besides an input layer and an output layer, a neural network has intermediate layers, which might also be called hidden layers. They might also be called encoders.
+
+"shallow" neural networks is a term used to describe NN that usually have only one hidden layer as opposed to deep NN which have several hidden layers, often of various types. 
+
+But a shallow network has less number of hidden layers. While there are studies that a shallow network can fit any function, it will need to be really fat. That causes the number of parameters to increase a lot.
+
+
+
+There are quite conclusive results that a deep network can fit functions better with less parameters than a shallow network.
+
+
+The main explanation is that the deep models are able to extract/build better features than shallow models and to achieve this they are using the intermediate hidden layers.
+
+
+
 # Deep Neural Network
+
 A deep neural network (DNN) is an artificial neural network (ANN) with multiple hidden layers of units between the input and output layers. Similar to shallow ANNs, DNNs can model complex non-linear relationships. DNN architectures, e.g., for object detection and parsing, generate compositional models where the object is expressed as a layered composition of image primitives. The extra layers enable composition of features from lower layers, giving the potential of modeling complex data with fewer units than a similarly performing shallow network.
 
 DNNs are typically designed as feedforward networks, but research has very successfully applied recurrent neural networks, especially LSTM, for applications such as language modeling. Convolutional deep neural networks (CNNs) are used in computer vision where their success is well-documented. CNNs also have been applied to acoustic modeling for automatic speech recognition (ASR), where they have shown success over previous models. For simplicity, a look at training DNNs is given here.
 
 
 ## Backpropagation
+
 A DNN can be discriminatively trained with the standard backpropagation algorithm. According to various sources, basics of continuous backpropagation were derived in the context of control theory by Henry J. Kelley in 1960 and by Arthur E. Bryson in 1961, using principles of dynamic programming. In 1962, Stuart Dreyfus published a simpler derivation based only on the chain rule. Vapnik cites reference in his book on Support Vector Machines. Arthur E. Bryson and Yu-Chi Ho described it as a multi-stage dynamic system optimization method in 1969. In 1970, Seppo Linnainmaa finally published the general method for automatic differentiation (AD) of discrete connected networks of nested differentiable functions. This corresponds to the modern version of backpropagation which is efficient even when the networks are sparse. In 1973, Stuart Dreyfus used backpropagation to adapt parameters of controllers in proportion to error gradients. In 1974, Paul Werbos mentioned the possibility of applying this principle to artificial neural networks, and in 1982, he applied Linnainmaa's AD method to neural networks in the way that is widely used today. In 1986, David E. Rumelhart, Geoffrey E. Hinton and Ronald J. Williams showed through computer experiments that this method can generate useful internal representations of incoming data in hidden layers of neural networks. In 1993, Eric A. Wan was the first[5] to win an international pattern recognition contest through backpropagation.
 
 The weight updates of backpropagation can be done via stochastic gradient descent using the following equation:
