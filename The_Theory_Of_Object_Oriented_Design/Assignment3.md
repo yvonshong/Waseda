@@ -41,28 +41,32 @@ The benefits of using the object model in complex development are:
 
 # Reference
 [1]  http://wiki.c2.com/?ObjectModel July 7, 2014, WardCunningham
+
 [2]  http://www.slideserve.com/linus-vasquez/object-model 
+
 [3]  http://www.rbvi.ucsf.edu/Outreach/pc204/TheObjectModel.pdf TEF  
 
 
 
 [1]: http://wiki.c2.com/?ObjectModel "object-model"
+
 [2]: http://www.slideserve.com/linus-vasquez/object-model "object-model"
+
 [3]: http://www.rbvi.ucsf.edu/Outreach/pc204/TheObjectModel.pdf  "www.rbvi.ucsf.edu The Object Model"
 
 # Clarify the object model in order to develop the following system. (not a programing level, but need to clarify the system level)
 ## Problem:
 *user arrives at a underground railway station that she has never visited before, carrying a smart phone that is capable of wireless networking (Wi-Fi) and a browser. She knows nothing about where she is. She can see only walls. Suggest what features the site staff needs to prepare for her to be provided with information about the local services and amenities at that station, without entering the station’s name or attributes. There is no GPS available at the underground area. There is no Internet connection. What basic technical challenges must be used? Or What kind of basic features are provided by the station administration with a certain technology?*
 ## Solution:
+We can use the IP of routers to distinguish the address of user.
+So the user can access to a website provided by the localhost in the station, and he can get his location and service information from the router linked.
 
+And the system admin can control the routers' ip, their address information, and service information. 
 ![User](UML.jpg)
 
+In object model, we provide two object in the router, which can be accessed by the user through the smart phone.
 
-The user must could try to get her real-time location by surfing the Internet through her smart phone visa wireless network. So we could provide a web page about users' local wireless network.
+One is the router information, which is in the charge of Admin, and user only can read.
 
-So
-1. The user must run a program or browser on her phone and access to the website which is mentioned above, and the website will show her sufficient control that she is not swamped by unwanted URLs of the places she passes through;
+The other object is the service information, whose authority is the same to the touter information.
 
-And
-
-(2) the means of propagating the URL (e.g. infrared or an 802.11 wireless LAN) should have a reach that corresponds to the physical spread of the place itself.
