@@ -39,22 +39,6 @@ The benefits of using the object model in complex development are:
 1. It reduces development risks, particularly in integration of complex systems.
 
 
-# Clarify the object model in order to develop the following system. (not a programing level, but need to clarify the system level)
-## Problem:
-*user arrives at a underground railway station that she has never visited before, carrying a smart phone that is capable of wireless networking (Wi-Fi) and a browser. She knows nothing about where she is. She can see only walls. Suggest what features the site staff needs to prepare for her to be provided with information about the local services and amenities at that station, without entering the station’s name or attributes. There is no GPS available at the underground area. There is no Internet connection. What basic technical challenges must be used? Or What kind of basic features are provided by the station administration with a certain technology?*
-## Solution:
-
-
-The user must could try to get her real-time location by surfing the Internet through her smart phone visa wireless network. So we could provide a web page about users' local wireless network.
-
-So
-1. The user must run a program or browser on her phone and access to the website which is mentioned above, and the website will show her sufficient control that she is not swamped by unwanted URLs of the places she passes through;
-
-And
-
-(2) the means of propagating the URL (e.g. infrared or an 802.11 wireless LAN) should have a reach that corresponds to the physical spread of the place itself.
-
-
 # Reference
 [1]  http://wiki.c2.com/?ObjectModel July 7, 2014, WardCunningham
 [2]  http://www.slideserve.com/linus-vasquez/object-model 
@@ -66,3 +50,19 @@ And
 [2]: http://www.slideserve.com/linus-vasquez/object-model "object-model"
 [3]: http://www.rbvi.ucsf.edu/Outreach/pc204/TheObjectModel.pdf  "www.rbvi.ucsf.edu The Object Model"
 
+# Clarify the object model in order to develop the following system. (not a programing level, but need to clarify the system level)
+## Problem:
+*user arrives at a underground railway station that she has never visited before, carrying a smart phone that is capable of wireless networking (Wi-Fi) and a browser. She knows nothing about where she is. She can see only walls. Suggest what features the site staff needs to prepare for her to be provided with information about the local services and amenities at that station, without entering the station’s name or attributes. There is no GPS available at the underground area. There is no Internet connection. What basic technical challenges must be used? Or What kind of basic features are provided by the station administration with a certain technology?*
+## Solution:
+
+![User](UML.jpg)
+
+
+The user must could try to get her real-time location by surfing the Internet through her smart phone visa wireless network. So we could provide a web page about users' local wireless network.
+
+So
+1. The user must run a program or browser on her phone and access to the website which is mentioned above, and the website will show her sufficient control that she is not swamped by unwanted URLs of the places she passes through;
+
+And
+
+(2) the means of propagating the URL (e.g. infrared or an 802.11 wireless LAN) should have a reach that corresponds to the physical spread of the place itself.
