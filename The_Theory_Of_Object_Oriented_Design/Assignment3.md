@@ -18,7 +18,7 @@ There are four major elements of OM : Abstraction、Encapsulation、 Modularity�
 
 Of course, I think, Class Model is a reflection of Object Model, because Object Model emphasizes object-oriented design, and Class Model is a kind of method to realize OOD.
 
-## Advantagement
+## Advantage
 
 Object Model is applicable not just to the programming languages but also to the design of User Interfaces, Databases, and even Computer Architectures.
 The reason for this widespread application is that an object orientation helps to cope with the complexity (inherent in many different kinds of systems).
@@ -39,7 +39,7 @@ The benefits of using the object model in complex development are:
 1. It reduces development risks, particularly in integration of complex systems.
 
 
-# Reference
+## Reference
 [1]  http://wiki.c2.com/?ObjectModel July 7, 2014, WardCunningham
 
 [2]  http://www.slideserve.com/linus-vasquez/object-model 
@@ -68,5 +68,5 @@ In object model, we provide two object in the router, which can be accessed by t
 
 One is the router information, which is in the charge of Admin, and user only can read.
 
-The other object is the service information, whose authority is the same to the touter information.
+The other object is the service information, whose authority is the same to the router information.
 
