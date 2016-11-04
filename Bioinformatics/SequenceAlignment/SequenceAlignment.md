@@ -58,8 +58,11 @@ So the best match sequence is
 # Dot Matrix Analysis
 
 ## [Dottup](http://mobyle.pasteur.fr/cgi-bin/portal.py?#forms::dottup)
+
 *Set the word size to 2 (“word size” is basically the same as “window”).  Using a word size of  2, the algorithm will scan a window of 2 amino acids and put one dot in the matrix when the two sequences have identical amino acids.  Dottup has no threshold, so it is simpler than Dotmatcher.*
+
 ![dottup](dottup.jpg)
+
 ![dottup_graph](dottup_graph.png)
 
 ## [Dotmatcher](http://mobyle.pasteur.fr/cgi-bin/portal.py?#forms::dotmatcher)
@@ -67,6 +70,7 @@ So the best match sequence is
 *Set the window to 10 and threshold to 23 in order to filter out the “noise.”*
 
 ![dotmatcher](dotmatcher.jpg)
+
 ![dotmatcher_graph](dotmatcher_graph.png)
 
 ## Examine the two dot matrices 
