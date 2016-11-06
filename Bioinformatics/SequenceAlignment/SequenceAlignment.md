@@ -55,12 +55,14 @@ Its output result:
 So the best match sequence is
 
 | | | | | | | | | | |
-|-|-|-|-|-|-|-|-|-|-|
+|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
 |C|O|E|L|A|C|A|N|T|H|
 | |P|E|L|I|C|A|N| | |
+
 or
+
 | | | | | | | | | | |
-|-|-|-|-|-|-|-|-|-|-|
+|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
 |C|O|E|L|A|C|A|N|T|H|
 |P|_|E|L|I|C|A|N| | |
 
@@ -127,3 +129,4 @@ It means that the sequence is exactly matched to itself. So there is a diagonal 
 
 It means that there is some little pieces of sequence, which can be matched and its value is greater than threshold.
 Like "ABCDE1234" and "123FGHIJK".
+And because it is the sequence compared with itself, so its diagram is symmetric along the diagonal.
