@@ -54,6 +54,17 @@ Its output result:
 
 So the best match sequence is
 
+| | | | | | | | | | |
+|-|-|-|-|-|-|-|-|-|-|
+|C|O|E|L|A|C|A|N|T|H|
+| |P|E|L|I|C|A|N| | |
+or
+| | | | | | | | | | |
+|-|-|-|-|-|-|-|-|-|-|
+|C|O|E|L|A|C|A|N|T|H|
+|P|_|E|L|I|C|A|N| | |
+
+*Maybe I can use code to output the best-match path with distinguishing the gap and the mismatch.*
 
 # Dot Matrix Analysis
 
@@ -74,8 +85,36 @@ So the best match sequence is
 ![dotmatcher_graph](dotmatcher_graph.png)
 
 ## Examine the two dot matrices 
+### Windows Size
+**Windows=2**
+
+![dottup_graph](dottup_graph.png)
+
+**Windows=10**
+
+![dottup_graph](dottup_10.png)
+
 
 **Windows Size** means the length of the piece of the sequence you use to compare to the other sequence. 
+
+### Threshold
+**Threshold=0**
+
+![dotmatcher_graph](dotmatcher_graph.0.png)
+
+**Threshold=10**
+
+![dotmatcher_graph](dotmatcher_graph.10.png)
+
+**Threshold=23**
+
+![dotmatcher_graph](dotmatcher_graph.png)
+
+**Threshold=50**
+
+![dotmatcher_graph](dotmatcher_graph.50.png)
+
+
 
 **Threshold** means that only the match value is bigger that threshold, will there be a dot on the diagram, which is used to filtrate the noise.
 
@@ -86,5 +125,5 @@ It means that the sequence is exactly matched to itself. So there is a diagonal 
 
 ### What do the shorter diagonals (mostly in the lower left corner) indicate about this protein?
 
-It means that there is some little pieces of sequence, which can be matched and it is greater than threshold.
+It means that there is some little pieces of sequence, which can be matched and its value is greater than threshold.
 Like "ABCDE1234" and "123FGHIJK".
