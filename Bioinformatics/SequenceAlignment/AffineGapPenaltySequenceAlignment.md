@@ -11,6 +11,7 @@ GACTACGATCCGTATACGCACA---GGTTCAGAC
 ||||||    ||||||||||||   |||||||||       
 GACTACAGCTCGTATACGCACACATGGTTCAGAC          
 ```
+
 | |A|G|T|C|
 |-|-|-|-|-|
 |A|2|-5|-7|-7|
@@ -169,7 +170,7 @@ Processed by Excel:
 
 ![result](result1.5.jpg)
 
-So its final score for the DNA sequence alignment is **21**.
+So its final score for the DNA sequence alignment is **20**.
 
 
 
@@ -182,13 +183,12 @@ Its output processed by Excel:
 
 ![result](result2.5.jpg)
 
-So its final score for the DNA sequence alignment is **34**.
- And its best-match path has changed.
-
+So its final score for the DNA sequence alignment is **14**.
 
 # Answer the following questions using the BLOSUM62 matrix.
 
-## [BLOSUM62 matrix](https://en.wikipedia.org/wiki/BLOSUM)
+## Part of [BLOSUM62 matrix](https://en.wikipedia.org/wiki/BLOSUM)
+
 
 | |C|S|T|
 |-|-|-|-|
@@ -198,6 +198,42 @@ So its final score for the DNA sequence alignment is **34**.
 
 *Using this matrix, two aligned cysteines (C) would receive a score of 9 while two aligned threonines (T) would only receive a score of 5.  What can you conclude about cysteine relative to threonine?*
 
+First of all, let us know about the construction of BLOSUM matrix.
+
+1. Eliminating Sequences
+
+    Eliminating the sequences that are more than r% identical. There are two ways to eliminate the sequences. It can be done either by removing sequences from the block or just by finding similar sequences and replace them by new sequences which could represent the cluster. Eliminating is done to avoid bias of the result in favor of highly similar proteins.
+
+1. Calculating Frequency & Probability
+
+    A database storing the sequence alignments of the most conserved regions of protein families. These alignments are used to derive the BLOSUM matrices. Only the sequences with a percentage of identity higher are used. By using the block, counting the pairs of amino acids in each column of the multiple alignment.
+
+1. Log odd ratio
+
+    It gives the ratio of the occurrence each amino acid combination in the observed data to the expected value of occurrence of the pair. It is rounded off and used in the substitution matrix.
+
+    $ LogOddRatio=2\log _{2}{\left({\frac {P\left(O\right)}{P\left(E\right)}}\right)}$
+
+    In which $ P\left(O\right)$ is the possibility of observed and $ P\left(E\right)$ is the possibility of expected.
+
+1. BLOSUM Matrices
+
+    The odds for relatedness are calculated from log odd ratio, which are then rounded off to get the substitution matrices BLOSUM matrices.
+
+1. Score of the BLOSUM matrices
+
+    To calculate a BLOSUM matrix, the following equation is used:
+    $ S_{ij}=\left({\frac {1}{\lambda }}\right)\log {\left({\frac {p_{ij}}{q_{i}*q_{j}}}\right)}$ 
+    Here, $ p_{ij}$ is the probability of two amino acids $ i$  and $ j$ replacing each other in a homologous sequence, and $ q_{i}$ and $ q_{j}$ are the background probabilities of finding the amino acids $ i$ and $j$ in any protein sequence. The factor $ \lambda $ is a scaling factor, set such that the matrix contains easily computable integer values.
+
+**The reasons why the scores of cysteines (C) and threonines (T) compared with itself are different can be list as follows.**
+
+- The amino acids in the proteins is different, so the frequency of the proteins and the probability of the amino acids are total different.
+
+- The construction of the proteins are different, like the number of amino acids, the length of the proteins, the 3D constructure of the proteins and more.
+
+So they lead to the result that one's similarity that it is compared with itself is greater than that of another. 
+
 
 ## Another BLAST Scoring Matrix
 
@@ -205,8 +241,16 @@ So its final score for the DNA sequence alignment is **34**.
 
 *A serine (S) aligned with a cysteine (C) would receive a negative score (-1) while a serine aligned with a threonine would receive a positive score (1).  Offer a possible explanation for this in terms of physicochemical properties of the amino acid side chains.*
 
-Part of BLOSUM62 matrix:
 
+As what I have mentioned, it is the reason why the score is different when two different proteins are compared. For example, T-S -> 1, S-C -> -1, although it is that one protein is compared with another total different protein.
+
+I think that:
+
+- Maybe there are two different amino acids in two proteins, but they have the same function, which could change the value of similarity.
+
+- Although they are two different proteins, the subsequences of amino acids sequences may have high value of similarity.
+
+- Because of the space structure of the protein, and the fault tolerance of the properties of proteins, some amino acids in sequence don't matter. So it could change the value of similarity.
 
 
 
@@ -214,6 +258,7 @@ Part of BLOSUM62 matrix:
 
 ## Dynamic Programming Algorithm
 *The bestng an alignment score.  Use the BLOSUM62 matrix alignment of the two amino acid sequences “LDS” and “LNS” is obvious (it’s shown below).  Given a scoring system, you could easily calculate an alignment score.  Set up a matrix and use the dynamic programming algorithm to “prove” that this is the best alignment by calculating x (see Powerpoint notes) to score aligned residues, and use a gap penalty of -1.  (You may hand write the matrix in your homework rather than typing it if you like.)*
+
 ```
 seq1   LDS
        | |
@@ -225,3 +270,21 @@ seq2   LNS
 
 # Example
 *Find the optimal global alignment of the two sequences Seq1: THISLINE and Seq2: ISALIGNED based on the BLOSUM62 matrix with linear gap penalty of -4.*
+
+JavaScript Source Code Snippets and the Matrix of BLOSUM62 is copied from [stackoverflow](http://stackoverflow.com/questions/38647306/blosum62-or-45-scoring-in-javascript) :
+
+```JavaScript
+var seq2 = "ISALIGNED";
+var seq1 = "THISLINE";
+var gap_opening_penalty=0;
+var gap_extension_penalty=-4;
+var matchMatrix = BLOSUM62;
+```
+
+Of course, you can see my source code in my github:
+
+
+
+
+
+

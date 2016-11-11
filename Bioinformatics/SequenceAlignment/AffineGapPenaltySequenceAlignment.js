@@ -89,7 +89,7 @@ function gap(i,j)
     if(matrix[lp[0]][lp[1]].flag=="gap")
         return gap_extension_penalty;
     else
-        return gap_opening_penalty;
+        return gap_opening_penalty+gap_extension_penalty;
 }
 
 function match(i,j)
