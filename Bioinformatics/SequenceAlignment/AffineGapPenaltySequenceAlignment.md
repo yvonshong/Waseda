@@ -191,7 +191,7 @@ So its final score for the DNA sequence alignment is **14**.
 
 
 | |C|S|T|
-|-|-|-|-|
+|:-:|:-:|:-:|:-:|
 |C|9|-1|-1|
 |S|-1|4|1|
 |T|-1|1|5|
@@ -288,10 +288,11 @@ So the best-match path is
 # Example
 *Find the optimal global alignment of the two sequences Seq1: THISLINE and Seq2: ISALIGNED based on the BLOSUM62 matrix with linear gap penalty of -4.*
 
-JavaScript Source Code Snippets and the Matrix of BLOSUM62 is copied from [stackoverflow](http://stackoverflow.com/questions/38647306/blosum62-or-45-scoring-in-javascript) :
+The Matrix of BLOSUM62 is copied from [stackoverflow](http://stackoverflow.com/questions/38647306/blosum62-or-45-scoring-in-javascript) :
 
 ![BLOSUM62](BLOSUM62.jpg)
 
+JavaScript Source Code Snippets:
 ```JavaScript
 var seq2 = "ISALIGNED";
 var seq1 = "THISLINE";
