@@ -266,12 +266,31 @@ seq2   LNS
 ```
 
 
+And its output :
+
+![result2.7](result2.7.jpg)
+
+![result2.9.jpg](result2.9.jpg)
+
+
+So the best-match path is 
+
+|   |  | | |
+|:--:|:-:|:-:|:-:|
+|seq1|   L|D|S|
+|    | \| | |\||
+|seq2| L|N|S|
+|    | match|mismatch|match| 
+
+
 
 
 # Example
 *Find the optimal global alignment of the two sequences Seq1: THISLINE and Seq2: ISALIGNED based on the BLOSUM62 matrix with linear gap penalty of -4.*
 
 JavaScript Source Code Snippets and the Matrix of BLOSUM62 is copied from [stackoverflow](http://stackoverflow.com/questions/38647306/blosum62-or-45-scoring-in-javascript) :
+
+![BLOSUM62](BLOSUM62.jpg)
 
 ```JavaScript
 var seq2 = "ISALIGNED";
@@ -281,10 +300,14 @@ var gap_extension_penalty=-4;
 var matchMatrix = BLOSUM62;
 ```
 
-Of course, you can see my source code in my github:
+Of course, you can see the whole source code in my GitHub : [https://github.com/Yvon-Shong/Waseda/blob/master/Bioinformatics/SequenceAlignment/BLOSUM62.js]((https://github.com/Yvon-Shong/Waseda/blob/master/Bioinformatics/SequenceAlignment/BLOSUM62.js))
 
+And its output :
 
+![result3](result3.jpg)
 
+![result3.5.jpg](result3.5.jpg)
 
+So the final score is **0**
 
 
