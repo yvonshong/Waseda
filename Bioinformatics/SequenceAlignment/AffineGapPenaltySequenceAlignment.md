@@ -278,7 +278,7 @@ So the best-match path is
 |   |  | | |
 |:--:|:-:|:-:|:-:|
 |seq1|   L|D|S|
-|    | \| | |\||
+|    | \| | | \| |
 |seq2| L|N|S|
 |    | match|mismatch|match| 
 
