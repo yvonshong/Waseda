@@ -25,10 +25,13 @@ On the other hand, should the universal power supply strategy is implemented, HP
 ## What are the costs and benifits of a universal power supply (feel free to make assumptions)?
 
 ### Costs 
+
 - Extra cost of $30 for each printer. If HP incorporates the universal power supply and sells 450,000 units of new generation of printer , it  will cost approximately $13.5 million in additional material costs.  
 - If HP puts up price, it may lead to the reduce of sale and revenue.  
 - Because all the printers assembly will be supplied by only one supplier, which is really dangerous. Any design defect or even global recall may cause reputation disaster. 
+
 ### Benefits  
+
 - Avoid customers' switching to another brand because of the stock out or anyelse. It is not only the sale of printers, but also the revenue from ink cartridges. 
 
 - The extra cost of with universal power supply is smaller than without it. 
@@ -39,6 +42,7 @@ On the other hand, should the universal power supply strategy is implemented, HP
 
 
 ## How would such costs and benifits be different over the product life cycle?
+
 - At the beginning life cycle of product, the cost of stock out would be high. For every order lost would not only result in lost in revenue but also future revenue. Because the customers tend to buy product of similar brand.
 - At the maturity stage, although the extra cost is very small, but the market becomes very competitive and there will be many competing products with low price. Customers also become more price-sensitive. However, the benefit of better forecasting demands significantly helps lower the level of inventory.  
 - At the ending life cycle, cost of stockouts is lower than that of beginning period, with less fear of losing future sale.
@@ -53,6 +57,7 @@ In addition, HP could use the similar standardization of power supply in other p
 
 I think HP should adopt universal power supply because the potential benefits outweigh the costs. 
 Firstly, $30 increases in product for each will cover many of the cost.
+
 For customers, HP may be his favorite company because universal power supply regardless of the specification for power supply.
 
 

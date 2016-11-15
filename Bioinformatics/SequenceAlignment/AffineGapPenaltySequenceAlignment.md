@@ -170,7 +170,7 @@ Processed by Excel:
 
 ![result](result1.5.jpg)
 
-So its final score for the DNA sequence alignment is **20**.
+So its final score for the DNA sequence alignment is **21**.
 
 
 
@@ -183,7 +183,7 @@ Its output processed by Excel:
 
 ![result](result2.5.jpg)
 
-So its final score for the DNA sequence alignment is **14**.
+So its final score for the DNA sequence alignment is **34**.
 
 # Answer the following questions using the BLOSUM62 matrix.
 

@@ -141,7 +141,7 @@ var BLOSUM62 = {
 
 var seq2 = "ISALIGNED";
 var seq1 = "THISLINE";
-var gap_opening_penalty=0;
+var gap_opening_penalty=-4;
 var gap_extension_penalty=-4;
 var matchMatrix = BLOSUM62;
 
@@ -225,7 +225,7 @@ function gap(i,j)
     if(matrix[lp[0]][lp[1]].flag=="gap")
         return gap_extension_penalty;
     else
-        return gap_opening_penalty+gap_extension_penalty;
+        return gap_opening_penalty;
 }
 
 function match(i,j)
