@@ -1,7 +1,7 @@
 # Library Management System Design Report
 Authored by: **SONG DAIWEI**  44161588-3
 # Outline
-I design this simple system using Java (maybe I will add Netbeans to implement GUI instead of Command Line). So I use a basic class named Account to be the father of member and libririan. Every book is a example of Book Class, and when member rewturn the book, he will pay for the bill.
+I design this simple system using Java (maybe I will add NetBeans to implement GUI instead of Command Line). So I use a basic class named Account to be the father of member and librarian. Every book is a example of Book Class, and when member return the book, he will pay for the bill.
 
 ## Technology selection
 - Graphic User Interface
