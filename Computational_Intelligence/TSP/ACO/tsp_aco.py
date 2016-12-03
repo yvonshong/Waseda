@@ -80,8 +80,8 @@ class Graph:
 class GraphComplete(Graph):
 	# Generates a graph complete
 	def generate(self):
-		for i in range(1, self.num_vertices + 1):
-			for j in range(1, self.num_vertices + 1):
+		for i in range(0, self.num_vertices):
+			for j in range(0, self.num_vertices):
 				if i != j:
 					peso = random.randint(1, 10)
 					self.addEdge(i, j, peso)
@@ -129,19 +129,19 @@ class ACO:
 		self.evaporationRate = evaporationRate # The rate of evaporation
 		self.ants = [] # The list of ants
 
-		lista_citys = [city for city in range(1, self.graph.num_vertices + 1)]
+		lista_citys = [city for city in range(0, self.graph.num_vertices)]
 		# Creates the ants by putting each one in a city.
 		for k in range(self.num_ants):
 			city_formiga = random.choice(lista_citys)
 			lista_citys.remove(city_formiga)
 			self.ants.append(Ant(city=city_formiga))
 			if not lista_citys:
-				lista_citys = [city for city in range(1, self.graph.num_vertices + 1)]
+				lista_citys = [city for city in range(0, self.graph.num_vertices)]
 
 
 		# Calculates the greedy cost to use in the pheromone initialization
 		cost_greedy = 0.0 # cost greedy
-		vertice_initial = random.randint(1, graph.num_vertices) # Selects a random vertex
+		vertice_initial = random.randint(0, graph.num_vertices-1) # Selects a random vertex
 		vertice_current = vertice_initial
 		visited = [vertice_current] # The list of visited
 		while True:
@@ -181,7 +181,7 @@ class ACO:
 
 			# For each ant builds a solution.
 			for k in range(self.num_ants):
-				for i in range(1, self.graph.num_vertices):
+				for i in range(0, self.graph.num_vertices-1):
 					# Get all the neighbors that have not been visited
 					citys_not_visited = list(set(self.graph.neighbors[self.ants[k].getCity()]) - set(citys_visited[k]))
 					
@@ -208,9 +208,10 @@ class ACO:
 						probability = (math.pow(pheromone, self.alpha) * math.pow(1.0 / distance, self.beta)) / (somatorio if somatorio > 0 else 1)
 						# Add to the list of probabilities
 						probabilities[city] = probability
+						# print(probabilities)
 
 					# Obtains the chosen city 
-					city_chosen = max(probabilities, key=probabilities.get)
+					city_chosen = max(probabilities, key=probabilities.get) 
 
 					# Adds the chosen city to the list of citys visited by ant "K"
 					citys_visited[k].append(city_chosen)
@@ -226,7 +227,7 @@ class ACO:
 				for k in range(self.num_ants):
 					edges_formiga = []
 					# It generates all the edges travelled by the ant "K"
-					for j in range(self.graph.num_vertices - 1):
+					for j in range(self.graph.num_vertices - 1):#changed
 						edges_formiga.append((citys_visited[k][j], citys_visited[k][j+1]))
 					# Add the last edge
 					edges_formiga.append((citys_visited[k][-1], citys_visited[k][0]))
@@ -254,21 +255,21 @@ class ACO:
 
 
 if __name__ == "__main__":
-
+	
 	# Creates a graph and the number of vertices
-	graph = Graph(num_vertices=8)
+	graph = Graph(num_vertices = 52)
 
 
 	berlin52 = loadtxt('berlin52.tsp')  
 	site={}
 	count_0=0
-	for i in berlin52:
-		site[str(int(count_0))]=[i[0],i[1]]
+	while(count_0<52):
+		site[str(int(count_0))]=[berlin52[count_0][1],berlin52[count_0][2]]
 		count_0=count_0+1
 
 	d={}
 	count_1=0
-	for i in berlin52:
+	while(count_1<52):
 		d[str(int(count_1))]=count_1
 		count_1=count_1+1
 
@@ -292,13 +293,13 @@ if __name__ == "__main__":
 
 	# Creates an instance of the ACO
 	
-	aco = ACO(graph=graph, num_ants=graph.num_vertices, alpha=1.0, beta=5.0, iterations=1000, evaporationRate=0.5)
+	aco = ACO(graph=graph, num_ants=graph.num_vertices, alpha=1.0, beta=5.0, iterations=10, evaporationRate=0.5)
 	# rotate the algorithm
 	aco.rotate()
 	
 	# Test with graph complete
 	'''
-	num_vertices = 20
+	num_vertices = 52
 	print('The test graph with %d vertices...\n' % num_vertices)
 	graph_complete = GraphComplete(num_vertices=num_vertices)
 	graph_complete.generate()
