@@ -1,3 +1,4 @@
 from numpy  import *
 a = loadtxt('berlin52.tsp')  
-print(a[:,1:])
+a=a[:,1:]
+print(a[0][1])

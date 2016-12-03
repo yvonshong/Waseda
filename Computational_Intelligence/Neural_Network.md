@@ -34,7 +34,7 @@ In summary, we can conclude the features of the model of neuron network.
 1. Neurons have the characteristics of spatial integration and threshold.
 1. There is a fixed delay between the input and the output of neurons, which depends on the delay of synaptic.
 
-![](https://github.com/Yvon-Shong/Waseda/blob/master/Computational_Intelligence/M-P-MODEL.png)
+![](img/M-P-MODEL.png)
 
 # McCulloch-Pitts Neuron Model
 According to the model of biological neuron, we establish the McCulloch-Pitts Neuron Model. In order to make the model simpler, and facilitate the formal expression, we regard complex factors as constants such as the time integration and the refractory period.
@@ -77,7 +77,7 @@ The McCulloch-Pitts model of a neuron is simple yet has substantial computing po
 # One-neuron Model: Perceptron
 A neuron model is the basic information processing unit in a neural network. They are inspired by the nervous cells, and somehow mimic their behavior. The perceptron is the characteristic neuron model in the multilayer perceptron. Following current practice, the term perceptron is here applied in a more general way than by Rosenblatt, and covers the types of units that were later derived from the original perceptron. The following figure is a graphical representation of a perceptron.
 
-![](https://github.com/Yvon-Shong/Waseda/blob/master/Computational_Intelligence/perceptron.jpg?raw=true)
+![](img/perceptron.jpg)
 
 Here we identify three basic elements, which transform a vector of inputs into a single output:
 
@@ -88,7 +88,7 @@ Here we identify three basic elements, which transform a vector of inputs into a
 # Perceptron layer
 Most neural networks, even biological neural networks, exhibit a layered structure. In this work layers are the basis to determine the architecture of a neural network. A layer of perceptron is composed by a set of perceptron sharing the same inputs. The architecture of a layer is characterized by the number of inputs and the number of perceptron. The next figure shows a general layer of perceptron.
 
-![](https://github.com/Yvon-Shong/Waseda/blob/master/Computational_Intelligence/perceptron_layer.jpg?raw=true)
+![](img/perceptron_layer.jpg)
 
 Here we identify three basic elements, which transform a vector of inputs into a vector of outputs:
 
@@ -106,7 +106,7 @@ There are two main categories of network architectures: acyclic or feed-forward 
 
 Hence, neurons in a feed-forward neural network are grouped into a sequence of layers of neurons, so that neurons in any layer are connected only to neurons in the next layer. The input layer consists of external inputs and is not a layer of neurons; the hidden layers contain neurons; and the output layer is also composed of output neurons. The following figure shows the network architecture of a multilayer perceptron.
 
-![](https://github.com/Yvon-Shong/Waseda/blob/master/Computational_Intelligence/multilayer_perceptron.jpg?raw=true)
+![](img/multilayer_perceptron.jpg)
 
 A multilayer perceptron is characterized by:
 

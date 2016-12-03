@@ -6,11 +6,11 @@ from numpy  import *
 from GA import GA
 
 class TSP(object):
-      def __init__(self, aIndividualCount = 1000,):
+      def __init__(self, aIndividualCount = 100,):
             self.initCitys()
             self.individualCount = aIndividualCount
             self.ga = GA(aCrossRate = 0.7, 
-                  aMutationRage = 0.02, 
+                  aMutationRage = 0.05, 
                   aIndividualCount = self.individualCount, 
                   aGeneLenght = len(self.citys), 
                   aMatchFun = self.matchFun())
@@ -62,14 +62,14 @@ class TSP(object):
             while n > 0:
                   self.ga.next()
                   distance = self.distance(self.ga.best.gene)
-                  if n %1000  == 0 :
+                  if (n-2) %100   == 0 :
                         print (("%d : %f") % (self.ga.generation, distance))
                   n -= 1
 
 
 def main():
       tsp = TSP()
-      tsp.run(10000000)
+      tsp.run(1000000000)
       
 
 

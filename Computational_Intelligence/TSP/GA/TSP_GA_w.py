@@ -3,6 +3,7 @@
 import random
 import math
 import sys
+from numpy  import *
 
 if sys.version_info.major < 3:
       import Tkinter
