@@ -164,11 +164,11 @@ When **gap_opening_penalty = -11** and **gap_extension_penalty = -1;**
 
 Its output:
 
-![result](result1.jpg)
+![result](img/result1.jpg)
 
 Processed by Excel:
 
-![result](result1.5.jpg)
+![result](img/result1.5.jpg)
 
 So its final score for the DNA sequence alignment is **21**.
 
@@ -181,7 +181,7 @@ When **gap_opening_penalty = -2** and **gap_extension_penalty = -6;**
 
 Its output processed by Excel:
 
-![result](result2.5.jpg)
+![result](img/result2.5.jpg)
 
 So its final score for the DNA sequence alignment is **34**.
 
@@ -268,9 +268,9 @@ seq2   LNS
 
 And its output :
 
-![result2.7](result2.7.jpg)
+![result2.7](img/result2.7.jpg)
 
-![result2.9.jpg](result2.9.jpg)
+![result2.9.jpg](img/result2.9.jpg)
 
 
 So the best-match path is 
@@ -290,7 +290,7 @@ So the best-match path is
 
 The Matrix of BLOSUM62 is copied from [stackoverflow](http://stackoverflow.com/questions/38647306/blosum62-or-45-scoring-in-javascript) :
 
-![BLOSUM62](BLOSUM62.jpg)
+![BLOSUM62](img/BLOSUM62.jpg)
 
 JavaScript Source Code Snippets:
 ```JavaScript
@@ -305,9 +305,9 @@ Of course, you can see the whole source code in my GitHub : [https://github.com/
 
 And its output :
 
-![result3](result3.jpg)
+![result3](img/result3.jpg)
 
-![result3.5.jpg](result3.5.jpg)
+![result3.5.jpg](img/result3.5.jpg)
 
 So the final score is **0**
 
