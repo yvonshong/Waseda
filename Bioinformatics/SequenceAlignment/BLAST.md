@@ -1,4 +1,4 @@
-# BLAST Repot
+# BLAST Report
 Authored by **SONG DAIWEI** 44161588-3
 
 # Sequence Searching and BLAST
