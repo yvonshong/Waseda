@@ -6,6 +6,7 @@
 
 import random, math
 from numpy  import *
+import math
 
 # classe to present an edge
 class Edge:
@@ -43,12 +44,20 @@ class Graph:
 
 	def addEdge(self, origin, destination, cost):
 		edge = Edge(origin=origin, destination=destination, cost=cost)
-		edge = Edge(origin=destinatio, destination=origin, cost=cost) # add the symmetric path with the same cost
 		self.edges[(origin, destination)] = edge
 		if origin not in self.neighbors:
 			self.neighbors[origin] = [destination]
 		else:
 			self.neighbors[origin].append(destination)
+		
+		edge_symmetry = Edge(origin=destination, destination=origin, cost=cost) # add the symmetric path with the same cost
+		self.edges[(destination,origin)] = edge_symmetry
+		if destination not in self.neighbors:
+			self.neighbors[destination] = [origin]
+		else:
+			self.neighbors[destination].append(origin)
+		
+
 
 	def getCostEdge(self, origin, destination):
 		return self.edges[(origin, destination)].getCost()
@@ -111,8 +120,7 @@ class Ant:
 
 class ACO:
 
-	def __init__(self, graph, num_ants, alpha=1.0, beta=5.0, 
-						iterations=10, evaporationRate=0.5):
+	def __init__(self, graph, num_ants, alpha=1.0, beta=5.0, iterations=10, evaporationRate=0.5):
 		self.graph = graph
 		self.num_ants = num_ants
 		self.alpha = alpha # The importance of the pheromone
@@ -199,10 +207,10 @@ class ACO:
 						#  Obtains the probability
 						probability = (math.pow(pheromone, self.alpha) * math.pow(1.0 / distance, self.beta)) / (somatorio if somatorio > 0 else 1)
 						# Add to the list of probabilities
-						probabilitys[city] = probability
+						probabilities[city] = probability
 
 					# Obtains the chosen city 
-					city_chosen = max(probabilitys, key=probabilities.get)
+					city_chosen = max(probabilities, key=probabilities.get)
 
 					# Adds the chosen city to the list of citys visited by ant "K"
 					citys_visited[k].append(city_chosen)
@@ -250,24 +258,41 @@ if __name__ == "__main__":
 	# Creates a graph and the number of vertices
 	graph = Graph(num_vertices=8)
 
-	a = loadtxt('berlin52.tsp')  
-	berlin52 = a[:,1:]
-	# Mapping of city 's numbers
-	d = {'A':1, 'B':2, 'C':3, 'D':4, 'E':5, 'F':6, 'G':7, 'H':8}
 
-	#def defineDistance(self,d[a],d[b])
+	berlin52 = loadtxt('berlin52.tsp')  
+	site={}
+	count_0=0
+	for i in berlin52:
+		site[str(int(count_0))]=[i[0],i[1]]
+		count_0=count_0+1
+
+	d={}
+	count_1=0
+	for i in berlin52:
+		d[str(int(count_1))]=count_1
+		count_1=count_1+1
+
+	def defineDistance(a,b):
+		return math.sqrt((site[a][0] - site[b][0]) ** 2 + (site[a][1] - site[b][1]) ** 2)
+
 		
 
 	# Adds the edges
-	graph.addEdge(d['B'], d['A'], 42)
-	graph.addEdge(d['A'], d['B'], 42)
-	graph.addEdge(d['C'], d['A'], 61)
-	graph.addEdge(d['A'], d['C'], 61)
+	pointer_i=0
+	while(pointer_i<52):
+		pointer_j=pointer_i
+		while(pointer_j<52):
+			graph.addEdge(d[str(int(pointer_i))], d[str(int(pointer_j))],defineDistance(str(int(pointer_i)),str(int(pointer_j))))
+			pointer_j=pointer_j+1
+		pointer_i=pointer_i+1
+			
 
+	
+	
 
 	# Creates an instance of the ACO
-	aco = ACO(graph=graph, num_ants=graph.num_vertices, alpha=1.0, beta=5.0, 
-				iterations=1000, evaporationRate=0.5)
+	
+	aco = ACO(graph=graph, num_ants=graph.num_vertices, alpha=1.0, beta=5.0, iterations=1000, evaporationRate=0.5)
 	# rotate the algorithm
 	aco.rotate()
 	
