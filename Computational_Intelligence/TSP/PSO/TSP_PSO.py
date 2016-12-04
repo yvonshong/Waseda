@@ -1,15 +1,10 @@
 # encoding:utf-8
-
+# SONG DAIWEI 
 '''
+	
 	Solution for Travelling Salesman Problem using PSO (Particle Swarm Optimization)
 	Discrete PSO for TSP
-
-	References: 
-		http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.258.7026&rep=rep1&type=pdf
-		http://www.cs.mun.ca/~tinayu/Teaching_files/cs4752/Lecture19_new.pdf
-		http://www.swarmintelligence.org/tutorials.php
-
-	References are in the folder "references" of the repository.
+	SONG DAIWEI
 '''
 
 from operator import attrgetter

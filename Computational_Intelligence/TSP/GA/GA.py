@@ -1,41 +1,41 @@
 # -*- coding: utf-8 -*-
-
+# SONG DAIWEI 
 import random
 from Individual import Individual
 
 class GA(object):
-      """遗传算法类"""
+      """class of GA"""
       def __init__(self, aCrossRate, aMutationRage, aIndividualCount, aGeneLenght, aMatchFun = lambda individual : 1):
             self.crossRate = aCrossRate
             self.mutationRate = aMutationRage
             self.individualCount = aIndividualCount
             self.geneLenght = aGeneLenght
-            self.matchFun = aMatchFun                 # 适配函数
-            self.lives = []                           # 种群
-            self.best = None                          # 保存这一代中最好的个体
+            self.matchFun = aMatchFun                 # adaptation function
+            self.population = []                           # population
+            self.best = None                          # elitist selection
             self.generation = 1
             self.crossCount = 0
             self.mutationCount = 0
-            self.bounds = 0.0                         # 适配值之和，用于选择时计算概率
+            self.bounds = 0.0                         # sum of adaptation to calculate the probability when selection
 
             self.initPopulation()
 
 
       def initPopulation(self):
-            """初始化种群"""
-            self.lives = []
+            """initial the population"""
+            self.population = []
             for i in range(self.individualCount):
                   gene = [ x for x in range(self.geneLenght) ] 
                   random.shuffle(gene)
                   individual = Individual(gene)
-                  self.lives.append(individual)
+                  self.population.append(individual)
 
 
       def judge(self):
-            """评估，计算每一个个体的适配值"""
+            """judge to calculate the adaptation of each individual"""
             self.bounds = 0.0
-            self.best = self.lives[0]
-            for individual in self.lives:
+            self.best = self.population[0]
+            for individual in self.population:
                   individual.score = self.matchFun(individual)
                   self.bounds += individual.score
                   if self.best.score < individual.score:
@@ -43,15 +43,15 @@ class GA(object):
 
 
       def cross(self, parent1, parent2):
-            """交叉"""
+            """cross"""
             index1 = random.randint(0, self.geneLenght - 1)
             index2 = random.randint(index1, self.geneLenght - 1)
-            tempGene = parent2.gene[index1:index2]   # 交叉的基因片段
+            tempGene = parent2.gene[index1:index2]   # cross the pieces of genes
             newGene = []
             p1len = 0
             for g in parent1.gene:
                   if p1len == index1:
-                        newGene.extend(tempGene)     # 插入基因片段
+                        newGene.extend(tempGene)     # insert the pieces of genes
                         p1len += 1
                   if g not in tempGene:
                         newGene.append(g)
@@ -61,42 +61,42 @@ class GA(object):
 
 
       def  mutation(self, gene):
-            """突变"""
+            """mutation of gene"""
             index1 = random.randint(0, self.geneLenght - 1)
             index2 = random.randint(0, self.geneLenght - 1)
 
-            newGene = gene[:]       # 产生一个新的基因序列，以免变异的时候影响父种群
+            newGene = gene[:]       # generate a new sequence of gene in order not to infect the father population when it mutates # Yvon-Shong 
             newGene[index1], newGene[index2] = newGene[index2], newGene[index1]    # swap
             self.mutationCount += 1
             return newGene
 
 
       def getOne(self):
-            """选择一个个体"""
+            """select one Individual"""
             r = random.uniform(0, self.bounds)    # generate a real number, the threhold of evolution
-            for individual in self.lives:
+            for individual in self.population:
                   r -= individual.score
                   if r <= 0:
                         return individual
 
-            raise Exception("选择错误", self.bounds)
+            raise Exception("Wrong selection", self.bounds)
 
 
       def newChild(self):
-            """产生新后代"""
+            """generate the child"""
             parent1 = self.getOne()
             
 
-            # 按概率交叉
+            # cross by the probability
             rate1 = random.random()
             if rate1 < self.crossRate:
-                  # 交叉
+                  # cross
                   parent2 = self.getOne()
                   gene = self.cross(parent1, parent2)
             else:
                   gene = parent1.gene
 
-            # 按概率突变
+            # mutate by the probability
             rate2 = random.random()
             if rate2 < self.mutationRate:
                   gene = self.mutation(gene)
@@ -105,12 +105,12 @@ class GA(object):
 
 
       def next(self):
-            """产生下一代"""
+            """generate the next generation"""
             self.judge()
-            newLives = []
-            newLives.append(self.best)            #精英选择 把最好的1个个体加入下一代
-            while len(newLives) < self.individualCount:
-                  newLives.append(self.newChild())
-            self.lives = newLives
+            newPopulation = []
+            newPopulation.append(self.best)  # elitist selection, choose the best ONE to add to the next generation
+            while len(newPopulation) < self.individualCount:
+                  newPopulation.append(self.newChild())
+            self.population = newPopulation
             self.generation += 1
 		

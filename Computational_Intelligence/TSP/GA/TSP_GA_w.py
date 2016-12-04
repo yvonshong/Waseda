@@ -38,7 +38,7 @@ class TSP_WIN(object):
             a = loadtxt('berlin52.tsp')  
             self.citys = a[:,1:]
 
-            #坐标变换
+            # coordinate transformation
             minX, minY = self.citys[0][0], self.citys[0][1]
             maxX, maxY = minX, minY
             for city in self.citys[1:]:
