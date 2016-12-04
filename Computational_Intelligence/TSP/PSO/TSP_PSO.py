@@ -279,7 +279,7 @@ if __name__ == "__main__":
 
 	# This graph is in the folder "images" of the repository.
 	
-	berlin52 = loadtxt('berlin52.tsp')  
+	berlin52 = loadtxt('../berlin52.tsp')  
 	site=berlin52[:,1:]
 
 
@@ -299,7 +299,7 @@ if __name__ == "__main__":
 		pointer_i=pointer_i+1
 	
 	# creates a PSO instance
-	pso = PSO(graph, iterations=20000, size_population=10, beta=1, alfa=0.9)
+	pso = PSO(graph, iterations=40000, size_population=10, beta=1, alfa=0.9)
 	pso.run() # runs the PSO algorithm
 	pso.showsParticles() # shows the particles
 

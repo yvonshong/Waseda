@@ -260,7 +260,7 @@ if __name__ == "__main__":
 	graph = Graph(num_vertices = 52)
 
 
-	berlin52 = loadtxt('berlin52.tsp')  
+	berlin52 = loadtxt('../berlin52.tsp')  
 	site={}
 	count_0=0
 	while(count_0<52):

@@ -1,34 +1,28 @@
-# Summary of *A biosensor that uses ion-channel switches*
-Aurthored by **SONG DAIWEI** 44161588-3
+# Summary of *Biomaterials: a forecast for the future*
+Authored by **SONG DAIWEI** 44161588-3
 
-# The reason why I choose *A biosensor that uses ion-channel switches*
-I choose *A biosensor that uses ion-channel switches*, written by Braach-Maksvytis V L B.
-Because it is a introduction to the common situation about biosensor of ion-channel, which is a high quality article with high citations.
+# The reason why I choose *Biomaterials: a forecast for the future*
+I choose *Biomaterials: a forecast for the future*, written by Larry L. Hench, Department of Materials, Imperial College of Science, Technology and Medicine, Prince Consort Road, London, SW72 BP, UK.
+It is a forecast about the future of biomaterials, and its length is not too long and it is easy for me to get the exact meanings of it. Although it was written in 1998, it was a useful introduction for start-up.
 
 
-# The advance to contribute to biosensor
-It introduces us a common situation that a biosensor with ion-channel switches.
-Of course, it covers the construction of this kind of biosensor, stability, sensitivity and so on.
 
-Whatsmore, some methods of application using this biosensor to blood typing the detection of bacteria, virus particles, DNA, drugs, antibodies and electrolytes.
+# The advance to contribute to biomaterials
+It propose the forecast of biomaterials, biomaterials research needs to focus on regeneration of tissues instead of replacement. And we get to know the disadvantagement of bio-inert materials.
+
 # Purpose of the paper
+Discuss about the advantagement and disadvantagement of bio-inert materials. And some important properties of biomaterials, which are the target we need to improve in the future.
 
-A biosensor technology is described which provides a direct measurement for functional molecular interactions, at the surface of a tethered bilayer membrane, through the electrical transduction of chemically modified ion-channels. High sensitivity of analyte detection is achieved due to the large flux of ions transmitted through the ion channel. The biomimetic sensor surface allows the molecular recognition to be measured in complex biological matrices (such as blood and sera) without compromising sensitivity. We have used the sensor for activity and concentration measurements for a range of analytes, which include bacteria, DNA, proteins and drugs. We have a quantitative model for the biosensor performance which is described by three-dimensional molecular interactions with the membrane surface and two-dimensional molecular interactions within the tethered bilayer.
-
-It summarizes some features and properties about a kind of biosensor, which uses ion-channel switches.
-Then it introduces some special features about its constructure, and its operation principle.
-Then it puts forward the hard point of the method of application.
 
 # Results of the paper  
-By varying the nature and type of receptor in the ICS biosensor, the biosensor may be assembled and measured on electrodes of dimensions from square centimetres to square micrometres. As the membrane area is decreased, the membrane leakage conductance decreases proportionally, but the conductance per channel remains constant. This means that with small electrodes(,30mm diameter) it becomes possible to resolve the current transients associated with individual channels. 
-Operation of the biosensor under these conditions of low channel density, coupled with the use of multielectrode arrays of such membranes, promises to increase significantly the sensitivity of the device.
+We find the evidence of the regenerative capacity of bioactive gelglasses, which is based on comparison of the rates of proliferation of trabecular bone in a rabbit femoral defect model. And the challenge for the future for us is to extend these findings to studies in compromised bones, with osteopenia and osteoporosis. Whatsmore,apply the findings to larger animals and especially humans with ageing bones. So that we can use the findings to design the 3-D architectures for engineering of tissues on a chip.
 
 # Conclusions and comments
-It is a basic concept about biosensor, so we could learn more about it through reseaching in its categories. And it have improve some specific application like blood typing.
+Maybe we should find the correct direction in the research fields. So it is of vital importance for us to forecast the future and now we can verify the present situation. And the biomaterials, I think, must have Biocompatibility.
+
 
 # Refenrence
 
 
-Braach-Maksvytis V L B, King L G, et al. A biosensor that uses ion-channel switches[J]. NATURE-LONDON-, 1997: 580-582.
-
-http://www.workgroup.frank-heinrich.net/images/f/f6/Nature_1997_Cornell.pdf
+Hench L L. Biomaterials: a forecast for the future[J]. Biomaterials, 1998, 19(16): 1419-1423.
+[Biomaterials: a forecast for the future](http://www.sciencedirect.com/science/article/pii/S0142961298001331)

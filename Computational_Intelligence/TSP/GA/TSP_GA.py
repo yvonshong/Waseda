@@ -25,7 +25,7 @@ class TSP(object):
                   self.citys.append((x, y))
             """
             # import the data set of TSP
-            a = loadtxt('berlin52.tsp')  
+            a = loadtxt('../berlin52.tsp')  
             self.citys = a[:,1:]
             
       

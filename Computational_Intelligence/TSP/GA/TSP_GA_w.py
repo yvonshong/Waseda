@@ -35,7 +35,7 @@ class TSP_WIN(object):
             self.citys = []
 
             # import the data set of TSP
-            a = loadtxt('berlin52.tsp')  
+            a = loadtxt('../berlin52.tsp')  
             self.citys = a[:,1:]
 
             # coordinate transformation

@@ -1,5 +1,5 @@
 # Summary of *A biosensor that uses ion-channel switches*
-Aurthored by **SONG DAIWEI** 44161588-3
+Authored by **SONG DAIWEI** 44161588-3
 
 # The reason why I choose *A biosensor that uses ion-channel switches*
 I choose *A biosensor that uses ion-channel switches*, written by Braach-Maksvytis V L B.

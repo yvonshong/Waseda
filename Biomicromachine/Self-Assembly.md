@@ -1,5 +1,5 @@
 # Summary of *Self-Assembly at All Scales*
-Aurthored by **SONG DAIWEI** 44161588-3
+Authored by **SONG DAIWEI** 44161588-3
 
 # The reason why I choose *Self-Assembly at All Scales*
 I choose the paper, *Self-Assembly at All Scales*, written by George M. Whitesides and Bartosz Grzybowski in 29 Mar 2001.
