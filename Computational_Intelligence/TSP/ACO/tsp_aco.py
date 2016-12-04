@@ -293,7 +293,7 @@ if __name__ == "__main__":
 
 	# Creates an instance of the ACO
 	
-	aco = ACO(graph=graph, num_ants=graph.num_vertices, alpha=1.0, beta=5.0, iterations=10, evaporationRate=0.5)
+	aco = ACO(graph=graph, num_ants=graph.num_vertices, alpha=1.0, beta=5.0, iterations=1000, evaporationRate=0.5)
 	# rotate the algorithm
 	aco.rotate()
 	
