@@ -3,6 +3,8 @@ Given a set of n nodes and distances for each pair of nodes, find a roundtrip of
 
 Berlin52 – 52 locations in Berlin (Germany)
 
+http://lab.breezedust.com/aco/
+https://github.com/BreezeDust/AlgorithmsLab/tree/master/heuristic/ACO
 
 # PSO
 References: 

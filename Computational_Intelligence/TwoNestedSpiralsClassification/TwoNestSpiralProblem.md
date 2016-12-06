@@ -19,3 +19,14 @@ Now use a 2-layer feedforward neural network with 2 input-nodes, M hidden nodes 
 -	Show the error curves for training data.
 
 4. After training the neural network, try to show in a figure how well the trained neural network can separate the two spirals. (generalization ability)
+
+
+http://www.seeker-x.com/nn-from-scratch/
+
+http://www.cnblogs.com/wsine/p/5180365.html
+
+http://blkstone.github.io/2015/09/27/nn-from-scratch/
+
+https://github.com/dennybritz/nn-from-scratch
+
+https://machine-learning-python.kspax.io/Introduction/intro.html
