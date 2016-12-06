@@ -1,5 +1,6 @@
 __author__ = 'm.bashari'
 import numpy as np
+from numpy  import *
 from sklearn import datasets, linear_model
 import matplotlib.pyplot as plt
 
@@ -13,8 +14,8 @@ class Config:
 
 
 def generate_data():
-    '''
-        # import the data set of TSP
+    
+    # import the data set of TSP
     data = loadtxt('two_spiral.txt') 
     for datalabel in data:
         if(datalabel[2]==0.1):
@@ -24,19 +25,19 @@ def generate_data():
 
     X = data[:,:2]
     y = data[:,2]
-    print(y)
     return X,y   
     '''    
     np.random.seed(0)
     X, y = datasets.make_moons(200, noise=0.20)
     return X, y
+    '''
 
-
+# plot the diagram
 def visualize(X, y, model):
-    # plt.scatter(X[:, 0], X[:, 1], s=40, c=y, cmap=plt.cm.Spectral)
+    # plt.scatter(X[:, 0], X[:, 1], s=40, c=y, cmap=plt.cm.Spectral) scatter diagram
     # plt.show()
     plot_decision_boundary(lambda x:predict(model,x), X, y)
-    plt.title("Logistic Regression")
+    plt.title("NN Classification")
 
 
 def plot_decision_boundary(pred_func, X, y):
@@ -45,13 +46,13 @@ def plot_decision_boundary(pred_func, X, y):
     y_min, y_max = X[:, 1].min() - .5, X[:, 1].max() + .5
     h = 0.01
     # Generate a grid of points with distance h between them
-    xx, yy = np.meshgrid(np.arange(x_min, x_max, h), np.arange(y_min, y_max, h))
-    # Predict the function value for the whole gid
-    Z = pred_func(np.c_[xx.ravel(), yy.ravel()])
+    xx, yy = np.meshgrid(np.arange(x_min, x_max, h), np.arange(y_min, y_max, h)) # generate a object of array
+    # Predict the function value for the whole grid
+    Z = pred_func(np.c_[xx.ravel(), yy.ravel()]) # ravel and connect
     Z = Z.reshape(xx.shape)
     # Plot the contour and training examples
-    plt.contourf(xx, yy, Z, cmap=plt.cm.Spectral)
-    plt.scatter(X[:, 0], X[:, 1], c=y, cmap=plt.cm.Spectral)
+    plt.contourf(xx, yy, Z, cmap=plt.cm.Spectral) # surface rendering
+    plt.scatter(X[:, 0], X[:, 1], c=y, cmap=plt.cm.Spectral) #  Scatter plots - draw the data
     plt.show()
 
 
@@ -64,9 +65,14 @@ def calculate_loss(model, X, y):
     a1 = np.tanh(z1)
     z2 = a1.dot(W2) + b2
     exp_scores = np.exp(z2)
-    probs = exp_scores / np.sum(exp_scores, axis=1, keepdims=True)
+    probs = exp_scores / np.sum(exp_scores, axis=1, keepdims=True) # axis - by row or column 
     # Calculating the loss
-    corect_logprobs = -np.log(probs[range(num_examples), y])
+    corect_logprobs=[]
+    for numpointer_0 in range(num_examples):
+        corect_logprobs.append(-np.log(probs[numpointer_0, y[numpointer_0]]))
+        
+
+    # corect_logprobs = -np.log(probs[range(num_examples), y])
     data_loss = np.sum(corect_logprobs)
     # Add regulatization term to loss (optional)
     data_loss += Config.reg_lambda / 2 * (np.sum(np.square(W1)) + np.sum(np.square(W2)))
@@ -88,9 +94,10 @@ def predict(model, x):
 # - nn_hdim: Number of nodes in the hidden layer
 # - num_passes: Number of passes through the training data for gradient descent
 # - print_loss: If True, print the loss every 1000 iterations
-def build_model(X, y, nn_hdim, num_passes=20000, print_loss=False):
+def build_model(X, y, nn_hdim, num_passes=200000, print_loss=False):
     # Initialize the parameters to random values. We need to learn these.
     num_examples = len(X)
+    num_copy=len(X)
     np.random.seed(0)
     W1 = np.random.randn(Config.nn_input_dim, nn_hdim) / np.sqrt(Config.nn_input_dim)
     b1 = np.zeros((1, nn_hdim))
@@ -109,10 +116,16 @@ def build_model(X, y, nn_hdim, num_passes=20000, print_loss=False):
         z2 = a1.dot(W2) + b2
         exp_scores = np.exp(z2)
         probs = exp_scores / np.sum(exp_scores, axis=1, keepdims=True)
-
+        
         # Backpropagation
         delta3 = probs
-        delta3[range(num_examples), y] -= 1
+        
+        for numpointer_1 in range(num_examples):
+            delta3[numpointer_1,y[numpointer_1]]-=1
+
+        # delta3[range(num_examples), y] -= 1
+
+
         dW2 = (a1.T).dot(delta3)
         db2 = np.sum(delta3, axis=0, keepdims=True)
         delta2 = delta3.dot(W2.T) * (1 - np.power(a1, 2))
@@ -141,11 +154,11 @@ def build_model(X, y, nn_hdim, num_passes=20000, print_loss=False):
 
 
 def classify(X, y):
-    # clf = linear_model.LogisticRegressionCV()
-    # clf.fit(X, y)
-    # return clf
+     #clf = linear_model.LogisticRegressionCV()
+     #clf.fit(X, y)
+     #return clf
 
-    pass
+     pass
 
 
 def main():
