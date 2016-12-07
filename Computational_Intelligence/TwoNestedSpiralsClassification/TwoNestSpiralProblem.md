@@ -30,3 +30,9 @@ http://blkstone.github.io/2015/09/27/nn-from-scratch/
 https://github.com/dennybritz/nn-from-scratch
 
 https://machine-learning-python.kspax.io/Introduction/intro.html
+
+
+http://www.cnblogs.com/tornadomeet/archive/2012/06/05/2537360.html
+
+
+http://www.lai18.com/content/5279941.html

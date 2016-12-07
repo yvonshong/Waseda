@@ -45,6 +45,8 @@ def plot_decision_boundary(pred_func, X, y):
     x_min, x_max = X[:, 0].min() - .5, X[:, 0].max() + .5
     y_min, y_max = X[:, 1].min() - .5, X[:, 1].max() + .5
     h = 0.01
+    # boundary
+
     # Generate a grid of points with distance h between them
     xx, yy = np.meshgrid(np.arange(x_min, x_max, h), np.arange(y_min, y_max, h)) # generate a object of array
     # Predict the function value for the whole grid
@@ -67,13 +69,13 @@ def calculate_loss(model, X, y):
     exp_scores = np.exp(z2)
     probs = exp_scores / np.sum(exp_scores, axis=1, keepdims=True) # axis - by row or column 
     # Calculating the loss
-    corect_logprobs=[]
+    correct_logprobs=[]
     for numpointer_0 in range(num_examples):
-        corect_logprobs.append(-np.log(probs[numpointer_0, y[numpointer_0]]))
+        correct_logprobs.append(-np.log(probs[numpointer_0, y[numpointer_0]]))
         
 
-    # corect_logprobs = -np.log(probs[range(num_examples), y])
-    data_loss = np.sum(corect_logprobs)
+    # correct_logprobs = -np.log(probs[range(num_examples), y])
+    data_loss = np.sum(correct_logprobs)
     # Add regulatization term to loss (optional)
     data_loss += Config.reg_lambda / 2 * (np.sum(np.square(W1)) + np.sum(np.square(W2)))
     return 1. / num_examples * data_loss
@@ -94,10 +96,9 @@ def predict(model, x):
 # - nn_hdim: Number of nodes in the hidden layer
 # - num_passes: Number of passes through the training data for gradient descent
 # - print_loss: If True, print the loss every 1000 iterations
-def build_model(X, y, nn_hdim, num_passes=200000, print_loss=False):
+def build_model(X, y, nn_hdim, num_passes, print_loss=False):
     # Initialize the parameters to random values. We need to learn these.
     num_examples = len(X)
-    num_copy=len(X)
     np.random.seed(0)
     W1 = np.random.randn(Config.nn_input_dim, nn_hdim) / np.sqrt(Config.nn_input_dim)
     b1 = np.zeros((1, nn_hdim))
@@ -163,7 +164,7 @@ def classify(X, y):
 
 def main():
     X, y = generate_data()
-    model = build_model(X, y, 3, print_loss=True)
+    model = build_model(X, y, 3,num_passes=10000, print_loss=True)
     visualize(X, y, model)
 
 
