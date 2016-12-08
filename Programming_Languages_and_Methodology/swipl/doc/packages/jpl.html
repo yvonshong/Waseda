@@ -1,0 +1,893 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html>
+<head>
+<title>JPL: A bidirectional Prolog/Java interface</title>
+<style type="text/css">
+
+/* Style sheet for SWI-Prolog latex2html
+*/
+
+dd.defbody
+{ margin-bottom: 1em;
+}
+
+dt.pubdef
+{ background-color: #c5e1ff;
+}
+
+dt.multidef
+{ background-color: #c8ffc7;
+}
+
+.bib dd
+{ margin-bottom: 1em;
+}
+
+.bib dt
+{ float: left;
+margin-right: 1.3ex;
+}
+
+pre.code
+{ margin-left: 1.5em;
+margin-right: 1.5em;
+border: 1px dotted;
+padding-top: 5px;
+padding-left: 5px;
+padding-bottom: 5px;
+background-color: #f8f8f8;
+}
+
+div.navigate
+{ text-align: center;
+background-color: #f0f0f0;
+border: 1px dotted;
+padding: 5px;
+}
+
+div.title
+{ text-align: center;
+padding-bottom: 1em;
+font-size: 200%;
+font-weight: bold;
+}
+
+div.author
+{ text-align: center;
+font-style: italic;
+}
+
+div.abstract
+{ margin-top: 2em;
+background-color: #f0f0f0;
+border: 1px dotted;
+padding: 5px;
+margin-left: 10%; margin-right:10%;
+}
+
+div.abstract-title
+{ text-align: center;
+padding: 5px;
+font-size: 120%;
+font-weight: bold;
+}
+
+div.toc-h1
+{ font-size: 200%;
+font-weight: bold;
+}
+
+div.toc-h2
+{ font-size: 120%;
+font-weight: bold;
+margin-left: 2em;
+}
+
+div.toc-h3
+{ font-size: 100%;
+font-weight: bold;
+margin-left: 4em;
+}
+
+div.toc-h4
+{ font-size: 100%;
+margin-left: 6em;
+}
+
+span.sec-nr
+{
+}
+
+span.sec-title
+{
+}
+
+span.pred-ext
+{ font-weight: bold;
+}
+
+span.pred-tag
+{ float: right;
+padding-top: 0.2em;
+font-size: 80%;
+font-style: italic;
+color: #202020;
+}
+
+div.caption
+{ width: 80%;
+margin: auto;
+text-align:center;
+}
+
+/* Footnotes */
+
+sup.fn { color: blue; text-decoration: underline; }
+span.fn-text { display: none; }
+sup.fn span {display: none;}
+sup:hover span
+{ display: block !important;
+position: absolute; top: auto; left: auto; width: 80%;
+color: #000; background: white;
+border: 2px solid;
+padding: 5px; margin: 10px; z-index: 100;
+font-size: smaller;
+}
+
+/* Lists */
+
+dl.latex
+{ margin-top: 1ex;
+margin-bottom: 0.5ex;
+}
+
+dl.latex dl.latex dd.defbody
+{ margin-bottom: 0.5ex;
+}
+
+/* PlDoc Tags */
+
+dl.tags
+{ font-size: 90%;
+margin-left: 5ex;
+margin-top: 1ex;
+margin-bottom: 0.5ex;
+}
+
+dl.tags dt
+{ margin-left: 0pt;
+font-weight: bold;
+}
+
+dl.tags dd
+{ margin-left: 3ex;
+}
+
+td.param
+{ font-style: italic;
+font-weight: bold;
+}
+
+/* Index */
+
+dt.index-sep
+{ font-weight: bold;
+font-size: +1;
+margin-top: 1ex;
+}
+</style>
+</head>
+<body style="background:white"> 
+<div class="title">JPL: A bidirectional Prolog/Java interface</div>
+<div class="author">Paul Singleton &amp; Fred Dushin</div>
+<div class="abstract">
+<div class="abstract-title">Abstract</div> JPL is a library using the 
+SWI-Prolog foreign interface and the Java jni interface providing a 
+bidirectional interface between Java and Prolog that can be used to 
+embed Prolog in Java as well as for embedding Java in Prolog. In both 
+setups it provides a reentrant bidirectional interface.
+</div>
+
+<p>This version of the documentation is a quick and dirty collection of 
+the available documentation. It contains errors, references to obsolete 
+constructs, limitations that have been removed, etc.
+
+<p>
+<ul class="latex">
+<li><a class="url" href="jpl/objectives.html">Objectives</a>
+<li><a class="url" href="jpl/java_api/index.html">Using Prolog from Java</a>
+<li>Using Java from Prolog
+<ul class="latex">
+<li>The API is described in <a class="sec" href="#sec:1">section 1</a>.
+<li><a class="url" href="jpl/prolog_api/overview.html">User guide</a>
+<li><a class="url" href="jpl/prolog_api/gotchas.html">Gotchas</a>
+</ul>
+<li><a class="url" href="jpl/installation.html">Installation</a>
+<li><a class="url" href="jpl/release_notes.html">Release notes</a>
+</ul>
+
+<p><h3 id="sec:jpl"><a name="sec:1"><span class="sec-nr">1</span> <span class="sec-title">library(jpl): 
+A Java interface for SWI Prolog 7.x</span></a></h3>
+
+<p><a name="sec:jpl"></a>
+
+<dl class="tags">
+<dt class="tag">See also</dt>
+<dd>
+<a class="url" href="http://jpl7.org/">http://jpl7.org/</a>
+</dd>
+</dl>
+
+<p>The <code>library(jpl)</code> provides a bidirectional interface to a 
+Java Virtual Machine.
+
+<dl class="latex">
+<dt class="pubdef"><span class="pred-tag">[det]</span><a name="jpl_new/3"><strong>jpl_new</strong>(<var>+X, 
++Params, -V</var>)</a></dt>
+<dd class="defbody">
+<var>X</var> can be:
+
+<p>
+<ul class="compact">
+<li>an atomic classname, e.g. <code>'java.lang.String'</code>
+<li>or an atomic descriptor, e.g. <code>'[I'</code> or <code>'Ljava.lang.String;'</code>
+<li>or a suitable type, i.e. any <code>class(_,_)</code> or <code>array(_)</code>, 
+e.g. <code>class([java,util],['Date'])</code>
+</ul>
+
+<p>If <var>X</var> is an object (non-array) type or descriptor and <var>Params</var> 
+is a list of values or references, then <var>V</var> is the result of an 
+invocation of that type's most specifically-typed constructor to whose 
+respective formal parameters the actual <var>Params</var> are assignable 
+(and assigned).
+
+<p>If <var>X</var> is an array type or descriptor and <var>Params</var> 
+is a list of values or references, each of which is (independently) 
+assignable to the array element type, then <var>V</var> is a new array 
+of as many elements as
+<var>Params</var> has members, initialised with the respective members 
+of
+<var>Params</var>.
+
+<p>If <var>X</var> is an array type or descriptor and <var>Params</var> 
+is a non-negative integer N, then <var>V</var> is a new array of that 
+type, with N elements, each initialised to Java's appropriate default 
+value for the type.
+
+<p>If <var>V</var> is {Term} then we attempt to convert a new jpl.Term 
+instance to a corresponding term; this is of little obvious use here, 
+but is consistent with <a class="pred" href="#jpl_call/4">jpl_call/4</a> 
+and <a class="pred" href="#jpl_get/3">jpl_get/3</a>.</dd>
+<dt class="pubdef"><span class="pred-tag">[det]</span><a name="jpl_call/4"><strong>jpl_call</strong>(<var>+X, 
++MethodName:atom, +Params:list(datum), -Result:datum</var>)</a></dt>
+<dd class="defbody">
+<var>X</var> should be either
+
+<p>
+<ul class="latex">
+<li>an object reference, e.g. <code>@('J#00000000000015552320')</code> 
+(for static or instance methods)
+<li>or a classname, e.g. <code>'java.util.Date'</code> (for static 
+methods only)
+<li>or a descriptor, e.g. <code>'Ljava.util.Date;'</code> (for static 
+methods only)
+<li>or type, e.g. <code>class([java,util],['Date'])</code> (for static 
+methods only)
+</ul>
+
+<p><var>MethodName</var> should be a method name (as an atom) (may 
+involve dynamic overload resolution based on inferred types of params)
+
+<p><var>Params</var> should be a proper list (perhaps empty) of suitable 
+actual parameters for the named method.
+
+<p>The class or object may have several methods with the given name; JPL 
+will resolve (per call) to the most appropriate method based on the 
+quantity and inferred types of <var>Params</var>. This resolution mimics 
+the corresponding static resolution performed by Java compilers.
+
+<p>Finally, an attempt will be made to unify <var>Result</var> with the 
+method's returned value, or with <code>@(void)</code> if it has none.</dd>
+<dt class="pubdef"><span class="pred-tag">[det]</span><a name="jpl_get/3"><strong>jpl_get</strong>(<var>+X, 
++Fspec, -V:datum</var>)</a></dt>
+<dd class="defbody">
+<var>X</var> can be
+
+<p>
+<ul class="latex">
+<li>a classname
+<li>or a descriptor
+<li>or an (object or array) type (for static fields)
+<li>or a non-array object (for static and non-static fields)
+<li>or an array (for 'length' pseudo field, or indexed element 
+retrieval)
+</ul>
+
+<p><var>Fspec</var> can be
+
+<p>
+<ul class="latex">
+<li>an atomic field name
+<li>or an integral array index (to get an element from an array)
+<li>or a pair I-J of integers (to get a subrange of an array).
+</ul>
+
+<p>Finally, an attempt will be made to unify <var>V</var> with the 
+retrieved value or object reference.
+
+<p>Examples
+
+<pre class="code">
+jpl_get('java.awt.Cursor', 'NE_RESIZE_CURSOR', Q).
+Q = 7.
+
+jpl_new(array(class([java,lang],['String'])), [for,while,do,if,then,else,try,catch,finally], A),
+jpl_get(A, 3-5, B).
+B = [if, then, else].
+</pre>
+
+</dd>
+<dt class="pubdef"><span class="pred-tag">[det]</span><a name="jpl_set/3"><strong>jpl_set</strong>(<var>+X, 
++Fspec, +V</var>)</a></dt>
+<dd class="defbody">
+sets the <var>Fspec</var>-th field of (class or object) <var>X</var> to 
+value <var>V</var> iff it is assignable
+
+<p><var>X</var> can be
+
+<p>
+<ul class="latex">
+<li>a class instance (for static or non-static fields)
+<li>or an array (for indexed element or subrange assignment)
+<li>or a classname, or a <code>class(_,_)</code> or <code>array(_)</code> 
+type (for static fields)
+<li>but not a String (no fields to retrieve)
+</ul>
+
+<p><var>Fspec</var> can be
+
+<p>
+<ul class="latex">
+<li>an atomic field name (overloading through shadowing has yet to be 
+handled properly)
+<li>or an array index I (<var>X</var> must be an array object: <var>V</var> 
+is assigned to <var>X</var>[I])
+<li>or a pair I-J of integers (<var>X</var> must be an array object, <var>V</var> 
+must be a list of values: successive members of <var>V</var> are 
+assigned to <var>X</var>[I..J])
+</ul>
+
+<p><var>V</var> must be a suitable value or object.</dd>
+<dt class="pubdef"><span class="pred-tag">[det]</span><a name="jpl_get_default_jvm_opts/1"><strong>jpl_get_default_jvm_opts</strong>(<var>-Opts:list(atom)</var>)</a></dt>
+<dd class="defbody">
+Returns (as a list of atoms) the options which will be passed to the JVM 
+when it is initialised, e.g. <code>['-Xrs']</code></dd>
+<dt class="pubdef"><span class="pred-tag">[det]</span><a name="jpl_set_default_jvm_opts/1"><strong>jpl_set_default_jvm_opts</strong>(<var>+Opts:list(atom)</var>)</a></dt>
+<dd class="defbody">
+Replaces the default JVM initialisation options with those supplied.</dd>
+<dt class="pubdef"><span class="pred-tag">[semidet]</span><a name="jpl_get_actual_jvm_opts/1"><strong>jpl_get_actual_jvm_opts</strong>(<var>-Opts:list(atom)</var>)</a></dt>
+<dd class="defbody">
+Returns (as a list of atoms) the options with which the JVM was 
+initialised.
+
+<p>Fails silently if a JVM has not yet been started, and can thus be 
+used to test for this.</dd>
+<dt class="pubdef"><a name="jpl_pl_lib_version/1"><strong>jpl_pl_lib_version</strong>(<var>-Version</var>)</a></dt>
+<dd class="defbody">
+<var>Version</var> is the fully qualified version identifier of the 
+in-use Prolog component (<code>jpl.pl</code>) of JPL.
+
+<p>It should exactly match the version identifiers of JPL's C (jpl.c) 
+and Java (jpl.jar) components.
+
+<p>Example
+
+<pre class="code">
+?- jpl_pl_lib_version(V).
+V = '7.0.0-alpha'.
+</pre>
+
+</dd>
+<dt class="pubdef"><a name="jpl_c_lib_version/1"><strong>jpl_c_lib_version</strong>(<var>-Version</var>)</a></dt>
+<dd class="defbody">
+<var>Version</var> is the fully qualified version identifier of the 
+in-use C component (jpl.c) of JPL.
+
+<p>It should exactly match the version identifiers of JPL's Prolog (<code>jpl.pl</code>) 
+and Java (jpl.jar) components.
+
+<p>Example
+
+<pre class="code">
+?- jpl_c_lib_version(V).
+V = '7.0.0-alpha'.
+</pre>
+
+</dd>
+<dt class="pubdef"><a name="jpl_class_to_classname/2"><strong>jpl_class_to_classname</strong>(<var>+Class:jref, 
+-ClassName:dottedName</var>)</a></dt>
+<dd class="defbody">
+<var>Class</var> is a reference to a class object.
+
+<p><var>ClassName</var> is its canonical (?) source-syntax (dotted) 
+name, e.g. <code>'java.util.Date'</code>
+
+<p>NB not used outside jni_junk and jpl_test (is this (still) true?)
+
+<p>NB oughta use the available caches (but their indexing doesn't suit)</dd>
+<dt class="pubdef"><a name="jpl_class_to_type/2"><strong>jpl_class_to_type</strong>(<var>+ClassObject:jref, 
+-Type:type</var>)</a></dt>
+<dd class="defbody">
+<var>ClassObject</var> is a reference to a class object of <var>Type</var>.
+
+<p>NB should ensure that, if not found in cache, then cache is updated.
+
+<p>Intriguingly, getParameterTypes returns class objects (undocumented 
+AFAIK) with names 'boolean', 'byte' etc. and even 'void' (?!)</dd>
+<dt class="pubdef"><a name="jpl_classname_to_class/2"><strong>jpl_classname_to_class</strong>(<var>+ClassName:className, 
+-Class:jref</var>)</a></dt>
+<dd class="defbody">
+<var>ClassName</var> unambiguously represents a class, e.g. <code>'java.lang.String'</code>
+
+<p><var>Class</var> is a (canonical) reference to the corresponding 
+class object.
+
+<p>NB uses caches where the class is already encountered.</dd>
+<dt class="pubdef"><a name="jpl_classname_to_type/2"><strong>jpl_classname_to_type</strong>(<var>+Classname:className, 
+-Type:type</var>)</a></dt>
+<dd class="defbody">
+<var>Classname</var> is any of: a source-syntax (dotted) class name, 
+e.g. 'java.util.Date', '[java.util.Date' or '[L'
+
+<p><var>Type</var> is its corresponding JPL type structure, e.g. <code>class([java,util],['Date'])</code>, <code>array(class([java,util],['Date']))</code>, <code>array(long)</code>
+
+<p>NB by "classname" do I mean "typename"?
+
+<p>NB should this throw an exception for unbound CN? is this public API?</dd>
+<dt class="pubdef"><a name="jpl_datum_to_type/2"><strong>jpl_datum_to_type</strong>(<var>+Datum:datum, 
+-Type:type</var>)</a></dt>
+<dd class="defbody">
+<var>Datum</var> must be a JPL representation of an instance of one (or 
+more) Java types;
+
+<p><var>Type</var> is the unique most specialised type of which <var>Datum</var> 
+denotes an instance;
+
+<p>NB 3 is an instance of byte, char, short, int and long, of which byte 
+and char are the joint, overlapping most specialised types, so this 
+relates 3 to the pseudo subtype 'char_byte';
+
+<dl class="tags">
+<dt class="tag">See also</dt>
+<dd>
+<span class="pred-ext">jpl_type_to_preferred_concrete_type/2</span> for 
+converting inferred types to instantiable types
+</dd>
+</dl>
+
+</dd>
+<dt class="pubdef"><a name="jpl_object_to_class/2"><strong>jpl_object_to_class</strong>(<var>+Object:jref, 
+-Class:jref</var>)</a></dt>
+<dd class="defbody">
+<var>Object</var> must be a valid object (should this throw an exception 
+otherwise?)
+
+<p><var>Class</var> is a (canonical) reference to the (canonical) class 
+object which represents the class of <var>Object</var>
+
+<p>NB what's the point of caching the type if we don't look there first?</dd>
+<dt class="pubdef"><a name="jpl_object_to_type/2"><strong>jpl_object_to_type</strong>(<var>+Object:jref, 
+-Type:type</var>)</a></dt>
+<dd class="defbody">
+<var>Object</var> must be a proper JPL reference to a Java object (i.e. 
+a class or array instance, but not null, void or String).
+
+<p><var>Type</var> is the JPL type of that object.</dd>
+<dt class="pubdef"><span class="pred-tag">[nondet]</span><a name="jpl_primitive_type/1"><strong>jpl_primitive_type</strong>(<var>-Type:atom</var>)</a></dt>
+<dd class="defbody">
+<var>Type</var> is an atomic JPL representation of one of Java's 
+primitive types.
+
+<pre class="code">
+?- setof(Type, jpl_primitive_type(Type), Types).
+Types = [boolean, byte, char, double, float, int, long, short].
+</pre>
+
+</dd>
+<dt class="pubdef"><a name="jpl_ref_to_type/2"><strong>jpl_ref_to_type</strong>(<var>+Ref:jref, 
+-Type:type</var>)</a></dt>
+<dd class="defbody">
+<var>Ref</var> must be a proper JPL reference (to an object, null or 
+void).
+
+<p><var>Type</var> is its type.</dd>
+<dt class="pubdef"><a name="jpl_type_to_class/2"><strong>jpl_type_to_class</strong>(<var>+Type:type, 
+-Class:jref</var>)</a></dt>
+<dd class="defbody">
+Incomplete types are now never cached (or otherwise passed around).
+
+<p>jFindClass throws an exception if FCN can't be found.
+
+<p>NB if this is public API maybe oughta restore the <code>ground(T)</code> 
+check and throw exception</dd>
+<dt class="pubdef"><a name="jpl_type_to_classname/2"><strong>jpl_type_to_classname</strong>(<var>+Type:type, 
+-ClassName:dottedName</var>)</a></dt>
+<dd class="defbody">
+<var>Type</var>, which is a class or array type (not sure about the 
+others...), is denoted by <var>ClassName</var> in dotted syntax.
+
+<p>e.g. <code>jpl_type_to_classname(class([java,util],['Date']), 'java.util.Date')</code>
+
+<dl class="tags">
+<dt class="tag">See also</dt>
+<dd>
+<span class="pred-ext">jpl_type_to_nicename/2</span>
+</dd>
+</dl>
+
+</dd>
+<dt class="pubdef"><a name="jpl_is_class/1"><strong>jpl_is_class</strong>(<var>@Term</var>)</a></dt>
+<dd class="defbody">
+True if <var>Term</var> is a JPL reference to an instance of <code>java.lang.Class</code>.</dd>
+<dt class="pubdef"><a name="jpl_is_false/1"><strong>jpl_is_false</strong>(<var>@Term</var>)</a></dt>
+<dd class="defbody">
+True if <var>Term</var> is <code>@(false)</code>, the JPL representation 
+of the Java boolean value 'false'.</dd>
+<dt class="pubdef"><a name="jpl_is_null/1"><strong>jpl_is_null</strong>(<var>@Term</var>)</a></dt>
+<dd class="defbody">
+True if <var>Term</var> is <code>@(null)</code>, the JPL representation 
+of Java's 'null' reference.</dd>
+<dt class="pubdef"><a name="jpl_is_object/1"><strong>jpl_is_object</strong>(<var>@Term</var>)</a></dt>
+<dd class="defbody">
+True if <var>Term</var> is a well-formed JPL object reference.
+
+<p>NB this checks only syntax, not whether the object exists.</dd>
+<dt class="pubdef"><a name="jpl_is_object_type/1"><strong>jpl_is_object_type</strong>(<var>@Term</var>)</a></dt>
+<dd class="defbody">
+True if <var>Term</var> is an object (class or array) type, not e.g. a 
+primitive, null or void.</dd>
+<dt class="pubdef"><a name="jpl_is_ref/1"><strong>jpl_is_ref</strong>(<var>@Term</var>)</a></dt>
+<dd class="defbody">
+True if <var>Term</var> is a well-formed JPL reference, either to a Java 
+object (which may not exist, although a <span class="pred-ext">jpl_is_current_ref/1</span> 
+might be useful) or to Java's notional but important 'null' non-object.
+
+<p>NB to distinguish tags from void/false/true, could check initial <code>character(s)</code> 
+or length? or adopt strong/weak scheme.</dd>
+<dt class="pubdef"><a name="jpl_is_true/1"><strong>jpl_is_true</strong>(<var>@Term</var>)</a></dt>
+<dd class="defbody">
+True if <var>Term</var> is <code>@(true)</code>, the JPL representation 
+of the Java boolean value 'true'.</dd>
+<dt class="pubdef"><a name="jpl_is_type/1"><strong>jpl_is_type</strong>(<var>@Term</var>)</a></dt>
+<dd class="defbody">
+True if <var>Term</var> is a well-formed JPL type structure.</dd>
+<dt class="pubdef"><a name="jpl_is_void/1"><strong>jpl_is_void</strong>(<var>@Term</var>)</a></dt>
+<dd class="defbody">
+True if <var>Term</var> is <code>@(void)</code>, the JPL representation 
+of the pseudo Java value 'void' (which is returned by <a class="pred" href="#jpl_call/4">jpl_call/4</a> 
+when invoked on void methods).
+
+<p>NB you can try passing 'void' back to Java, but it won't ever be 
+interested.</dd>
+<dt class="pubdef"><span class="pred-tag">[semidet]</span><a name="jpl_false/1"><strong>jpl_false</strong>(<var>-X:datum</var>)</a></dt>
+<dd class="defbody">
+<var>X</var> is <code>@(false)</code>, the JPL representation of the 
+Java boolean value 'false'.
+
+<dl class="tags">
+<dt class="tag">See also</dt>
+<dd>
+<a class="pred" href="#jpl_is_false/1">jpl_is_false/1</a>
+</dd>
+</dl>
+
+</dd>
+<dt class="pubdef"><span class="pred-tag">[semidet]</span><a name="jpl_null/1"><strong>jpl_null</strong>(<var>-X:datum</var>)</a></dt>
+<dd class="defbody">
+<var>X</var> is <code>@(null)</code>, the JPL representation of Java's 
+'null' reference
+
+<dl class="tags">
+<dt class="tag">See also</dt>
+<dd>
+<a class="pred" href="#jpl_is_null/1">jpl_is_null/1</a>
+</dd>
+</dl>
+
+</dd>
+<dt class="pubdef"><span class="pred-tag">[semidet]</span><a name="jpl_true/1"><strong>jpl_true</strong>(<var>-X:datum</var>)</a></dt>
+<dd class="defbody">
+<var>X</var> is <code>@(true)</code>, the JPL representation of the Java 
+boolean value 'true'.
+
+<dl class="tags">
+<dt class="tag">See also</dt>
+<dd>
+<a class="pred" href="#jpl_is_true/1">jpl_is_true/1</a>
+</dd>
+</dl>
+
+</dd>
+<dt class="pubdef"><span class="pred-tag">[semidet]</span><a name="jpl_void/1"><strong>jpl_void</strong>(<var>-X:datum</var>)</a></dt>
+<dd class="defbody">
+<var>X</var> is <code>@(void)</code>, the JPL representation of the 
+pseudo Java value 'void'
+
+<dl class="tags">
+<dt class="tag">See also</dt>
+<dd>
+<a class="pred" href="#jpl_is_void/1">jpl_is_void/1</a>
+</dd>
+</dl>
+
+</dd>
+<dt class="pubdef"><a name="jpl_array_to_length/2"><strong>jpl_array_to_length</strong>(<var>+Array:jref, 
+-Length:integer</var>)</a></dt>
+<dd class="defbody">
+<var>Array</var> should be a JPL reference to a Java array of any type.
+
+<p><var>Length</var> is the length of that array.
+
+<p>This is a utility predicate, defined thus:
+
+<pre class="code">
+jpl_array_to_length(A, N) :-
+    (   jpl_ref_to_type(A, array(_))
+    -&gt;  jGetArrayLength(A, N)
+    ).
+</pre>
+
+</dd>
+<dt class="pubdef"><a name="jpl_array_to_list/2"><strong>jpl_array_to_list</strong>(<var>+Array:jref, 
+-Elements:list(datum)</var>)</a></dt>
+<dd class="defbody">
+<var>Array</var> should be a JPL reference to a Java array of any type.
+
+<p><var>Elements</var> is a Prolog list of JPL representations of the 
+array's elements (values or references, as appropriate).
+
+<p>This is a utility predicate, defined thus:
+
+<pre class="code">
+jpl_array_to_list(A, Es) :-
+    jpl_array_to_length(A, Len),
+    (   Len &gt; 0
+    -&gt;  LoBound is 0,
+        HiBound is Len-1,
+        jpl_get(A, LoBound-HiBound, Es)
+    ;   Es = []
+    ).
+</pre>
+
+</dd>
+<dt class="pubdef"><a name="jpl_datums_to_array/2"><strong>jpl_datums_to_array</strong>(<var>+Datums:list(datum), 
+-A:jref</var>)</a></dt>
+<dd class="defbody">
+<var>A</var> will be a JPL reference to a new Java array, whose base 
+type is the most specific Java type of which each member of <var>Datums</var> 
+is (directly or indirectly) an instance.
+
+<p>NB this fails silently if
+
+<p>
+<ul class="latex">
+<li><var>Datums</var> is an empty list (no base type can be inferred)
+<li><var>Datums</var> contains both a primitive value and an object 
+(including array) reference (no common supertype)
+</ul>
+</dd>
+<dt class="pubdef"><a name="jpl_enumeration_element/2"><strong>jpl_enumeration_element</strong>(<var>+Enumeration:jref, 
+-Element:datum</var>)</a></dt>
+<dd class="defbody">
+generates each <var>Element</var> from the <var>Enumeration</var>
+
+<p>
+<ul class="latex">
+<li>if the element is a java.lang.String then <var>Element</var> will be 
+an atom
+<li>if the element is null then <var>Element</var> will (oughta) be null
+<li>otherwise I reckon it has to be an object ref
+</ul>
+</dd>
+<dt class="pubdef"><a name="jpl_enumeration_to_list/2"><strong>jpl_enumeration_to_list</strong>(<var>+Enumeration:jref, 
+-Elements:list(datum)</var>)</a></dt>
+<dd class="defbody">
+<var>Enumeration</var> should be a JPL reference to an object which 
+implements the <code>Enumeration</code> interface.
+
+<p><var>Elements</var> is a Prolog list of JPL references to the 
+enumerated objects.
+
+<p>This is a utility predicate, defined thus:
+
+<pre class="code">
+jpl_enumeration_to_list(Enumeration, Es) :-
+    (   jpl_call(Enumeration, hasMoreElements, [], @(true))
+    -&gt;  jpl_call(Enumeration, nextElement, [], E),
+        Es = [E|Es1],
+        jpl_enumeration_to_list(Enumeration, Es1)
+    ;   Es = []
+    ).
+</pre>
+
+</dd>
+<dt class="pubdef"><span class="pred-tag">[nondet]</span><a name="jpl_hashtable_pair/2"><strong>jpl_hashtable_pair</strong>(<var>+HashTable:jref, 
+-KeyValuePair:pair(datum,datum)</var>)</a></dt>
+<dd class="defbody">
+Generates Key-Value pairs from the given <var>HashTable</var>.
+
+<p>NB String is converted to atom but Integer is presumably returned as 
+an object ref (i.e. as elsewhere, no auto unboxing);
+
+<p>NB this is anachronistic: the Map interface is preferred.</dd>
+<dt class="pubdef"><a name="jpl_iterator_element/2"><strong>jpl_iterator_element</strong>(<var>+Iterator:jref, 
+-Element:datum</var>)</a></dt>
+<dd class="defbody">
+<var>Iterator</var> should be a JPL reference to an object which 
+implements the <code>java.util.Iterator</code> interface.
+
+<p><var>Element</var> is the JPL representation of the next element in 
+the iteration.
+
+<p>This is a utility predicate, defined thus:
+
+<pre class="code">
+jpl_iterator_element(I, E) :-
+    (   jpl_call(I, hasNext, [], @(true))
+    -&gt;  (   jpl_call(I, next, [], E)
+        ;   jpl_iterator_element(I, E)
+        )
+    ).
+</pre>
+
+</dd>
+<dt class="pubdef"><a name="jpl_list_to_array/2"><strong>jpl_list_to_array</strong>(<var>+Datums:list(datum), 
+-Array:jref</var>)</a></dt>
+<dd class="defbody">
+<var>Datums</var> should be a proper Prolog list of JPL datums (values 
+or references).
+
+<p>If <var>Datums</var> have a most specific common supertype, then <var>Array</var> 
+is a JPL reference to a new Java array, whose base type is that common 
+supertype, and whose respective elements are the Java values or objects 
+represented by <var>Datums</var>.</dd>
+<dt class="pubdef"><span class="pred-tag">[semidet]</span><a name="jpl_terms_to_array/2"><strong>jpl_terms_to_array</strong>(<var>+Terms:list(term), 
+-Array:jref</var>)</a></dt>
+<dd class="defbody">
+<var>Terms</var> should be a proper Prolog list of arbitrary terms.
+
+<p><var>Array</var> is a JPL reference to a new Java array of jpl.Term, 
+whose elements represent the respective members of the list.</dd>
+<dt class="pubdef"><span class="pred-tag">[nondet]</span><a name="jpl_map_element/2"><strong>jpl_map_element</strong>(<var>+Map:jref, 
+-KeyValue:pair(datum,datum)</var>)</a></dt>
+<dd class="defbody">
+<var>Map</var> must be a JPL Reference to an object which implements the <code>java.util.Map</code> 
+interface
+
+<p>This generates each Key-Value pair from the <var>Map</var>, e.g.
+
+<pre class="code">
+?- jpl_call('java.lang.System', getProperties, [], Map), jpl_map_element(Map, E).
+Map = @'J#00000000000015552132',
+E = 'java.runtime.name'-'Java(TM) SE Runtime Environment' ;
+Map = @'J#00000000000015552132',
+E = 'sun.boot.library.path'-'C:\\Program Files\\Java\\jre7\\bin'
+etc.
+</pre>
+
+<p>This is a utility predicate, defined thus:
+
+<pre class="code">
+jpl_map_element(Map, K-V) :-
+    jpl_call(Map, entrySet, [], ES),
+    jpl_set_element(ES, E),
+    jpl_call(E, getKey, [], K),
+    jpl_call(E, getValue, [], V).
+</pre>
+
+</dd>
+<dt class="pubdef"><span class="pred-tag">[nondet]</span><a name="jpl_set_element/2"><strong>jpl_set_element</strong>(<var>+Set:jref, 
+-Element:datum</var>)</a></dt>
+<dd class="defbody">
+<var>Set</var> must be a JPL reference to an object which implements the <code>java.util.Set</code> 
+interface.
+
+<p>On backtracking, <var>Element</var> is bound to a JPL representation 
+of each element of <var>Set</var>.
+
+<p>This is a utility predicate, defined thus:
+
+<pre class="code">
+jpl_set_element(S, E) :-
+    jpl_call(S, iterator, [], I),
+    jpl_iterator_element(I, E).
+</pre>
+
+</dd>
+<dt class="pubdef"><a name="jpl_servlet_byref/3"><strong>jpl_servlet_byref</strong>(<var>+Config, 
++Request, +Response</var>)</a></dt>
+<dd class="defbody">
+This serves the "byref" servlet demo, exemplifying one tactic for 
+implementing a servlet in Prolog by accepting the <var>Request</var> and <var>Response</var> 
+objects as JPL references and accessing their members via JPL as 
+required;
+
+<dl class="tags">
+<dt class="tag">See also</dt>
+<dd>
+<a class="pred" href="#jpl_servlet_byval/3">jpl_servlet_byval/3</a>
+</dd>
+</dl>
+
+</dd>
+<dt class="pubdef"><a name="jpl_servlet_byval/3"><strong>jpl_servlet_byval</strong>(<var>+MultiMap, 
+-ContentType:atom, -Body:atom</var>)</a></dt>
+<dd class="defbody">
+This exemplifies an alternative (to jpl_servlet_byref) tactic for 
+implementing a servlet in Prolog; most Request fields are extracted in 
+Java before this is called, and passed in as a multimap (a map, some of 
+whose values are maps).</dd>
+<dt class="pubdef"><a name="jpl_pl_syntax/1"><strong>jpl_pl_syntax</strong>(<var>-Syntax:atom</var>)</a></dt>
+<dd class="defbody">
+unifies <var>Syntax</var> with 'traditional' or 'modern' according to 
+the mode in which SWI Prolog 7.x was started
+</dd>
+</dl>
+
+<h1><a name="document-index">Index</a></h1>
+
+<dl>
+<dt class="index-sep">?</dt>
+<dt><a class="idx" href="#jpl_array_to_length/2">jpl_array_to_length/2</a></dt>
+<dt><a class="idx" href="#jpl_array_to_list/2">jpl_array_to_list/2</a></dt>
+<dt><a class="idx" href="#jpl_c_lib_version/1">jpl_c_lib_version/1</a></dt>
+<dt><a class="idx" href="#jpl_call/4">jpl_call/4</a></dt>
+<dt><a class="idx" href="#jpl_class_to_classname/2">jpl_class_to_classname/2</a></dt>
+<dt><a class="idx" href="#jpl_class_to_type/2">jpl_class_to_type/2</a></dt>
+<dt><a class="idx" href="#jpl_classname_to_class/2">jpl_classname_to_class/2</a></dt>
+<dt><a class="idx" href="#jpl_classname_to_type/2">jpl_classname_to_type/2</a></dt>
+<dt><a class="idx" href="#jpl_datum_to_type/2">jpl_datum_to_type/2</a></dt>
+<dt><a class="idx" href="#jpl_datums_to_array/2">jpl_datums_to_array/2</a></dt>
+<dt><a class="idx" href="#jpl_enumeration_element/2">jpl_enumeration_element/2</a></dt>
+<dt><a class="idx" href="#jpl_enumeration_to_list/2">jpl_enumeration_to_list/2</a></dt>
+<dt><a class="idx" href="#jpl_false/1">jpl_false/1</a></dt>
+<dt><a class="idx" href="#jpl_get/3">jpl_get/3</a></dt>
+<dt><a class="idx" href="#jpl_get_actual_jvm_opts/1">jpl_get_actual_jvm_opts/1</a></dt>
+<dt><a class="idx" href="#jpl_get_default_jvm_opts/1">jpl_get_default_jvm_opts/1</a></dt>
+<dt><a class="idx" href="#jpl_hashtable_pair/2">jpl_hashtable_pair/2</a></dt>
+<dt><a class="idx" href="#jpl_is_class/1">jpl_is_class/1</a></dt>
+<dt><a class="idx" href="#jpl_is_false/1">jpl_is_false/1</a></dt>
+<dt><a class="idx" href="#jpl_is_null/1">jpl_is_null/1</a></dt>
+<dt><a class="idx" href="#jpl_is_object/1">jpl_is_object/1</a></dt>
+<dt><a class="idx" href="#jpl_is_object_type/1">jpl_is_object_type/1</a></dt>
+<dt><a class="idx" href="#jpl_is_ref/1">jpl_is_ref/1</a></dt>
+<dt><a class="idx" href="#jpl_is_true/1">jpl_is_true/1</a></dt>
+<dt><a class="idx" href="#jpl_is_type/1">jpl_is_type/1</a></dt>
+<dt><a class="idx" href="#jpl_is_void/1">jpl_is_void/1</a></dt>
+<dt><a class="idx" href="#jpl_iterator_element/2">jpl_iterator_element/2</a></dt>
+<dt><a class="idx" href="#jpl_list_to_array/2">jpl_list_to_array/2</a></dt>
+<dt><a class="idx" href="#jpl_map_element/2">jpl_map_element/2</a></dt>
+<dt><a class="idx" href="#jpl_new/3">jpl_new/3</a></dt>
+<dt><a class="idx" href="#jpl_null/1">jpl_null/1</a></dt>
+<dt><a class="idx" href="#jpl_object_to_class/2">jpl_object_to_class/2</a></dt>
+<dt><a class="idx" href="#jpl_object_to_type/2">jpl_object_to_type/2</a></dt>
+<dt><a class="idx" href="#jpl_pl_lib_version/1">jpl_pl_lib_version/1</a></dt>
+<dt><a class="idx" href="#jpl_pl_syntax/1">jpl_pl_syntax/1</a></dt>
+<dt><a class="idx" href="#jpl_primitive_type/1">jpl_primitive_type/1</a></dt>
+<dt><a class="idx" href="#jpl_ref_to_type/2">jpl_ref_to_type/2</a></dt>
+<dt><a class="idx" href="#jpl_servlet_byref/3">jpl_servlet_byref/3</a></dt>
+<dt><a class="idx" href="#jpl_servlet_byval/3">jpl_servlet_byval/3</a></dt>
+<dt><a class="idx" href="#jpl_set/3">jpl_set/3</a></dt>
+<dt><a class="idx" href="#jpl_set_default_jvm_opts/1">jpl_set_default_jvm_opts/1</a></dt>
+<dt><a class="idx" href="#jpl_set_element/2">jpl_set_element/2</a></dt>
+<dt><a class="idx" href="#jpl_terms_to_array/2">jpl_terms_to_array/2</a></dt>
+<dt><a class="idx" href="#jpl_true/1">jpl_true/1</a></dt>
+<dt><a class="idx" href="#jpl_type_to_class/2">jpl_type_to_class/2</a></dt>
+<dt><a class="idx" href="#jpl_type_to_classname/2">jpl_type_to_classname/2</a></dt>
+<dt><a class="idx" href="#jpl_void/1">jpl_void/1</a></dt>
+<dd>
+</dd>
+</dl>
+
+</body></html>

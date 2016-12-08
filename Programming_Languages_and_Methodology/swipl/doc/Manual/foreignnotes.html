@@ -1,0 +1,424 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html>
+<head>
+<title>SWI-Prolog 7.3.6 Reference Manual: Section 10.8</title><link rel="home" href="index.html">
+<link rel="contents" href="Contents.html">
+<link rel="index" href="DocIndex.html">
+<link rel="summary" href="summary.html">
+<link rel="previous" href="foreignxmp.html">
+<link rel="next" href="runtime.html">
+
+<style type="text/css">
+
+/* Style sheet for SWI-Prolog latex2html
+*/
+
+dd.defbody
+{ margin-bottom: 1em;
+}
+
+dt.pubdef, dt.multidef
+{ color: #fff;
+padding: 2px 10px 0px 10px;
+margin-bottom: 5px;
+font-size: 18px;
+vertical-align: middle;
+overflow: hidden;
+}
+
+dt.pubdef { background-color: #0c3d6e; }
+dt.multidef { background-color: #ef9439; }
+
+.bib dd
+{ margin-bottom: 1em;
+}
+
+.bib dt
+{ float: left;
+margin-right: 1.3ex;
+}
+
+pre.code
+{ margin-left: 1.5em;
+margin-right: 1.5em;
+border: 1px dotted;
+padding-top: 5px;
+padding-left: 5px;
+padding-bottom: 5px;
+background-color: #f8f8f8;
+}
+
+div.navigate
+{ text-align: center;
+background-color: #f0f0f0;
+border: 1px dotted;
+padding: 5px;
+}
+
+div.title
+{ text-align: center;
+padding-bottom: 1em;
+font-size: 200%;
+font-weight: bold;
+}
+
+div.author
+{ text-align: center;
+font-style: italic;
+}
+
+div.abstract
+{ margin-top: 2em;
+background-color: #f0f0f0;
+border: 1px dotted;
+padding: 5px;
+margin-left: 10%; margin-right:10%;
+}
+
+div.abstract-title
+{ text-align: center;
+padding: 5px;
+font-size: 120%;
+font-weight: bold;
+}
+
+div.toc-h1
+{ font-size: 200%;
+font-weight: bold;
+}
+
+div.toc-h2
+{ font-size: 120%;
+font-weight: bold;
+margin-left: 2em;
+}
+
+div.toc-h3
+{ font-size: 100%;
+font-weight: bold;
+margin-left: 4em;
+}
+
+div.toc-h4
+{ font-size: 100%;
+margin-left: 6em;
+}
+
+span.sec-nr
+{
+}
+
+span.sec-title
+{
+}
+
+span.pred-ext
+{ font-weight: bold;
+}
+
+span.pred-tag
+{ float: right;
+padding-top: 0.2em;
+font-size: 80%;
+font-style: italic;
+color: #fff;
+}
+
+div.caption
+{ width: 80%;
+margin: auto;
+text-align:center;
+}
+
+/* Footnotes */
+.fn {
+color: red;
+font-size: 70%;
+}
+
+.fn-text, .fnp {
+position: absolute;
+top: auto;
+left: 10%;
+border: 1px solid #000;
+box-shadow: 5px 5px 5px #888;
+display: none;
+background: #fff;
+color: #000;
+margin-top: 25px;
+padding: 8px 12px;
+font-size: larger;
+}
+
+sup:hover span.fn-text
+{ display: block;
+}
+
+/* Lists */
+
+dl.latex
+{ margin-top: 1ex;
+margin-bottom: 0.5ex;
+}
+
+dl.latex dl.latex dd.defbody
+{ margin-bottom: 0.5ex;
+}
+
+/* PlDoc Tags */
+
+dl.tags
+{ font-size: 90%;
+margin-left: 5ex;
+margin-top: 1ex;
+margin-bottom: 0.5ex;
+}
+
+dl.tags dt
+{ margin-left: 0pt;
+font-weight: bold;
+}
+
+dl.tags dd
+{ margin-left: 3ex;
+}
+
+td.param
+{ font-style: italic;
+font-weight: bold;
+}
+
+/* Index */
+
+dt.index-sep
+{ font-weight: bold;
+font-size: +1;
+margin-top: 1ex;
+}
+
+/* Tables */
+
+table.center
+{ margin: auto;
+}
+
+table.latex
+{ border-collapse:collapse;
+}
+
+table.latex tr
+{ vertical-align: text-top;
+}
+
+table.latex td,th
+{ padding: 2px 1em;
+}
+
+table.latex tr.hline td,th
+{ border-top: 1px solid black;
+}
+
+table.frame-box
+{ border: 2px solid black;
+}
+
+</style>
+</head>
+<body style="background:white">
+<div class="navigate"><a class="nav" href="index.html"><img src="home.gif" alt="Home"></a>
+<a class="nav" href="Contents.html"><img src="index.gif" alt="Contents"></a>
+<a class="nav" href="DocIndex.html"><img src="yellow_pages.gif" alt="Index"></a>
+<a class="nav" href="summary.html"><img src="info.gif" alt="Summary"></a>
+<a class="nav" href="foreignxmp.html"><img src="prev.gif" alt="Previous"></a>
+<a class="nav" href="runtime.html"><img src="next.gif" alt="Next"></a>
+</div>
+<h2 id="sec:foreignnotes"><a id="sec:10.8"><span class="sec-nr">10.8</span> <span class="sec-title">Notes 
+on Using Foreign Code</span></a></h2>
+
+<a id="sec:foreignnotes"></a>
+
+<p><h3 id="sec:foreign-malloc"><a id="sec:10.8.1"><span class="sec-nr">10.8.1</span> <span class="sec-title">Memory 
+Allocation</span></a></h3>
+
+<a id="sec:foreign-malloc"></a>
+
+<p>SWI-Prolog's heap memory allocation is based on the <strong>malloc</strong>(3) 
+library routines. SWI-Prolog provides the functions below as a wrapper 
+around malloc(). Allocation errors in these functions trap SWI-Prolog's 
+fatal-error handler, in which case <a class="func" href="foreignnotes.html#PL_malloc()">PL_malloc()</a> 
+or <a class="func" href="foreignnotes.html#PL_realloc()">PL_realloc()</a> 
+do not return.
+
+<p>Portable applications must use <a class="func" href="foreignnotes.html#PL_free()">PL_free()</a> 
+to release strings returned by <a class="func" href="foreigninclude.html#PL_get_chars()">PL_get_chars()</a> 
+using the <code>BUF_MALLOC</code> argument. Portable applications may 
+use both <a class="func" href="foreignnotes.html#PL_malloc()">PL_malloc()</a> 
+and friends or malloc() and friends but should not mix these two sets of 
+functions on the same memory.
+
+<dl class="latex">
+<dt class="pubdef"><a id="PL_malloc()"><var>void *</var> <strong>PL_malloc</strong>(<var>size_t 
+bytes</var>)</a></dt>
+<dd class="defbody">
+Allocate <var>bytes</var> of memory. On failure SWI-Prolog's fatal-error 
+handler is called and <a class="func" href="foreignnotes.html#PL_malloc()">PL_malloc()</a> 
+does not return. Memory allocated using these functions must use <a class="func" href="foreignnotes.html#PL_realloc()">PL_realloc()</a> 
+and <a class="func" href="foreignnotes.html#PL_free()">PL_free()</a> 
+rather than realloc() and free().</dd>
+<dt class="pubdef"><a id="PL_realloc()"><var>void *</var> <strong>PL_realloc</strong>(<var>void 
+*mem, size_t size</var>)</a></dt>
+<dd class="defbody">
+Change the size of the allocated chunk, possibly moving it. The
+<var>mem</var> argument must be obtained from a previous <a class="func" href="foreignnotes.html#PL_malloc()">PL_malloc()</a> 
+or
+<a class="func" href="foreignnotes.html#PL_realloc()">PL_realloc()</a> 
+call.</dd>
+<dt class="pubdef"><a id="PL_free()"><var>void</var> <strong>PL_free</strong>(<var>void 
+*mem</var>)</a></dt>
+<dd class="defbody">
+Release memory. The <var>mem</var> argument must be obtained from a 
+previous <a class="func" href="foreignnotes.html#PL_malloc()">PL_malloc()</a> 
+or <a class="func" href="foreignnotes.html#PL_realloc()">PL_realloc()</a> 
+call.
+</dd>
+</dl>
+
+<p><h4 id="sec:boehm-gc"><a id="sec:10.8.1.1"><span class="sec-nr">10.8.1.1</span> <span class="sec-title">Boehm-GC 
+support</span></a></h4>
+
+<a id="sec:boehm-gc"></a>
+
+<p><a id="idx:BoehmGC:1902"></a>To accommodate future use of the Boehm 
+garbage collector<sup class="fn">159<span class="fn-text"><a class="url" href="http://www.hpl.hp.com/personal/Hans_Boehm/gc/">http://www.hpl.hp.com/personal/Hans_Boehm/gc/</a></span></sup> 
+for heap memory allocation, the interface provides the functions 
+described below. Foreign extensions that wish to use the Boehm-GC 
+facilities can use these wrappers. Please note that if SWI-Prolog is not 
+compiled to use Boehm-GC (default), the user is responsible for calling <a class="func" href="foreignnotes.html#PL_free()">PL_free()</a> 
+to reclaim memory.
+
+<dl class="latex">
+<dt class="pubdef"><a id="PL_malloc_atomic()"><var>void*</var> <strong>PL_malloc_atomic</strong>(<var>size_t 
+bytes</var>)</a></dt>
+<dt class="pubdef"><a id="PL_malloc_uncollectable()"><var>void*</var> <strong>PL_malloc_uncollectable</strong>(<var>size_t 
+bytes</var>)</a></dt>
+<dt class="pubdef"><a id="PL_malloc_atomic_uncollectable()"><var>void*</var> <strong>PL_malloc_atomic_uncollectable</strong>(<var>size_t 
+bytes</var>)</a></dt>
+<dd class="defbody">
+If Boehm-GC is not used, these are all the same as <a class="func" href="foreignnotes.html#PL_malloc()">PL_malloc()</a>. 
+With Boehm-GC, these map to the corresponding Boehm-GC functions.
+<em>Atomic</em> means that the content should not be scanned for 
+pointers, and <em>uncollectable</em> means that the object should never 
+be garbage collected.
+</dd>
+<dt class="pubdef"><a id="PL_malloc_stubborn()"><var>void*</var> <strong>PL_malloc_stubborn</strong>(<var>size_t 
+bytes</var>)</a></dt>
+<dt class="pubdef"><a id="PL_end_stubborn_change()"><var>void</var> <strong>PL_end_stubborn_change</strong>(<var>void 
+*memory</var>)</a></dt>
+<dd class="defbody">
+These functions allow creating objects, promising GC that the content 
+will not change after <a class="func" href="foreignnotes.html#PL_end_stubborn_change()">PL_end_stubborn_change()</a>.
+</dd>
+</dl>
+
+<p><h3 id="sec:foreign-compat"><a id="sec:10.8.2"><span class="sec-nr">10.8.2</span> <span class="sec-title">Compatibility 
+between Prolog versions</span></a></h3>
+
+<a id="sec:foreign-compat"></a>
+
+<p>Great care is taken to ensure binary compatibility of foreign 
+extensions between different Prolog versions. Only the much less 
+frequently used stream interface has been responsible for binary 
+incompatibilities.
+
+<p><a id="idx:PLVERSION:1903"></a>Source code that relies on new 
+features of the foreign interface can use the macro <code>PLVERSION</code> 
+to find the version of
+<code>SWI-Prolog.h</code> and <a class="func" href="foreigninclude.html#PL_query()">PL_query()</a> 
+using the option
+<code>PL_QUERY_VERSION</code> to find the version of the attached Prolog 
+system. Both follow the same numbering schema explained with <a class="func" href="foreigninclude.html#PL_query()">PL_query()</a>.
+
+<p><h3 id="sec:foreign-debug-and-profile"><a id="sec:10.8.3"><span class="sec-nr">10.8.3</span> <span class="sec-title">Debugging 
+and profiling foreign code (valgrind)</span></a></h3>
+
+<a id="sec:foreign-debug-and-profile"></a>
+
+<p><a id="idx:valgrind:1904"></a><a id="idx:profilingforeigncode:1905"></a>This 
+section is only relevant for Unix users on platforms supported by
+<a class="url" href="http://valgrind.org/">valgrind</a>. Valgrind is an 
+excellent binary instrumentation platform. Unlike many other 
+instrumentation platforms, valgrind can deal with code loaded through 
+dlopen().
+
+<p>The <b>callgrind</b> tool can be used to profile foreign code loaded 
+under SWI-Prolog. Compile the foreign library adding <strong>-g</strong> 
+option to <b>gcc</b> or <b>swipl-ld</b>. By setting the environment 
+variable <code>VALGRIND</code> to <code>yes</code>, SWI-Prolog will <em>not</em> 
+release loaded shared objects using dlclose(). This trick is required to 
+get source information on the loaded library. Without, valgrind claims 
+that the shared object has no debugging information.<sup class="fn">160<span class="fn-text">Tested 
+using valgrind version 3.2.3 on x64.</span></sup> Here is the complete 
+sequence using <b>bash</b> as login shell:
+
+<pre class="code">
+% VALGRIND=yes valgrind --tool=callgrind pl &lt;args&gt;
+&lt;prolog interaction&gt;
+% kcachegrind callgrind.out.&lt;pid&gt;
+</pre>
+
+<p><h3 id="sec:foreign-name-conflicts"><a id="sec:10.8.4"><span class="sec-nr">10.8.4</span> <span class="sec-title">Name 
+Conflicts in C modules</span></a></h3>
+
+<a id="sec:foreign-name-conflicts"></a>
+
+<p>In the current version of the system all public C functions of 
+SWI-Prolog are in the symbol table. This can lead to name clashes with 
+foreign code. Someday I should write a program to strip all these 
+symbols from the symbol table (why does Unix not have that?). For now I 
+can only suggest you give your function another name. You can do this 
+using the C preprocessor. If---for example---your foreign package uses a 
+function warning(), which happens to exist in SWI-Prolog as well, the 
+following macro should fix the problem:
+
+<pre class="code">
+#define warning warning_
+</pre>
+
+<p>Note that shared libraries do not have this problem as the shared 
+library loader will only look for symbols in the main executable for 
+symbols that are not defined in the library itself.
+
+<p><h3 id="sec:foreign-quintus-sicstus"><a id="sec:10.8.5"><span class="sec-nr">10.8.5</span> <span class="sec-title">Compatibility 
+of the Foreign Interface</span></a></h3>
+
+<a id="sec:foreign-quintus-sicstus"></a>
+
+<p>The term reference mechanism was first used by Quintus Prolog version&nbsp;3. 
+SICStus Prolog version 3 is strongly based on the Quintus interface. The 
+described SWI-Prolog interface is similar to using the Quintus or 
+SICStus interfaces, defining all foreign-predicate arguments of type
+<code>+term</code>. SWI-Prolog explicitly uses type <code>functor_t</code>, 
+while Quintus and SICStus use &lt;<var>name</var>&gt; and &lt;<var>arity</var>&gt;. 
+As the names of the functions differ from Prolog to Prolog, a simple 
+macro layer dealing with the names can also deal with this detail. For 
+example:
+
+<pre class="code">
+#define QP_put_functor(t, n, a) \
+        PL_put_functor(t, PL_new_functor(n, a))
+</pre>
+
+<p>The <code>PL_unify_*()</code> functions are lacking from the Quintus 
+and SICStus interface. They can easily be emulated, or the put/unify 
+approach should be used to write compatible code.
+
+<p>The <a class="func" href="foreigninclude.html#PL_open_foreign_frame()">PL_open_foreign_frame()</a>/<a class="func" href="foreigninclude.html#PL_close_foreign_frame()">PL_close_foreign_frame()</a> 
+combination is lacking from both other Prologs. SICStus has <a class="func" href="foreigntypes.html#PL_new_term_refs()">PL_new_term_refs(0)</a>, 
+followed by <a class="func" href="foreigntypes.html#PL_reset_term_refs()">PL_reset_term_refs()</a>, 
+that allows for discarding term references.
+
+<p>The Prolog interface for the graphical user interface package XPCE 
+shares about 90% of the code using a simple macro layer to deal with 
+different naming and calling conventions of the interfaces.
+</body></html>

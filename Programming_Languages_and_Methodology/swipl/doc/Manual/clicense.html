@@ -1,0 +1,274 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html>
+<head>
+<title>SWI-Prolog 7.3.6 Reference Manual: Section E.1</title><link rel="home" href="index.html">
+<link rel="contents" href="Contents.html">
+<link rel="index" href="DocIndex.html">
+<link rel="summary" href="summary.html">
+<link rel="previous" href="license.html">
+<link rel="next" href="contrib.html">
+
+<style type="text/css">
+
+/* Style sheet for SWI-Prolog latex2html
+*/
+
+dd.defbody
+{ margin-bottom: 1em;
+}
+
+dt.pubdef, dt.multidef
+{ color: #fff;
+padding: 2px 10px 0px 10px;
+margin-bottom: 5px;
+font-size: 18px;
+vertical-align: middle;
+overflow: hidden;
+}
+
+dt.pubdef { background-color: #0c3d6e; }
+dt.multidef { background-color: #ef9439; }
+
+.bib dd
+{ margin-bottom: 1em;
+}
+
+.bib dt
+{ float: left;
+margin-right: 1.3ex;
+}
+
+pre.code
+{ margin-left: 1.5em;
+margin-right: 1.5em;
+border: 1px dotted;
+padding-top: 5px;
+padding-left: 5px;
+padding-bottom: 5px;
+background-color: #f8f8f8;
+}
+
+div.navigate
+{ text-align: center;
+background-color: #f0f0f0;
+border: 1px dotted;
+padding: 5px;
+}
+
+div.title
+{ text-align: center;
+padding-bottom: 1em;
+font-size: 200%;
+font-weight: bold;
+}
+
+div.author
+{ text-align: center;
+font-style: italic;
+}
+
+div.abstract
+{ margin-top: 2em;
+background-color: #f0f0f0;
+border: 1px dotted;
+padding: 5px;
+margin-left: 10%; margin-right:10%;
+}
+
+div.abstract-title
+{ text-align: center;
+padding: 5px;
+font-size: 120%;
+font-weight: bold;
+}
+
+div.toc-h1
+{ font-size: 200%;
+font-weight: bold;
+}
+
+div.toc-h2
+{ font-size: 120%;
+font-weight: bold;
+margin-left: 2em;
+}
+
+div.toc-h3
+{ font-size: 100%;
+font-weight: bold;
+margin-left: 4em;
+}
+
+div.toc-h4
+{ font-size: 100%;
+margin-left: 6em;
+}
+
+span.sec-nr
+{
+}
+
+span.sec-title
+{
+}
+
+span.pred-ext
+{ font-weight: bold;
+}
+
+span.pred-tag
+{ float: right;
+padding-top: 0.2em;
+font-size: 80%;
+font-style: italic;
+color: #fff;
+}
+
+div.caption
+{ width: 80%;
+margin: auto;
+text-align:center;
+}
+
+/* Footnotes */
+.fn {
+color: red;
+font-size: 70%;
+}
+
+.fn-text, .fnp {
+position: absolute;
+top: auto;
+left: 10%;
+border: 1px solid #000;
+box-shadow: 5px 5px 5px #888;
+display: none;
+background: #fff;
+color: #000;
+margin-top: 25px;
+padding: 8px 12px;
+font-size: larger;
+}
+
+sup:hover span.fn-text
+{ display: block;
+}
+
+/* Lists */
+
+dl.latex
+{ margin-top: 1ex;
+margin-bottom: 0.5ex;
+}
+
+dl.latex dl.latex dd.defbody
+{ margin-bottom: 0.5ex;
+}
+
+/* PlDoc Tags */
+
+dl.tags
+{ font-size: 90%;
+margin-left: 5ex;
+margin-top: 1ex;
+margin-bottom: 0.5ex;
+}
+
+dl.tags dt
+{ margin-left: 0pt;
+font-weight: bold;
+}
+
+dl.tags dd
+{ margin-left: 3ex;
+}
+
+td.param
+{ font-style: italic;
+font-weight: bold;
+}
+
+/* Index */
+
+dt.index-sep
+{ font-weight: bold;
+font-size: +1;
+margin-top: 1ex;
+}
+
+/* Tables */
+
+table.center
+{ margin: auto;
+}
+
+table.latex
+{ border-collapse:collapse;
+}
+
+table.latex tr
+{ vertical-align: text-top;
+}
+
+table.latex td,th
+{ padding: 2px 1em;
+}
+
+table.latex tr.hline td,th
+{ border-top: 1px solid black;
+}
+
+table.frame-box
+{ border: 2px solid black;
+}
+
+</style>
+</head>
+<body style="background:white">
+<div class="navigate"><a class="nav" href="index.html"><img src="home.gif" alt="Home"></a>
+<a class="nav" href="Contents.html"><img src="index.gif" alt="Contents"></a>
+<a class="nav" href="DocIndex.html"><img src="yellow_pages.gif" alt="Index"></a>
+<a class="nav" href="summary.html"><img src="info.gif" alt="Summary"></a>
+<a class="nav" href="license.html"><img src="prev.gif" alt="Previous"></a>
+<a class="nav" href="contrib.html"><img src="next.gif" alt="Next"></a>
+</div>
+<h2 id="sec:clicense"><a id="sec:E.1"><span class="sec-nr">E.1</span> <span class="sec-title">The 
+SWI-Prolog kernel and foreign libraries</span></a></h2>
+
+<a id="sec:clicense"></a>
+
+<p>The SWI-Prolog kernel and our foreign libraries are distributed under 
+the <b>LGPL</b>. A Prolog executable consists of the combination of 
+these `native' code components and Prolog virtual machine code. The 
+SWI-Prolog
+<b>swipl-rc</b> utility allows for disassembling and re-assembling these 
+parts, a process satisfying article <b>6b</b> of the LGPL.
+
+<p>Under the LGPL, SWI-Prolog can be linked to code distributed under 
+arbitrary licenses, provided a number of requirements are fulfilled. The 
+most important requirement is that if an application relies on a
+<em>modified</em> version of SWI-Prolog, the modified sources must be 
+made available.
+
+<p><h3 id="sec:license-lib"><a id="sec:E.1.1"><span class="sec-nr">E.1.1</span> <span class="sec-title">The 
+SWI-Prolog Prolog libraries</span></a></h3>
+
+<a id="sec:license-lib"></a>
+
+<p>Lacking a satisfactory technical solution to handle article <b>6</b> 
+of the LGPL, this license cannot be used for the Prolog source code that 
+is part of the SWI-Prolog system (both libraries and kernel code). This 
+situation is comparable to <code>libgcc</code>, the runtime library used 
+with the GNU C compiler. Therefore, we use the same proven license terms 
+as this library. The libgcc license is the with a special exception. 
+Below we rephrase this exception adjusted to our needs:
+<blockquote><i>As a special exception, if you link this library with 
+other files, compiled with a Free Software compiler, to produce an 
+executable, this library does not by itself cause the resulting 
+executable to be covered by the GNU General Public License. This 
+exception does not, however, invalidate any other reasons why the 
+executable file might be covered by the GNU General Public License.
+</i></blockquote>
+
+<p></body></html>

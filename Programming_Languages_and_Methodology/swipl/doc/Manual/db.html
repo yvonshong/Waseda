@@ -1,0 +1,570 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html>
+<head>
+<title>SWI-Prolog 7.3.6 Reference Manual: Section 4.13</title><link rel="home" href="index.html">
+<link rel="contents" href="Contents.html">
+<link rel="index" href="DocIndex.html">
+<link rel="summary" href="summary.html">
+<link rel="previous" href="DCG.html">
+<link rel="next" href="dynamic.html">
+
+<style type="text/css">
+
+/* Style sheet for SWI-Prolog latex2html
+*/
+
+dd.defbody
+{ margin-bottom: 1em;
+}
+
+dt.pubdef, dt.multidef
+{ color: #fff;
+padding: 2px 10px 0px 10px;
+margin-bottom: 5px;
+font-size: 18px;
+vertical-align: middle;
+overflow: hidden;
+}
+
+dt.pubdef { background-color: #0c3d6e; }
+dt.multidef { background-color: #ef9439; }
+
+.bib dd
+{ margin-bottom: 1em;
+}
+
+.bib dt
+{ float: left;
+margin-right: 1.3ex;
+}
+
+pre.code
+{ margin-left: 1.5em;
+margin-right: 1.5em;
+border: 1px dotted;
+padding-top: 5px;
+padding-left: 5px;
+padding-bottom: 5px;
+background-color: #f8f8f8;
+}
+
+div.navigate
+{ text-align: center;
+background-color: #f0f0f0;
+border: 1px dotted;
+padding: 5px;
+}
+
+div.title
+{ text-align: center;
+padding-bottom: 1em;
+font-size: 200%;
+font-weight: bold;
+}
+
+div.author
+{ text-align: center;
+font-style: italic;
+}
+
+div.abstract
+{ margin-top: 2em;
+background-color: #f0f0f0;
+border: 1px dotted;
+padding: 5px;
+margin-left: 10%; margin-right:10%;
+}
+
+div.abstract-title
+{ text-align: center;
+padding: 5px;
+font-size: 120%;
+font-weight: bold;
+}
+
+div.toc-h1
+{ font-size: 200%;
+font-weight: bold;
+}
+
+div.toc-h2
+{ font-size: 120%;
+font-weight: bold;
+margin-left: 2em;
+}
+
+div.toc-h3
+{ font-size: 100%;
+font-weight: bold;
+margin-left: 4em;
+}
+
+div.toc-h4
+{ font-size: 100%;
+margin-left: 6em;
+}
+
+span.sec-nr
+{
+}
+
+span.sec-title
+{
+}
+
+span.pred-ext
+{ font-weight: bold;
+}
+
+span.pred-tag
+{ float: right;
+padding-top: 0.2em;
+font-size: 80%;
+font-style: italic;
+color: #fff;
+}
+
+div.caption
+{ width: 80%;
+margin: auto;
+text-align:center;
+}
+
+/* Footnotes */
+.fn {
+color: red;
+font-size: 70%;
+}
+
+.fn-text, .fnp {
+position: absolute;
+top: auto;
+left: 10%;
+border: 1px solid #000;
+box-shadow: 5px 5px 5px #888;
+display: none;
+background: #fff;
+color: #000;
+margin-top: 25px;
+padding: 8px 12px;
+font-size: larger;
+}
+
+sup:hover span.fn-text
+{ display: block;
+}
+
+/* Lists */
+
+dl.latex
+{ margin-top: 1ex;
+margin-bottom: 0.5ex;
+}
+
+dl.latex dl.latex dd.defbody
+{ margin-bottom: 0.5ex;
+}
+
+/* PlDoc Tags */
+
+dl.tags
+{ font-size: 90%;
+margin-left: 5ex;
+margin-top: 1ex;
+margin-bottom: 0.5ex;
+}
+
+dl.tags dt
+{ margin-left: 0pt;
+font-weight: bold;
+}
+
+dl.tags dd
+{ margin-left: 3ex;
+}
+
+td.param
+{ font-style: italic;
+font-weight: bold;
+}
+
+/* Index */
+
+dt.index-sep
+{ font-weight: bold;
+font-size: +1;
+margin-top: 1ex;
+}
+
+/* Tables */
+
+table.center
+{ margin: auto;
+}
+
+table.latex
+{ border-collapse:collapse;
+}
+
+table.latex tr
+{ vertical-align: text-top;
+}
+
+table.latex td,th
+{ padding: 2px 1em;
+}
+
+table.latex tr.hline td,th
+{ border-top: 1px solid black;
+}
+
+table.frame-box
+{ border: 2px solid black;
+}
+
+</style>
+</head>
+<body style="background:white">
+<div class="navigate"><a class="nav" href="index.html"><img src="home.gif" alt="Home"></a>
+<a class="nav" href="Contents.html"><img src="index.gif" alt="Contents"></a>
+<a class="nav" href="DocIndex.html"><img src="yellow_pages.gif" alt="Index"></a>
+<a class="nav" href="summary.html"><img src="info.gif" alt="Summary"></a>
+<a class="nav" href="DCG.html"><img src="prev.gif" alt="Previous"></a>
+<a class="nav" href="dynamic.html"><img src="next.gif" alt="Next"></a>
+</div>
+<h2 id="sec:db"><a id="sec:4.13"><span class="sec-nr">4.13</span> <span class="sec-title">Database</span></a></h2>
+
+<a id="sec:db"></a>
+
+<p>SWI-Prolog offers three different database mechanisms. The first one 
+is the common assert/retract mechanism for manipulating the clause 
+database. As facts and clauses asserted using <a id="idx:assert1:716"></a><a class="pred" href="db.html#assert/1">assert/1</a> 
+or one of its derivatives become part of the program, these predicates 
+compile the term given to them. <a id="idx:retract1:717"></a><a class="pred" href="db.html#retract/1">retract/1</a> 
+and <a id="idx:retractall1:718"></a><a class="pred" href="db.html#retractall/1">retractall/1</a> 
+have to unify a term and therefore have to decompile the program. For 
+these reasons the assert/retract mechanism is expensive. On the other 
+hand, once compiled, queries to the database are faster than querying 
+the recorded database discussed below. See also <a id="idx:dynamic1:719"></a><a class="pred" href="dynamic.html#dynamic/1">dynamic/1</a>.
+
+<p>The second way of storing arbitrary terms in the database is using 
+the `recorded database'. In this database terms are associated with a
+<var>key</var>. A key can be an atom, small integer or term. In the last 
+case only the functor and arity determine the key. Each key has a chain 
+of terms associated with it. New terms can be added either at the head 
+or at the tail of this chain.
+
+<p>Following the Edinburgh tradition, SWI-Prolog provides database keys 
+to clauses and records in the recorded database. As of 5.9.10, these 
+keys are represented by non-textual atoms (`blobs', see <a class="sec" href="foreigninclude.html">section 
+10.4.7</a>), which makes accessing the database through references safe.
+
+<p>The third mechanism is a special-purpose one. It associates an 
+integer or atom with a key, which is an atom, integer or term. Each key 
+can only have one atom or integer associated with it.
+
+<dl class="latex">
+<dt class="pubdef"><span class="pred-tag">[ISO]</span><a id="abolish/1"><strong>abolish</strong>(<var>:PredicateIndicator</var>)</a></dt>
+<dd class="defbody">
+Removes all clauses of a predicate with functor <var>Functor</var> and 
+arity
+<var>Arity</var> from the database. All predicate attributes (dynamic, 
+multifile, index, etc.) are reset to their defaults. Abolishing an 
+imported predicate only removes the import link; the predicate will keep 
+its old definition in its definition module.
+
+<p>According to the ISO standard, <a id="idx:abolish1:720"></a><a class="pred" href="db.html#abolish/1">abolish/1</a> 
+can only be applied to dynamic procedures. This is odd, as for dealing 
+with dynamic procedures there is already <a id="idx:retract1:721"></a><a class="pred" href="db.html#retract/1">retract/1</a> 
+and <a id="idx:retractall1:722"></a><a class="pred" href="db.html#retractall/1">retractall/1</a>. 
+The <a id="idx:abolish1:723"></a><a class="pred" href="db.html#abolish/1">abolish/1</a> 
+predicate was introduced in DEC-10 Prolog precisely for dealing with 
+static procedures. In SWI-Prolog, <a id="idx:abolish1:724"></a><a class="pred" href="db.html#abolish/1">abolish/1</a> 
+works on static procedures, unless the Prolog flag <a class="flag" href="flags.html#flag:iso">iso</a> 
+is set to <code>true</code>.
+
+<p>It is advised to use <a id="idx:retractall1:725"></a><a class="pred" href="db.html#retractall/1">retractall/1</a> 
+for erasing all clauses of a dynamic predicate.</dd>
+<dt class="pubdef"><a id="abolish/2"><strong>abolish</strong>(<var>+Name, 
++Arity</var>)</a></dt>
+<dd class="defbody">
+Same as <code>abolish(Name/Arity)</code>. The predicate <a id="idx:abolish2:726"></a><a class="pred" href="db.html#abolish/2">abolish/2</a> 
+conforms to the Edinburgh standard, while <a id="idx:abolish1:727"></a><a class="pred" href="db.html#abolish/1">abolish/1</a> 
+is ISO compliant.</dd>
+<dt class="pubdef"><a id="copy_predicate_clauses/2"><strong>copy_predicate_clauses</strong>(<var>:From, 
+:To</var>)</a></dt>
+<dd class="defbody">
+Copy all clauses of predicate <var>From</var> to <var>To</var>. The 
+predicate
+<var>To</var> must be dynamic or undefined. If <var>To</var> is 
+undefined, it is created as a dynamic predicate holding a copy of the 
+clauses of
+<var>From</var>. If <var>To</var> is a dynamic predicate, the clauses of
+<var>From</var> are added (as in <a id="idx:assertz1:728"></a><a class="pred" href="db.html#assertz/1">assertz/1</a>) 
+to the clauses of <var>To</var>.
+<var>To</var> and <var>From</var> must have the same arity. Acts as if 
+defined by the program below, but at a much better performance by 
+avoiding decompilation and compilation.
+
+<pre class="code">
+copy_predicate_clauses(From, To) :-
+        head(From, MF:FromHead),
+        head(To, MT:ToHead),
+        FromHead =.. [_|Args],
+        ToHead =.. [_|Args],
+        forall(clause(MF:FromHead, Body),
+               assertz(MT:ToHead, Body)).
+
+head(From, M:Head) :-
+        strip_module(From, M, Name/Arity),
+        functor(Head, Name, Arity).
+</pre>
+
+</dd>
+<dt class="pubdef"><a id="redefine_system_predicate/1"><strong>redefine_system_predicate</strong>(<var>+Head</var>)</a></dt>
+<dd class="defbody">
+This directive may be used both in module <code>user</code> and in 
+normal modules to redefine any system predicate. If the system 
+definition is redefined in module <code>user</code>, the new definition 
+is the default definition for all sub-modules. Otherwise the 
+redefinition is local to the module. The system definition remains in 
+the module <code>system</code>.
+
+<p>Redefining system predicate facilitates the definition of 
+compatibility packages. Use in other contexts is discouraged.</dd>
+<dt class="pubdef"><span class="pred-tag">[ISO]</span><a id="retract/1"><strong>retract</strong>(<var>+Term</var>)</a></dt>
+<dd class="defbody">
+When <var>Term</var> is an atom or a term it is unified with the first 
+unifying fact or clause in the database. The fact or clause is removed 
+from the database.</dd>
+<dt class="pubdef"><span class="pred-tag">[ISO]</span><a id="retractall/1"><strong>retractall</strong>(<var>+Head</var>)</a></dt>
+<dd class="defbody">
+All facts or clauses in the database for which the <var>head</var> 
+unifies with <var>Head</var> are removed. If <var>Head</var> refers to a 
+predicate that is not defined, it is implicitly created as a dynamic 
+predicate. See also <a id="idx:dynamic1:729"></a><a class="pred" href="dynamic.html#dynamic/1">dynamic/1</a>.<sup class="fn">62<span class="fn-text">The 
+ISO standard only allows using <a id="idx:dynamic1:730"></a><a class="pred" href="dynamic.html#dynamic/1">dynamic/1</a> 
+as a <em>directive</em>.</span></sup></dd>
+<dt class="pubdef"><span class="pred-tag">[ISO]</span><a id="asserta/1"><strong>asserta</strong>(<var>+Term</var>)</a></dt>
+<dd class="defbody">
+Assert a fact or clause in the database. <var>Term</var> is asserted as 
+the first fact or clause of the corresponding predicate. Equivalent to
+<a id="idx:assert1:731"></a><a class="pred" href="db.html#assert/1">assert/1</a>, 
+but <var>Term</var> is asserted as first clause or fact of the 
+predicate. If the program space for the target module is limited (see <a id="idx:setmodule1:732"></a><a class="pred" href="manipmodule.html#set_module/1">set_module/1</a>), <a id="idx:asserta1:733"></a><a class="pred" href="db.html#asserta/1">asserta/1</a> 
+can raise a
+<code>resource_error(program_space)</code>.</dd>
+<dt class="pubdef"><span class="pred-tag">[ISO]</span><a id="assertz/1"><strong>assertz</strong>(<var>+Term</var>)</a></dt>
+<dd class="defbody">
+Equivalent to <a id="idx:asserta1:734"></a><a class="pred" href="db.html#asserta/1">asserta/1</a>, 
+but <var>Term</var> is asserted as the last clause or fact of the 
+predicate.</dd>
+<dt class="pubdef"><a id="assert/1"><strong>assert</strong>(<var>+Term</var>)</a></dt>
+<dd class="defbody">
+Equivalent to <a id="idx:assertz1:735"></a><a class="pred" href="db.html#assertz/1">assertz/1</a>. 
+Deprecated: new code should use <a id="idx:assertz1:736"></a><a class="pred" href="db.html#assertz/1">assertz/1</a>.</dd>
+<dt class="pubdef"><a id="asserta/2"><strong>asserta</strong>(<var>+Term, 
+-Reference</var>)</a></dt>
+<dd class="defbody">
+Asserts a clause as <a id="idx:asserta1:737"></a><a class="pred" href="db.html#asserta/1">asserta/1</a> 
+and unifies <var>Reference</var> with a handle to this clause. The 
+handle can be used to access this specific clause using <a id="idx:clause3:738"></a><a class="pred" href="examineprog.html#clause/3">clause/3</a> 
+and <a id="idx:erase1:739"></a><a class="pred" href="db.html#erase/1">erase/1</a>.</dd>
+<dt class="pubdef"><a id="assertz/2"><strong>assertz</strong>(<var>+Term, 
+-Reference</var>)</a></dt>
+<dd class="defbody">
+Equivalent to <a id="idx:asserta1:740"></a><a class="pred" href="db.html#asserta/1">asserta/1</a>, 
+asserting the new clause as the last clause of the predicate.</dd>
+<dt class="pubdef"><a id="assert/2"><strong>assert</strong>(<var>+Term, 
+-Reference</var>)</a></dt>
+<dd class="defbody">
+Equivalent to <a id="idx:assertz2:741"></a><a class="pred" href="db.html#assertz/2">assertz/2</a>. 
+Deprecated: new code should use <a id="idx:assertz2:742"></a><a class="pred" href="db.html#assertz/2">assertz/2</a>.</dd>
+<dt class="pubdef"><a id="recorda/3"><strong>recorda</strong>(<var>+Key, 
++Term, -Reference</var>)</a></dt>
+<dd class="defbody">
+Assert <var>Term</var> in the recorded database under key <var>Key</var>.
+<var>Key</var> is a small integer (range <a class="flag" href="flags.html#flag:min_tagged_integer">min_tagged_integer</a> 
+...<a class="flag" href="flags.html#flag:max_tagged_integer">max_tagged_integer</a>, 
+atom or compound term. If the key is a compound term, only the name and 
+arity define the key.
+<var>Reference</var> is unified with an opaque handle to the record (see
+<a id="idx:erase1:743"></a><a class="pred" href="db.html#erase/1">erase/1</a>).</dd>
+<dt class="pubdef"><a id="recorda/2"><strong>recorda</strong>(<var>+Key, 
++Term</var>)</a></dt>
+<dd class="defbody">
+Equivalent to <code>recorda(<var>Key</var>, <var>Term</var>, _)</code>.</dd>
+<dt class="pubdef"><a id="recordz/3"><strong>recordz</strong>(<var>+Key, 
++Term, -Reference</var>)</a></dt>
+<dd class="defbody">
+Equivalent to <a id="idx:recorda3:744"></a><a class="pred" href="db.html#recorda/3">recorda/3</a>, 
+but puts the <var>Term</var> at the tail of the terms recorded under <var>Key</var>.</dd>
+<dt class="pubdef"><a id="recordz/2"><strong>recordz</strong>(<var>+Key, 
++Term</var>)</a></dt>
+<dd class="defbody">
+Equivalent to <code>recordz(<var>Key</var>, <var>Term</var>, _)</code>.</dd>
+<dt class="pubdef"><a id="recorded/3"><strong>recorded</strong>(<var>?Key, 
+?Value, ?Reference</var>)</a></dt>
+<dd class="defbody">
+True if <var>Value</var> is recorded under <var>Key</var> and has the 
+given database <var>Reference</var>. If <var>Reference</var> is given, 
+this predicate is semi-deterministic. Otherwise, it must be considered 
+non-deterministic. If neither <var>Reference</var> nor <var>Key</var> is 
+given, the triples are generated as in the code snippet below.<sup class="fn">63<span class="fn-text">Note 
+that, without a given <var>Key</var>, some implementations return 
+triples in the order defined by <a id="idx:recorda2:745"></a><a class="pred" href="db.html#recorda/2">recorda/2</a> 
+and <a id="idx:recordz2:746"></a><a class="pred" href="db.html#recordz/2">recordz/2</a>.</span></sup> 
+See also <a id="idx:currentkey1:747"></a><a class="pred" href="examineprog.html#current_key/1">current_key/1</a>.
+
+<pre class="code">
+        current_key(Key),
+        recorded(Key, Value, Reference)
+</pre>
+
+</dd>
+<dt class="pubdef"><a id="recorded/2"><strong>recorded</strong>(<var>+Key, 
+-Value</var>)</a></dt>
+<dd class="defbody">
+Equivalent to <code>recorded(<var>Key</var>, <var>Value</var>, _)</code>.</dd>
+<dt class="pubdef"><a id="erase/1"><strong>erase</strong>(<var>+Reference</var>)</a></dt>
+<dd class="defbody">
+Erase a record or clause from the database. <var>Reference</var> is a 
+db-reference returned by <a id="idx:recorda3:748"></a><a class="pred" href="db.html#recorda/3">recorda/3</a>, <a id="idx:recordz3:749"></a><a class="pred" href="db.html#recordz/3">recordz/3</a> 
+or <a id="idx:recorded3:750"></a><a class="pred" href="db.html#recorded/3">recorded/3</a>, <a id="idx:clause3:751"></a><a class="pred" href="examineprog.html#clause/3">clause/3</a>,
+<a id="idx:assert2:752"></a><a class="pred" href="db.html#assert/2">assert/2</a>, <a id="idx:asserta2:753"></a><a class="pred" href="db.html#asserta/2">asserta/2</a> 
+or <a id="idx:assertz2:754"></a><a class="pred" href="db.html#assertz/2">assertz/2</a>. 
+Fail silently if the referenced object no longer exists.</dd>
+<dt class="pubdef"><a id="instance/2"><strong>instance</strong>(<var>+Reference, 
+-Term</var>)</a></dt>
+<dd class="defbody">
+Unify <var>Term</var> with the referenced clause or database record. 
+Unit clauses are represented as <var>Head</var> :- <code>true</code>.</dd>
+<dt class="pubdef"><a id="flag/3"><strong>flag</strong>(<var>+Key, -Old, 
++New</var>)</a></dt>
+<dd class="defbody">
+<var>Key</var> is an atom, integer or term. As with the recorded 
+database, if
+<var>Key</var> is a term, only the name and arity are used to locate the 
+flag. Unify <var>Old</var> with the old value associated with <var>Key</var>. 
+If the key is used for the first time <var>Old</var> is unified with the 
+integer 0. Then store the value of <var>New</var>, which should be an 
+integer, float, atom or arithmetic expression, under <var>Key</var>. <a id="idx:flag3:755"></a><a class="pred" href="db.html#flag/3">flag/3</a> 
+is a fast mechanism for storing simple facts in the database. The flag 
+database is shared between threads and updates are atomic, making it 
+suitable for generating unique integer counters.<sup class="fn">64<span class="fn-text">The <a id="idx:flag3:756"></a><a class="pred" href="db.html#flag/3">flag/3</a> 
+predicate is not portable. Non-backtrackable global variables (<a id="idx:nbsetval2:757"></a><a class="pred" href="gvar.html#nb_setval/2">nb_setval/2</a>) 
+and non-backtrackable assignment (<a id="idx:nbsetarg3:758"></a><a class="pred" href="manipterm.html#nb_setarg/3">nb_setarg/3</a>) 
+are more widely recognised special-purpose alternatives for 
+non-backtrackable and/or global states.</span></sup>
+</dd>
+</dl>
+
+<p><h3 id="sec:update"><a id="sec:4.13.1"><span class="sec-nr">4.13.1</span> <span class="sec-title">Update 
+view</span></a></h3>
+
+<a id="sec:update"></a>
+
+<p><a id="idx:logicalupdateview:759"></a><a id="idx:immediateupdateview:760"></a><a id="idx:updateview:761"></a>Traditionally, 
+Prolog systems used the <em>immediate update view</em>: new clauses 
+became visible to predicates backtracking over dynamic predicates 
+immediately, and retracted clauses became invisible immediately.
+
+<p>Starting with SWI-Prolog 3.3.0 we adhere to the <em>logical update 
+view</em>, where backtrackable predicates that enter the definition of a 
+predicate will not see any changes (either caused by <a id="idx:assert1:762"></a><a class="pred" href="db.html#assert/1">assert/1</a> 
+or
+<a id="idx:retract1:763"></a><a class="pred" href="db.html#retract/1">retract/1</a>) 
+to the predicate. This view is the ISO standard, the most commonly used 
+and the most `safe'.<sup class="fn">65<span class="fn-text">For example, 
+using the immediate update view, no call to a dynamic predicate is 
+deterministic.</span></sup> Logical updates are realised by keeping 
+reference counts on predicates and <em>generation</em> information on 
+clauses. Each change to the database causes an increment of the 
+generation of the database. Each goal is tagged with the generation in 
+which it was started. Each clause is flagged with the generation it was 
+created in as well as the generation it was erased from. Only clauses 
+with a `created' ... `erased' interval that encloses the generation of 
+the current goal are considered visible.
+
+<p><h3 id="sec:hashterm"><a id="sec:4.13.2"><span class="sec-nr">4.13.2</span> <span class="sec-title">Indexing 
+databases</span></a></h3>
+
+<a id="sec:hashterm"></a>
+
+<p><a id="idx:indexingtermhashes:764"></a>The indexing capabilities of 
+SWI-Prolog are described in
+<a class="sec" href="jitindex.html">section 2.17</a>. Summarizing, 
+SWI-Prolog creates indexes for any applicable argument, but only on one 
+argument, and does not index on arguments of compound terms. The 
+predicates below provide building blocks to circumvent the limitations 
+of the current indexing system.
+
+<p>Programs that aim at portability should consider using <a id="idx:termhash2:765"></a><a class="pred" href="db.html#term_hash/2">term_hash/2</a> 
+and
+<a id="idx:termhash4:766"></a><a class="pred" href="db.html#term_hash/4">term_hash/4</a> 
+to design their database such that indexing on constant or functor 
+(name/arity reference) on the first argument is sufficient.
+
+<dl class="latex">
+<dt class="pubdef"><span class="pred-tag">[det]</span><a id="term_hash/2"><strong>term_hash</strong>(<var>+Term, 
+-HashKey</var>)</a></dt>
+<dd class="defbody">
+If <var>Term</var> is a ground term (see <a id="idx:ground1:767"></a><a class="pred" href="typetest.html#ground/1">ground/1</a>), <var>HashKey</var> 
+is unified with a positive integer value that may be used as a hash key 
+to the value. If <var>Term</var> is not ground, the predicate leaves <var>HashKey</var> 
+an unbound variable. Hash keys are in the range <var>0 ... 16,777,215</var>, 
+the maximal integer that can be stored efficiently on both 32 and 64 bit 
+platforms.
+
+<p>This predicate may be used to build hash tables as well as to exploit 
+argument indexing to find complex terms more quickly.
+
+<p>The hash key does not rely on temporary information like addresses of 
+atoms and may be assumed constant over different invocations and 
+versions of SWI-Prolog.<sup class="fn">66<span class="fn-text">Last 
+change: version 5.10.4</span></sup> Hashes differ between big and little 
+endian machines. The <a id="idx:termhash2:768"></a><a class="pred" href="db.html#term_hash/2">term_hash/2</a> 
+predicate is cycle-safe.<sup class="fn">bug<span class="fn-text">All 
+arguments that (indirectly) lead to a cycle have the same hash key.</span></sup></dd>
+<dt class="pubdef"><span class="pred-tag">[det]</span><a id="term_hash/4"><strong>term_hash</strong>(<var>+Term, 
++Depth, +Range, -HashKey</var>)</a></dt>
+<dd class="defbody">
+As <a id="idx:termhash2:769"></a><a class="pred" href="db.html#term_hash/2">term_hash/2</a>, 
+but only considers <var>Term</var> to the specified
+<var>Depth</var>. The top-level term has depth 1, its arguments have 
+depth 2, etc. That is, <var><var>Depth</var> = 0</var> hashes nothing; <var><var>Depth</var> 
+= 1</var> hashes atomic values or the functor and arity of a compound 
+term, not its arguments; <var><var>Depth</var> = 2</var> also indexes 
+the immediate arguments, etc.
+
+<p><var>HashKey</var> is in the range <var>[0 ...<var>Range</var>-1]</var>. <var>Range</var> 
+must be in the range <var>[1 ... 2147483647]</var></dd>
+<dt class="pubdef"><span class="pred-tag">[det]</span><a id="variant_sha1/2"><strong>variant_sha1</strong>(<var>+Term, 
+-SHA1</var>)</a></dt>
+<dd class="defbody">
+Compute a SHA1-hash from <var>Term</var>. The hash is represented as a 
+40-byte hexadecimal atom. Unlike <a id="idx:termhash2:770"></a><a class="pred" href="db.html#term_hash/2">term_hash/2</a> 
+and friends, this predicate produces a hash key for non-ground terms. 
+The hash is invariant over variable-renaming (see <a class="pred" href="compare.html#=@=/2">=@=/2</a>) 
+and constants over different invocations of Prolog.<sup class="fn">bug<span class="fn-text">The 
+hash depends on word order (big/little-endian) and the wordsize (32/64 
+bits).</span></sup>
+
+<p>This predicate raises an exception when trying to compute the hash on 
+a cyclic term or attributed term. Attributed terms are not handled 
+because <a id="idx:subsumeschk2:771"></a><span class="pred-ext">subsumes_chk/2</span> 
+is not considered well defined for attributed terms. Cyclic terms are 
+not supported because this would require establishing a canonical cycle. 
+That is, given A=[a|A] and B=[a,a|B],
+<var>A</var> and <var>B</var> should produce the same hash. This is not 
+(yet) implemented.
+
+<p>This hash was developed for lookup of solutions to a goal stored in a 
+table. By using a cryptographic hash, heuristic algorithms can often 
+ignore the possibility of hash collisions and thus avoid storing the 
+goal term itself as well as testing using <a class="pred" href="compare.html#=@=/2">=@=/2</a>.
+</dd>
+</dl>
+
+<p></body></html>

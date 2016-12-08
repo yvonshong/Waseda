@@ -1,0 +1,308 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html>
+<head>
+<title>SWI-Prolog 7.3.6 Reference Manual: Section 2.12</title><link rel="home" href="index.html">
+<link rel="contents" href="Contents.html">
+<link rel="index" href="DocIndex.html">
+<link rel="summary" href="summary.html">
+<link rel="previous" href="flags.html">
+<link rel="next" href="autoload.html">
+
+<style type="text/css">
+
+/* Style sheet for SWI-Prolog latex2html
+*/
+
+dd.defbody
+{ margin-bottom: 1em;
+}
+
+dt.pubdef, dt.multidef
+{ color: #fff;
+padding: 2px 10px 0px 10px;
+margin-bottom: 5px;
+font-size: 18px;
+vertical-align: middle;
+overflow: hidden;
+}
+
+dt.pubdef { background-color: #0c3d6e; }
+dt.multidef { background-color: #ef9439; }
+
+.bib dd
+{ margin-bottom: 1em;
+}
+
+.bib dt
+{ float: left;
+margin-right: 1.3ex;
+}
+
+pre.code
+{ margin-left: 1.5em;
+margin-right: 1.5em;
+border: 1px dotted;
+padding-top: 5px;
+padding-left: 5px;
+padding-bottom: 5px;
+background-color: #f8f8f8;
+}
+
+div.navigate
+{ text-align: center;
+background-color: #f0f0f0;
+border: 1px dotted;
+padding: 5px;
+}
+
+div.title
+{ text-align: center;
+padding-bottom: 1em;
+font-size: 200%;
+font-weight: bold;
+}
+
+div.author
+{ text-align: center;
+font-style: italic;
+}
+
+div.abstract
+{ margin-top: 2em;
+background-color: #f0f0f0;
+border: 1px dotted;
+padding: 5px;
+margin-left: 10%; margin-right:10%;
+}
+
+div.abstract-title
+{ text-align: center;
+padding: 5px;
+font-size: 120%;
+font-weight: bold;
+}
+
+div.toc-h1
+{ font-size: 200%;
+font-weight: bold;
+}
+
+div.toc-h2
+{ font-size: 120%;
+font-weight: bold;
+margin-left: 2em;
+}
+
+div.toc-h3
+{ font-size: 100%;
+font-weight: bold;
+margin-left: 4em;
+}
+
+div.toc-h4
+{ font-size: 100%;
+margin-left: 6em;
+}
+
+span.sec-nr
+{
+}
+
+span.sec-title
+{
+}
+
+span.pred-ext
+{ font-weight: bold;
+}
+
+span.pred-tag
+{ float: right;
+padding-top: 0.2em;
+font-size: 80%;
+font-style: italic;
+color: #fff;
+}
+
+div.caption
+{ width: 80%;
+margin: auto;
+text-align:center;
+}
+
+/* Footnotes */
+.fn {
+color: red;
+font-size: 70%;
+}
+
+.fn-text, .fnp {
+position: absolute;
+top: auto;
+left: 10%;
+border: 1px solid #000;
+box-shadow: 5px 5px 5px #888;
+display: none;
+background: #fff;
+color: #000;
+margin-top: 25px;
+padding: 8px 12px;
+font-size: larger;
+}
+
+sup:hover span.fn-text
+{ display: block;
+}
+
+/* Lists */
+
+dl.latex
+{ margin-top: 1ex;
+margin-bottom: 0.5ex;
+}
+
+dl.latex dl.latex dd.defbody
+{ margin-bottom: 0.5ex;
+}
+
+/* PlDoc Tags */
+
+dl.tags
+{ font-size: 90%;
+margin-left: 5ex;
+margin-top: 1ex;
+margin-bottom: 0.5ex;
+}
+
+dl.tags dt
+{ margin-left: 0pt;
+font-weight: bold;
+}
+
+dl.tags dd
+{ margin-left: 3ex;
+}
+
+td.param
+{ font-style: italic;
+font-weight: bold;
+}
+
+/* Index */
+
+dt.index-sep
+{ font-weight: bold;
+font-size: +1;
+margin-top: 1ex;
+}
+
+/* Tables */
+
+table.center
+{ margin: auto;
+}
+
+table.latex
+{ border-collapse:collapse;
+}
+
+table.latex tr
+{ vertical-align: text-top;
+}
+
+table.latex td,th
+{ padding: 2px 1em;
+}
+
+table.latex tr.hline td,th
+{ border-top: 1px solid black;
+}
+
+table.frame-box
+{ border: 2px solid black;
+}
+
+</style>
+</head>
+<body style="background:white">
+<div class="navigate"><a class="nav" href="index.html"><img src="home.gif" alt="Home"></a>
+<a class="nav" href="Contents.html"><img src="index.gif" alt="Contents"></a>
+<a class="nav" href="DocIndex.html"><img src="yellow_pages.gif" alt="Index"></a>
+<a class="nav" href="summary.html"><img src="info.gif" alt="Summary"></a>
+<a class="nav" href="flags.html"><img src="prev.gif" alt="Previous"></a>
+<a class="nav" href="autoload.html"><img src="next.gif" alt="Next"></a>
+</div>
+<h2 id="sec:hooks"><a id="sec:2.12"><span class="sec-nr">2.12</span> <span class="sec-title">An 
+overview of hook predicates</span></a></h2>
+
+<a id="sec:hooks"></a>
+
+<p><a id="idx:hooks:138"></a>SWI-Prolog provides a large number of 
+hooks, mainly to control handling messages, debugging, startup, 
+shut-down, macro-expansion, etc. Below is a summary of all defined hooks 
+with an indication of their portability.
+
+<p>
+<ul class="latex">
+<li><i>portray/1</i><br>
+Hook into <a id="idx:writeterm3:139"></a><a class="pred" href="termrw.html#write_term/3">write_term/3</a> 
+to alter the way terms are printed (ISO).
+<li><i>message_hook/3</i><br>
+Hook into <a id="idx:printmessage2:140"></a><a class="pred" href="exception.html#print_message/2">print_message/2</a> 
+to alter the way system messages are printed (Quintus/SICStus).
+<li><i>message_property/2</i><br>
+Hook into <a id="idx:printmessage2:141"></a><a class="pred" href="exception.html#print_message/2">print_message/2</a> 
+that defines prefix, output stream, color, etc.
+<li><i>library_directory/1</i><br>
+Hook into <a id="idx:absolutefilename3:142"></a><a class="pred" href="files.html#absolute_file_name/3">absolute_file_name/3</a> 
+to define new library directories (most Prolog systems).
+<li><i>file_search_path/2</i><br>
+Hook into <a id="idx:absolutefilename3:143"></a><a class="pred" href="files.html#absolute_file_name/3">absolute_file_name/3</a> 
+to define new search paths (Quintus/SICStus).
+<li><i>term_expansion/2</i><br>
+Hook into <a id="idx:loadfiles2:144"></a><a class="pred" href="consulting.html#load_files/2">load_files/2</a> 
+to modify read terms before they are compiled (macro-processing) (most 
+Prolog systems).
+<li><i>goal_expansion/2</i><br>
+Same as <a id="idx:termexpansion2:145"></a><a class="pred" href="consulting.html#term_expansion/2">term_expansion/2</a> 
+for individual goals (SICStus).
+<li><i>prolog_load_file/2</i><br>
+Hook into <a id="idx:loadfiles2:146"></a><a class="pred" href="consulting.html#load_files/2">load_files/2</a> 
+to load other data formats for Prolog sources from `non-file' resources. 
+The <a id="idx:loadfiles2:147"></a><a class="pred" href="consulting.html#load_files/2">load_files/2</a> 
+predicate is the ancestor of <a id="idx:consult1:148"></a><a class="pred" href="consulting.html#consult/1">consult/1</a>, <a id="idx:usemodule1:149"></a><a class="pred" href="import.html#use_module/1">use_module/1</a>, 
+etc.
+<li><i>prolog_edit:locate/3</i><br>
+Hook into <a id="idx:edit1:150"></a><a class="pred" href="edit.html#edit/1">edit/1</a> 
+to locate objects (SWI).
+<li><i>prolog_edit:edit_source/1</i><br>
+Hook into <a id="idx:edit1:151"></a><a class="pred" href="edit.html#edit/1">edit/1</a> 
+to call an internal editor (SWI).
+<li><i>prolog_edit:edit_command/2</i><br>
+Hook into <a id="idx:edit1:152"></a><a class="pred" href="edit.html#edit/1">edit/1</a> 
+to define the external editor to use (SWI).
+<li><i>prolog_list_goal/1</i><br>
+Hook into the tracer to list the code associated to a particular goal 
+(SWI).
+<li><i>prolog_trace_interception/4</i><br>
+Hook into the tracer to handle trace events (SWI).
+<li><i>prolog:debug_control_hook/1</i><br>
+Hook in <a id="idx:spy1:153"></a><a class="pred" href="debugger.html#spy/1">spy/1</a>, <a id="idx:nospy1:154"></a><a class="pred" href="debugger.html#nospy/1">nospy/1</a>, <a id="idx:nospyall0:155"></a><a class="pred" href="debugger.html#nospyall/0">nospyall/0</a> 
+and <a id="idx:debugging0:156"></a><a class="pred" href="debugger.html#debugging/0">debugging/0</a> 
+to extend these control predicates to higher-level libraries.
+<li><i>prolog:help_hook/1</i><br>
+Hook in <a id="idx:help0:157"></a><a class="pred" href="help.html#help/0">help/0</a>, <a id="idx:help1:158"></a><a class="pred" href="help.html#help/1">help/1</a> 
+and <a id="idx:apropos1:159"></a><a class="pred" href="help.html#apropos/1">apropos/1</a> 
+to extend the help system.
+<li><i>resource/3</i><br>
+Define a new resource (not really a hook, but similar) (SWI).
+<li><i>exception/3</i><br>
+Old attempt to a generic hook mechanism. Handles undefined predicates 
+(SWI).
+<li><i>attr_unify_hook/2</i><br>
+Unification hook for attributed variables. Can be defined in any module. 
+See <a class="sec" href="attvar.html">section 7.1</a> for details.
+</ul>
+
+<p></body></html>

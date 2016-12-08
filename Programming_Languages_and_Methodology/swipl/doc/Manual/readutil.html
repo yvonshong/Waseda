@@ -1,0 +1,317 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html>
+<head>
+<title>SWI-Prolog 7.3.6 Reference Manual: Section A.28</title><link rel="home" href="index.html">
+<link rel="contents" href="Contents.html">
+<link rel="index" href="DocIndex.html">
+<link rel="summary" href="summary.html">
+<link rel="previous" href="random.html">
+<link rel="next" href="record.html">
+
+<style type="text/css">
+
+/* Style sheet for SWI-Prolog latex2html
+*/
+
+dd.defbody
+{ margin-bottom: 1em;
+}
+
+dt.pubdef, dt.multidef
+{ color: #fff;
+padding: 2px 10px 0px 10px;
+margin-bottom: 5px;
+font-size: 18px;
+vertical-align: middle;
+overflow: hidden;
+}
+
+dt.pubdef { background-color: #0c3d6e; }
+dt.multidef { background-color: #ef9439; }
+
+.bib dd
+{ margin-bottom: 1em;
+}
+
+.bib dt
+{ float: left;
+margin-right: 1.3ex;
+}
+
+pre.code
+{ margin-left: 1.5em;
+margin-right: 1.5em;
+border: 1px dotted;
+padding-top: 5px;
+padding-left: 5px;
+padding-bottom: 5px;
+background-color: #f8f8f8;
+}
+
+div.navigate
+{ text-align: center;
+background-color: #f0f0f0;
+border: 1px dotted;
+padding: 5px;
+}
+
+div.title
+{ text-align: center;
+padding-bottom: 1em;
+font-size: 200%;
+font-weight: bold;
+}
+
+div.author
+{ text-align: center;
+font-style: italic;
+}
+
+div.abstract
+{ margin-top: 2em;
+background-color: #f0f0f0;
+border: 1px dotted;
+padding: 5px;
+margin-left: 10%; margin-right:10%;
+}
+
+div.abstract-title
+{ text-align: center;
+padding: 5px;
+font-size: 120%;
+font-weight: bold;
+}
+
+div.toc-h1
+{ font-size: 200%;
+font-weight: bold;
+}
+
+div.toc-h2
+{ font-size: 120%;
+font-weight: bold;
+margin-left: 2em;
+}
+
+div.toc-h3
+{ font-size: 100%;
+font-weight: bold;
+margin-left: 4em;
+}
+
+div.toc-h4
+{ font-size: 100%;
+margin-left: 6em;
+}
+
+span.sec-nr
+{
+}
+
+span.sec-title
+{
+}
+
+span.pred-ext
+{ font-weight: bold;
+}
+
+span.pred-tag
+{ float: right;
+padding-top: 0.2em;
+font-size: 80%;
+font-style: italic;
+color: #fff;
+}
+
+div.caption
+{ width: 80%;
+margin: auto;
+text-align:center;
+}
+
+/* Footnotes */
+.fn {
+color: red;
+font-size: 70%;
+}
+
+.fn-text, .fnp {
+position: absolute;
+top: auto;
+left: 10%;
+border: 1px solid #000;
+box-shadow: 5px 5px 5px #888;
+display: none;
+background: #fff;
+color: #000;
+margin-top: 25px;
+padding: 8px 12px;
+font-size: larger;
+}
+
+sup:hover span.fn-text
+{ display: block;
+}
+
+/* Lists */
+
+dl.latex
+{ margin-top: 1ex;
+margin-bottom: 0.5ex;
+}
+
+dl.latex dl.latex dd.defbody
+{ margin-bottom: 0.5ex;
+}
+
+/* PlDoc Tags */
+
+dl.tags
+{ font-size: 90%;
+margin-left: 5ex;
+margin-top: 1ex;
+margin-bottom: 0.5ex;
+}
+
+dl.tags dt
+{ margin-left: 0pt;
+font-weight: bold;
+}
+
+dl.tags dd
+{ margin-left: 3ex;
+}
+
+td.param
+{ font-style: italic;
+font-weight: bold;
+}
+
+/* Index */
+
+dt.index-sep
+{ font-weight: bold;
+font-size: +1;
+margin-top: 1ex;
+}
+
+/* Tables */
+
+table.center
+{ margin: auto;
+}
+
+table.latex
+{ border-collapse:collapse;
+}
+
+table.latex tr
+{ vertical-align: text-top;
+}
+
+table.latex td,th
+{ padding: 2px 1em;
+}
+
+table.latex tr.hline td,th
+{ border-top: 1px solid black;
+}
+
+table.frame-box
+{ border: 2px solid black;
+}
+
+</style>
+</head>
+<body style="background:white">
+<div class="navigate"><a class="nav" href="index.html"><img src="home.gif" alt="Home"></a>
+<a class="nav" href="Contents.html"><img src="index.gif" alt="Contents"></a>
+<a class="nav" href="DocIndex.html"><img src="yellow_pages.gif" alt="Index"></a>
+<a class="nav" href="summary.html"><img src="info.gif" alt="Summary"></a>
+<a class="nav" href="random.html"><img src="prev.gif" alt="Previous"></a>
+<a class="nav" href="record.html"><img src="next.gif" alt="Next"></a>
+</div>
+<h2 id="sec:readutil"><a id="sec:A.28"><span class="sec-nr">A.28</span> <span class="sec-title">library(readutil): 
+Reading lines, streams and files</span></a></h2>
+
+<a id="sec:readutil"></a>
+
+<p>This library contains primitives to read lines, files, multiple 
+terms, etc. The package <code>clib</code> provides a shared object (DLL) 
+named <code>readutil</code>. If the library can locate this shared 
+object it will use the foreign implementation for reading character 
+codes. Otherwise it will use a Prolog implementation. Distributed 
+applications should make sure to deliver the <code>readutil</code> 
+shared object if performance of these predicates is critical.
+
+<dl class="latex">
+<dt class="pubdef"><a id="read_line_to_codes/2"><strong>read_line_to_codes</strong>(<var>+Stream, 
+-Codes</var>)</a></dt>
+<dd class="defbody">
+Read the next line of input from <var>Stream</var> and unify the result 
+with
+<var>Codes</var> <em>after</em> the line has been read. A line is ended 
+by a newline character or end-of-file. Unlike <a id="idx:readlinetocodes3:1964"></a><a class="pred" href="readutil.html#read_line_to_codes/3">read_line_to_codes/3</a>, 
+this predicate removes a trailing newline character.
+
+<p>On end-of-file the atom <code>end_of_file</code> is returned. See 
+also
+<a id="idx:atendofstream01:1965"></a><span class="pred-ext">at_end_of_stream/[0,1]</span>.</dd>
+<dt class="pubdef"><a id="read_line_to_codes/3"><strong>read_line_to_codes</strong>(<var>+Stream, 
+-Codes, ?Tail</var>)</a></dt>
+<dd class="defbody">
+Difference-list version to read an input line to a list of character 
+codes. Reading stops at the newline or end-of-file character, but unlike <a id="idx:readlinetocodes2:1966"></a><a class="pred" href="readutil.html#read_line_to_codes/2">read_line_to_codes/2</a>, 
+the newline is retained in the output. This predicate is especially 
+useful for reading a block of lines up to some delimiter. The following 
+example reads an HTTP header ended by a blank line:
+
+<pre class="code">
+read_header_data(Stream, Header) :-
+        read_line_to_codes(Stream, Header, Tail),
+        read_header_data(Header, Stream, Tail).
+
+read_header_data("\r\n", _, _) :- !.
+read_header_data("\n", _, _) :- !.
+read_header_data("", _, _) :- !.
+read_header_data(_, Stream, Tail) :-
+        read_line_to_codes(Stream, Tail, NewTail),
+        read_header_data(Tail, Stream, NewTail).
+</pre>
+
+</dd>
+<dt class="pubdef"><a id="read_stream_to_codes/2"><strong>read_stream_to_codes</strong>(<var>+Stream, 
+-Codes</var>)</a></dt>
+<dd class="defbody">
+Read all input until end-of-file and unify the result to <var>Codes</var>.</dd>
+<dt class="pubdef"><a id="read_stream_to_codes/3"><strong>read_stream_to_codes</strong>(<var>+Stream, 
+-Codes, ?Tail</var>)</a></dt>
+<dd class="defbody">
+Difference-list version of <a id="idx:readstreamtocodes2:1967"></a><a class="pred" href="readutil.html#read_stream_to_codes/2">read_stream_to_codes/2</a>.</dd>
+<dt class="pubdef"><a id="read_file_to_codes/3"><strong>read_file_to_codes</strong>(<var>+Spec, 
+-Codes, +Options</var>)</a></dt>
+<dd class="defbody">
+Read a file to a list of character codes. <var>Spec</var> is a file 
+specification for <a id="idx:absolutefilename3:1968"></a><a class="pred" href="files.html#absolute_file_name/3">absolute_file_name/3</a>. <var>Codes</var> 
+is the resulting code list. <var>Options</var> is a list of options for
+<a id="idx:absolutefilename3:1969"></a><a class="pred" href="files.html#absolute_file_name/3">absolute_file_name/3</a> 
+and <a id="idx:open4:1970"></a><a class="pred" href="IO.html#open/4">open/4</a>. 
+In addition, the option
+<code>tail(Tail)</code> is defined, forming a difference-list.</dd>
+<dt class="pubdef"><a id="read_file_to_terms/3"><strong>read_file_to_terms</strong>(<var>+Spec, 
+-Terms, +Options</var>)</a></dt>
+<dd class="defbody">
+Read a file to a list of Prolog terms (see <a id="idx:read1:1971"></a><a class="pred" href="termrw.html#read/1">read/1</a>). <var>Spec</var> 
+is a file specification for <a id="idx:absolutefilename3:1972"></a><a class="pred" href="files.html#absolute_file_name/3">absolute_file_name/3</a>. <var>Terms</var> 
+is the resulting list of Prolog terms. <var>Options</var> is a list of 
+options for
+<a id="idx:absolutefilename3:1973"></a><a class="pred" href="files.html#absolute_file_name/3">absolute_file_name/3</a> 
+and <a id="idx:open4:1974"></a><a class="pred" href="IO.html#open/4">open/4</a>. 
+In addition, the option
+<code>tail(Tail)</code> is defined, forming a difference-list.
+</dd>
+</dl>
+
+<p></body></html>
