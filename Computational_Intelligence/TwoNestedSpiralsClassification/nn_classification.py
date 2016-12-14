@@ -1,4 +1,4 @@
-__author__ = 'm.bashari'
+__author__ = 'yvonshong'
 import numpy as np
 from numpy  import *
 from sklearn import datasets, linear_model
@@ -25,12 +25,8 @@ def generate_data():
 
     X = data[:,:2]
     y = data[:,2]
+
     return X,y   
-    '''    
-    np.random.seed(0)
-    X, y = datasets.make_moons(200, noise=0.20)
-    return X, y
-    '''
 
 # plot the diagram
 def visualize(X, y, model):
