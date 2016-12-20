@@ -1,5 +1,4 @@
 # encoding:utf-8
-
 '''
 	Ant Colony Optimization for Traveling Salesman Problem
 '''
@@ -8,7 +7,7 @@ import random, math
 from numpy  import *
 import math
 
-# classe to present an edge
+# class to present an edge
 class Edge:
 
 	def __init__(self, origin, destination, cost):

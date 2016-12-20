@@ -69,7 +69,7 @@ class TSP(object):
 
 def main():
       tsp = TSP()
-      tsp.run(1000000000)
+      tsp.run(1000)
       
 
 
