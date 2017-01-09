@@ -160,7 +160,7 @@ def classify(X, y):
 
 def main():
     X, y = generate_data()
-    model = build_model(X, y, 9,num_passes=10000, print_loss=True)
+    model = build_model(X, y, 20,num_passes=10000, print_loss=True)
     visualize(X, y, model)
 
 

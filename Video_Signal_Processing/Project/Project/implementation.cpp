@@ -5,12 +5,12 @@
 using namespace cv;
 
 int main() {
-	// 读入一张图片（游戏原画）    
+	// import a pic file  
 	Mat img = imread("D:\\OneDrive\\图片\\MyerSplash\\pic.jpg");
-	// 创建一个名为 "游戏原画"窗口    
-	namedWindow("游戏原画");
-	// 在窗口中显示游戏原画    
-	imshow("游戏原画", img);
-	// 等待6000 ms后窗口自动关闭    
+	// build a new windows named "Picture"    
+	namedWindow("Picture");
+	// show the pic in the new windows
+	imshow("Picture", img);
+	// wait for 6000 ms, then close the windows    
 	waitKey(12000);
 }
