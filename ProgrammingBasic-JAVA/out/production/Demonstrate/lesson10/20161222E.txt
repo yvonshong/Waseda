@@ -1,0 +1,4 @@
+1 Rectangle 200 300
+2 Rectangle 10 50
+3 Circle 50
+4 Square 20
