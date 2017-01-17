@@ -10,15 +10,17 @@ NP-hard problem in combinatorial optimization
 
 TSP can be regard as a graph problem can can be modelled as an undirected weighted graph:
 
-|Cities|the graph's vertices|
-|----|---|
-| Paths |the graph's edges|
-|The path's distance| the edge's weight|
+|Cities|Paths |The path's distance|
+|----|---|---|
+| the graph's vertices |the graph's edges|the edge's weight|
+
 
 It is a minimization problem starting and finishing at a specified vertex after having visited each other vertex exactly once. 
 
 
 Because the distance in Berlin52.tsp is coordinate distance, so it is a symmetric problem.
+
+And I try to improve the algorithms, especially in ACO, so I will introduce more about the ACO Algorithm.
 
 
 
@@ -28,8 +30,6 @@ https://en.wikipedia.org/wiki/Genetic_algorithm
 
 ### Flow chart
 ![ga](img/ga-flow.png)
-### Source Code
-
 
 ### Result
 ![ga](TSP/img/ga_result_1000.jpg)
@@ -39,10 +39,67 @@ https://en.wikipedia.org/wiki/Genetic_algorithm
 ### Conclusion
 
 ## ACO
+Ants of some species (initially) wander randomly, and upon finding food return to their colony while laying down pheromone trails. If other ants find such a path, they are likely not to keep travelling at random, but instead to follow the trail, returning and reinforcing it if they eventually find food.
 
+Over time, however, the pheromone trail starts to evaporate, thus reducing its attractive strength. The more time it takes for an ant to travel down the path and back again, the more time the pheromones have to evaporate. A short path, by comparison, gets marched over more frequently, and thus the pheromone density becomes higher on shorter paths than longer ones. Pheromone evaporation also has the advantage of avoiding the convergence to a locally optimal solution. If there were no evaporation at all, the paths chosen by the first ants would tend to be excessively attractive to the following ones. In that case, the exploration of the solution space would be constrained. The influence of pheromone evaporation in real ant systems is unclear, but it is very important in artificial systems.
+
+The overall result is that when one ant finds a good (i.e., short) path from the colony to a food source, other ants are more likely to follow that path, and positive feedback eventually leads to all the ants following a single path. The idea of the ant colony algorithm is to mimic this behavior with "simulated ants" walking around the graph representing the problem to solve.
+
+https://en.wikipedia.org/wiki/Ant_colony_optimization_algorithms
+
+### Pseudo Code
+
+```
+  procedure ACO_MetaHeuristic
+    while(not_termination)
+       generateSolutions()
+       daemonActions()
+       pheromoneUpdate()
+    end while
+  end procedure
+
+```
+
+### Improvement
+
+### Analysis
 
 ![aco](TSP/img/aco_result_1000.jpg)
+
+
 ## PSO
+A basic variant of the PSO algorithm works by having a population (called a swarm) of candidate solutions (called particles). These particles are moved around in the search-space according to a few simple formulae. 
+
+The movements of the particles are guided by their own best known position in the search-space as well as the entire swarm's best known position. When improved positions are being discovered these will then come to guide the movements of the swarm. The process is repeated and by doing so it is hoped, but not guaranteed, that a satisfactory solution will eventually be discovered.
+
+Formally, let f: ℝn → ℝ be the cost function which must be minimized. The function takes a candidate solution as argument in the form of a vector of real numbers and produces a real number as output which indicates the objective function value of the given candidate solution. The gradient of f is not known. The goal is to find a solution a for which f(a) ≤ f(b) for all b in the search-space, which would mean a is the global minimum. Maximization can be performed by considering the function h = -f instead.
+
+Let S be the number of particles in the swarm, each having a position xi ∈ ℝn in the search-space and a velocity vi ∈ ℝn. Let pi be the best known position of particle i and let g be the best known position of the entire swarm. A basic PSO algorithm is then:
+
+### Pseudo Code
+
+```
+for each particle i = 1, ..., S do
+   Initialize the particle's position with a uniformly distributed random vector: xi ~ U(blo, bup)
+   Initialize the particle's best known position to its initial position: pi ← xi
+   if f(pi) < f(g) then
+       update the swarm's best known  position: g ← pi
+   Initialize the particle's velocity: vi ~ U(-|bup-blo|, |bup-blo|)
+while a termination criterion is not met do:
+   for each particle i = 1, ..., S do
+      for each dimension d = 1, ..., n do
+         Pick random numbers: rp, rg ~ U(0,1)
+         Update the particle's velocity: vi,d ← ω vi,d + φp rp (pi,d-xi,d) + φg rg (gd-xi,d)
+         Update the particle's position: xi ← xi + vi
+         if f(xi) < f(pi) then
+            Update the particle's best known position: pi ← xi
+            if f(pi) < f(g) then
+               Update the swarm's best known position: g ← pi
+```
+
+The values blo and bup are respectively the lower and upper boundaries of the search-space. The termination criterion can be number of iterations performed, or a solution with adequate objective function value is found.[10] The parameters ω, φp, and φg are selected by the practitioner and control the behaviour and efficacy of the PSO method, see below.
+
+https://en.wikipedia.org/wiki/Particle_swarm_optimization
 
 ![pso](TSP/img/pso_result_1000.jpg)
 
@@ -54,6 +111,29 @@ https://en.wikipedia.org/wiki/Genetic_algorithm
 # Reference
 
 https://en.wikipedia.org/wiki/Genetic_algorithm
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # Appendix - Source Code in TSP
 ## GA
