@@ -20,7 +20,7 @@ It is a minimization problem starting and finishing at a specified vertex afte
 
 Because the distance in Berlin52.tsp is coordinate distance, so it is a symmetric problem.
 
-And I try to improve the algorithms, especially in ACO, so I will introduce more about the ACO Algorithm.
+And I try to improve the algorithms, so I will introduce some improvement in GA and ACO Algorithm.
 
 
 
@@ -32,11 +32,26 @@ https://en.wikipedia.org/wiki/Genetic_algorithm
 ![ga](img/ga-flow.png)
 
 ### Result
+1000 iterations
 ![ga](TSP/img/ga_result_1000.jpg)
 
+1000000 iterations with the same rate in GA expression.
 ![ga](TSP/img/ga_result_1000000.jpg)
 
+So we can find that the rate of descent is really slow. especially campared with other algorithms.
+
+### Improvement
+In order to know the parameters' efficiency in the expression, especially in the crossRate and mutationRate, I calculate the crossRate from 0-0.5 stepped by 0.1, mutationRate from 0-0.5 stepped by 0.05, iterations times is 10000, and show the temporary result of each 100 iterations.
+
+![](TSP/img/diagram.jpg)
+And the calculate the decreate rate of each state, with considering 10 results, using the method of successive minus.
+![](TSP/img/ga_rate_test.jpg)
+![](TSP/img/descreate_rate.jpg)
+
+![](TSP/img/descreate_rate_2.jpg)
+
 ### Conclusion
+So we can find that the parameter in expression of GA, if you want to steepest descent to the final result, maybe you can choose crossRate as 0.4 and mutationRate as 0.35.
 
 ## ACO
 Ants of some species (initially) wander randomly, and upon finding food return to their colony while laying down pheromone trails. If other ants find such a path, they are likely not to keep travelling at random, but instead to follow the trail, returning and reinforcing it if they eventually find food.
@@ -44,8 +59,6 @@ Ants of some species (initially) wander randomly, and upon finding food return t
 Over time, however, the pheromone trail starts to evaporate, thus reducing its attractive strength. The more time it takes for an ant to travel down the path and back again, the more time the pheromones have to evaporate. A short path, by comparison, gets marched over more frequently, and thus the pheromone density becomes higher on shorter paths than longer ones. Pheromone evaporation also has the advantage of avoiding the convergence to a locally optimal solution. If there were no evaporation at all, the paths chosen by the first ants would tend to be excessively attractive to the following ones. In that case, the exploration of the solution space would be constrained. The influence of pheromone evaporation in real ant systems is unclear, but it is very important in artificial systems.
 
 The overall result is that when one ant finds a good (i.e., short) path from the colony to a food source, other ants are more likely to follow that path, and positive feedback eventually leads to all the ants following a single path. The idea of the ant colony algorithm is to mimic this behavior with "simulated ants" walking around the graph representing the problem to solve.
-
-https://en.wikipedia.org/wiki/Ant_colony_optimization_algorithms
 
 ### Pseudo Code
 
@@ -62,6 +75,11 @@ https://en.wikipedia.org/wiki/Ant_colony_optimization_algorithms
 
 ### Improvement
 
+- Use greedy algorithm to initialize the ACO of TSP.
+
+	Greedy algorithm is an algorithmic paradigm that follows the problem solving heuristic of making the locally optimal choice at each stage[1] with the hope of finding a global optimum. In many problems, a greedy strategy does not in general produce an optimal solution, but nonetheless a greedy heuristic may yield locally optimal solutions that approximate a global optimal solution in a reasonable time.
+- Rotate the matrix of cities to avoid to fail into the local 
+optimization.
 ### Analysis
 
 ![aco](TSP/img/aco_result_1000.jpg)
@@ -97,14 +115,12 @@ while a termination criterion is not met do:
                Update the swarm's best known position: g ← pi
 ```
 
-The values blo and bup are respectively the lower and upper boundaries of the search-space. The termination criterion can be number of iterations performed, or a solution with adequate objective function value is found.[10] The parameters ω, φp, and φg are selected by the practitioner and control the behaviour and efficacy of the PSO method, see below.
-
-https://en.wikipedia.org/wiki/Particle_swarm_optimization
+### Result
 
 ![pso](TSP/img/pso_result_1000.jpg)
 
-
-# My trail on Two Nested Spirals Classification Problem
+### Conclusion
+We can find that the PSO is the slowest descent to the result, and it cost too much time than others.
 
 
 
@@ -112,6 +128,10 @@ https://en.wikipedia.org/wiki/Particle_swarm_optimization
 
 https://en.wikipedia.org/wiki/Genetic_algorithm
 
+https://en.wikipedia.org/wiki/Ant_colony_optimization_algorithms
+
+
+https://en.wikipedia.org/wiki/Particle_swarm_optimization
 
 
 
