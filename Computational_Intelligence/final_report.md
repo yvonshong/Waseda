@@ -26,7 +26,6 @@ And I try to improve the algorithms, so I will introduce some improvement in GA 
 
 ## GA
 Genetic Algorithm (GA) is a metaheuristic inspired by the process of natural selection that belongs to the larger class of evolutionary algorithms (EA). Genetic algorithms are commonly used to generate high-quality solutions to optimization and search problems by relying on bio-inspired operators such as mutation, crossover and selection.
-https://en.wikipedia.org/wiki/Genetic_algorithm
 
 ### Flow chart
 ![ga](img/ga-flow.png)
