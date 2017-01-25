@@ -10,9 +10,9 @@ NP-hard problem in combinatorial optimization
 
 TSP can be regard as a graph problem can can be modelled as an undirected weighted graph:
 
-|Cities|Paths |The path's distance|
-|----|---|---|
-| the graph's vertices |the graph's edges|the edge's weight|
+| Cities               | Paths             | The path's distance |
+| -------------------- | ----------------- | ------------------- |
+| the graph's vertices | the graph's edges | the edge's weight   |
 
 
 It is a minimization problem starting and finishing at a specified vertex after having visited each other vertex exactly once. 
@@ -59,6 +59,11 @@ Over time, however, the pheromone trail starts to evaporate, thus reducing its a
 
 The overall result is that when one ant finds a good (i.e., short) path from the colony to a food source, other ants are more likely to follow that path, and positive feedback eventually leads to all the ants following a single path. The idea of the ant colony algorithm is to mimic this behavior with "simulated ants" walking around the graph representing the problem to solve.
 
+The probability of ants moving from position i to position j at time t is expressed as follows:
+
+$p^k_{ij} = $
+
+
 ### Pseudo Code
 
 ```
@@ -72,19 +77,24 @@ The overall result is that when one ant finds a good (i.e., short) path from the
 
 ```
 
+
+
 ### Improvement
 
 - Use greedy algorithm to initialize the ACO of TSP.
 
-	Greedy algorithm is an algorithmic paradigm that follows the problem solving heuristic of making the locally optimal choice at each stage[1] with the hope of finding a global optimum. In many problems, a greedy strategy does not in general produce an optimal solution, but nonetheless a greedy heuristic may yield locally optimal solutions that approximate a global optimal solution in a reasonable time.
-- Rotate the matrix of cities to avoid to fail into the local 
-optimization.
-### Analysis
+  Greedy algorithm is an algorithmic paradigm that follows the problem solving heuristic of making the locally optimal choice at each stage[1] with the hope of finding a global optimum. In many problems, a greedy strategy does not in general produce an optimal solution, but nonetheless a greedy heuristic may yield locally optimal solutions that approximate a global optimal solution in a reasonable time.
+- Rotate the matrix of cities to avoid to fail into the local optimization.
+
+
+### Result
 
 ![aco](TSP/img/aco_result_1000.jpg)
 
 
+
 ## PSO
+
 A basic variant of the PSO algorithm works by having a population (called a swarm) of candidate solutions (called particles). These particles are moved around in the search-space according to a few simple formulae. 
 
 The movements of the particles are guided by their own best known position in the search-space as well as the entire swarm's best known position. When improved positions are being discovered these will then come to guide the movements of the swarm. The process is repeated and by doing so it is hoped, but not guaranteed, that a satisfactory solution will eventually be discovered.
@@ -131,26 +141,6 @@ https://en.wikipedia.org/wiki/Ant_colony_optimization_algorithms
 
 
 https://en.wikipedia.org/wiki/Particle_swarm_optimization
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
