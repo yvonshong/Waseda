@@ -126,7 +126,7 @@ When we use different Gaussian kernel, we can get different result. As you can s
 So I will try different sigma to proccess the gray picture with Gaussian Noise. 
 
 - when sigma is 10:
-the Gaussian kernel makes the picture like mixed with its neighbor field averagely. It is a total black picture except the border of the picture.
+the Gaussian kernel makes the picture mixed with its neighbor field averagely. It is a total black picture except the border of the picture.
 Its Gaussian kernel module is as follow:
 ![](img/sigma10kernel.jpg)
 
@@ -134,7 +134,7 @@ Its Gaussian kernel module is as follow:
 - when sigma is 1:
 
 ![](img/0.jpg)
-The result has been shown 
+The result has been shown as above. 
 
 - when sigma is 0.01:
 ![](img/sigma0.1kernel.jpg)
