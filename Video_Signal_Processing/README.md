@@ -163,40 +163,12 @@ Mat image;
 typedef vector<Vec3b> row;
 typedef vector<row> mat;
 mat in, tmp, output;
-int w, h;
-double pi = 3.14;
 double kernel[10][10] = { 0 };
 double mins = 999999999;
-void test()
-{
-	double n = 5;
-	double mid = floor((n + 1) / 2);
-	double sigma = 1.0;
-	for (int i = 1; i <= n; i++) {
-		for (int j = 1; j <= n; j++)
-		{
-			double ttt = ((i - mid)*(i - mid) + (j - mid)*(j - mid)) / (2 * sigma*sigma);
-			double t = exp(-(ttt));
-			double  a = t / (2 * pi*sigma*sigma);
-			if (a<mins)
-				mins = a;
-			kernel[i][j] = a;
-		}
-	}
-	for (int i = 1; i <= n; i++)
-		for (int j = 1; j <= n; j++)
-		{
-			kernel[i][j] /= mins;
-			kernel[i][j] = ceil(kernel[i][j]);
-		}
-	for (int i = 1; i <= n; i++) {
-		for (int j = 1; j <= n; j++) {
-			printf("%.3lf ", (kernel[i][j]));
-		}
-		cout << endl;
-	}
-	//printf("mins:%.10lf", mins);
-}
+int w, h;
+double pi = 3.14;
+
+
 Vec3b guessbour(int x, int y) {
 	double sum0 = 0, sum1 = 0, sum2 = 0;
 	for (int i = 0; i<5; i++)
@@ -212,6 +184,7 @@ Vec3b guessbour(int x, int y) {
 	tt[2] = sum2*mins;
 	return tt;
 }
+
 void smooth(int iterations)
 {
 	tmp.resize(h), output.resize(h);
@@ -240,6 +213,38 @@ void smooth(int iterations)
 	imwrite("D:\\\\document\\Waseda\\Video_Signal_Processing\\img\\DIYfilter.jpg", res);
 
 }
+
+void test()
+{
+	double n = 5;
+	double mid = floor((n + 1) / 2);
+	double sigma = 1.0;
+	for (int i = 1; i <= n; i++) {
+		for (int j = 1; j <= n; j++)
+		{
+			double ttt = ((i - mid)*(i - mid) + (j - mid)*(j - mid)) / (2 * sigma*sigma);
+			double t = exp(-(ttt));
+			double  a = t / (2 * pi*sigma*sigma);
+			if (a<mins)
+				mins = a;
+			kernel[i][j] = a;
+		}
+	}
+	for (int i = 1; i <= n; i++)
+		for (int j = 1; j <= n; j++)
+		{
+			kernel[i][j] /= mins;
+			kernel[i][j] = ceil(kernel[i][j]);
+		}
+	for (int i = 1; i <= n; i++) {
+		for (int j = 1; j <= n; j++) {
+			printf("%.3lf ", (kernel[i][j]));
+		}
+		cout << endl;
+	}
+}
+
+
 void solve()
 {
 	h = image.rows, w = image.cols;
@@ -254,7 +259,6 @@ void solve()
 		}
 	}
 	smooth(1);
-
 }
 void solveinopencv()
 {
