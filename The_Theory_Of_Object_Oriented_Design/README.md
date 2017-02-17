@@ -2,6 +2,10 @@
 
 44161588-3 SONG DAIWEI
 
+
+
+[The object design](Report/LibManSys.md)
+
 ## Hardware Environment
 - CPU: Intel x86-64
 - RAM: 2GB+ 
