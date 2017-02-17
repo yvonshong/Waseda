@@ -1,6 +1,6 @@
 # README
 
-This is the assignment in my Master course. Some of them are programming project.
+This is the assignment in my Master course in WASEDA University. Some of them are programming project.
 
 ## Dynamic programming 
 
