@@ -18,7 +18,7 @@ GACTACAGCTCGTATACGCACACATGGTTCAGAC
 |G|-5|2|-7|-7|
 |T|-7|-7|2|-5|
 |C|-7|-7|-5|2|
-
+# ------------
 JavaScript source code:
 ```JavaScript
 var seq2 = "GACTACGATCCGTATACGCACAGGTTCAGAC";
